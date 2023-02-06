@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Add Book</title>
+		
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+	</head>
+	<body>
+		
+		<div class="container">
+		
+			<h3>Add New Book</h3>
+			<hr/>
+			<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+			<br/><br/>
+			<form th:action="@{/saveBook}" th:object="${book}" method="POST">
+				
+				<input type="text" th:field="*{name}" class="form-control col-4 mb-4" placeholder="Enter Name" />
+				
+				<input type="text" th:field="*{author}" class="form-control col-4 mb-4" placeholder="Enter Author" />
+				
+				<input type="text" th:field="*{date}" class="form-control col-4 mb-4" placeholder="Enter Date" />
+
+				<input type="text" th:field="*{currentOwner}" class="form-control col-4 mb-4" placeholder="Enter Current Owner" />
+
+				<input type="text" th:field="*{genre}" class="form-control col-4 mb-4" placeholder="Enter Genre" />
+
+				<input type="text" th:field="*{language}" class="form-control col-4 mb-4" placeholder="Enter Language" />
+
+				<input type="text" th:field="*{copy_number}" class="form-control col-4 mb-4" placeholder="Enter Copy Number" />
+				
+				<button type="submit" class="btn btn-primary col-2">Save</button>
+				<input type="hidden" th:field="*{id}" />
+				
+			</form>
+			<hr/>
+			<a th:href="@{/list}">Back to list</a>
+		</div>
+		
+	</body>
+</html>
