@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2FHgQpT0JP0sAEJfeWXZYNq8pHD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "G:/My Drive",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15234375",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "spring.configuration.checksum": "d521f765a49c72507257a2620612ee96"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Joel\OneDrive - International School of Beijing\Documents\Development\Java\Spring Projects\library_\src\main\resources\templates" />
+      <recent name="C:\Users\Joel\OneDrive - International School of Beijing\Documents\Development\Java\Spring Projects\library_\src\main\resources\images" />
+      <recent name="C:\Users\Joel\OneDrive - International School of Beijing\Documents\Development\Java\Spring Projects\library_\src\main\java\com\isb\library\web" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joel\OneDrive - International School of Beijing\Documents\Development\Java\Spring Projects\library_\lib" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.isb.library.web.book.dao" />
+      <recent name="com.isb.library.web.book.entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.bookImport">
+    <configuration name="bookImport" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.isb.library.web.book.controller.bookImport" />
+      <module name="library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.isb.library.web.book.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="studentImport" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.isb.library.web.book.controller.studentImport" />
+      <module name="library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.isb.library.web.book.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibraryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="library" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.isb.library.LibraryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.bookImport" />
+        <item itemvalue="Application.studentImport" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringBeansView">
+    <option name="beanDetailsProportion" value="0.3" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="" />
+      <created>1664154414691</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664154414691</updated>
+      <workItem from="1664154416281" duration="2486000" />
+      <workItem from="1664278471540" duration="3297000" />
+      <workItem from="1664465469969" duration="593000" />
+      <workItem from="1664682185879" duration="6370000" />
+      <workItem from="1667191739954" duration="1796000" />
+      <workItem from="1672721783262" duration="3313000" />
+      <workItem from="1672878457581" duration="4086000" />
+      <workItem from="1672893838646" duration="14341000" />
+      <workItem from="1672965153667" duration="7847000" />
+      <workItem from="1672995572346" duration="1049000" />
+      <workItem from="1673002045263" duration="7919000" />
+      <workItem from="1673016185144" duration="1003000" />
+      <workItem from="1673244248458" duration="719000" />
+      <workItem from="1673763574683" duration="28000" />
+      <workItem from="1673763619091" duration="29000" />
+      <workItem from="1673861695489" duration="1793000" />
+      <workItem from="1674018788453" duration="1922000" />
+      <workItem from="1674098414175" duration="1490000" />
+      <workItem from="1674199105844" duration="671000" />
+      <workItem from="1674281310559" duration="657000" />
+      <workItem from="1674286305022" duration="8206000" />
+      <workItem from="1674368522804" duration="371000" />
+      <workItem from="1674439994244" duration="3857000" />
+      <workItem from="1674450186286" duration="641000" />
+      <workItem from="1674525829524" duration="3105000" />
+      <workItem from="1674721902567" duration="1129000" />
+      <workItem from="1674806404892" duration="1241000" />
+      <workItem from="1674883481215" duration="3071000" />
+      <workItem from="1675045224981" duration="968000" />
+      <workItem from="1675069139294" duration="236000" />
+      <workItem from="1675069390406" duration="183000" />
+      <workItem from="1675069592281" duration="1745000" />
+      <workItem from="1675158989962" duration="837000" />
+      <workItem from="1675252338773" duration="595000" />
+      <workItem from="1675301473128" duration="319000" />
+      <workItem from="1675341142641" duration="595000" />
+      <workItem from="1675503400445" duration="780000" />
+      <workItem from="1675569420955" duration="600000" />
+      <workItem from="1675661736192" duration="4290000" />
+      <workItem from="1675666089793" duration="184000" />
+      <workItem from="1675666288615" duration="1817000" />
+      <workItem from="1675688366769" duration="1459000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="54d61bb5-82b5-48dd-a11f-70cbfb225d84">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/Joel/OneDrive - International School of Beijing/Documents/Development/Java/Spring Projects/library_/src/main/java/com/isb/library/web/user/dao" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="54d61bb5-82b5-48dd-a11f-70cbfb225d84" value="TOOL_WINDOW" />
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
+          <line>65</line>
+          <properties class="com.isb.library.web.book.controller.BookController" method="updateCatalogue">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
+          <line>192</line>
+          <properties class="com.isb.library.web.book.controller.BookController" method="saveStudents">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
