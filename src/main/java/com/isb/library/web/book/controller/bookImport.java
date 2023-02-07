@@ -108,102 +108,56 @@ public class bookImport {
     }
 
     public static void main(String[] args) throws IOException {
-        ArrayList<ArrayList<Object>> array = readExcelFile("\\C:\\Users\\Joel\\Downloads\\Book Room Inventory.xlsx");
-
-
-        for(ArrayList<Object> data : array){
-            writeToCSV(data, array.indexOf(data) + ".csv");
+        ArrayList<String> array = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
+        for(String e : array){
+            System.out.println(e);
         }
+        System.out.println(array.size());
+
+
 
     }
 
 
-        public static ArrayList<ArrayList<Object>> readExcelFile(String fileName) {
-            ArrayList<ArrayList<Object>> data = new ArrayList<>();
-            try (FileInputStream inputStream = new FileInputStream(fileName)) {
-                Workbook workbook = new XSSFWorkbook(inputStream);
-                Sheet firstSheet = workbook.getSheetAt(0);
-                int numberOfColumns = firstSheet.getRow(0).getLastCellNum();
-                for (int i = 0; i < numberOfColumns; i++) {
-                    data.add(new ArrayList<>());
-                }
-                for (Row row : firstSheet) {
-                    for (Cell cell : row) {
-                        Object cellValue = null;
-                        switch (cell.getCellType()) {
-                            case NUMERIC:
-                                cellValue = cell.getNumericCellValue();
-                                break;
-                            case STRING:
-                                cellValue = cell.getStringCellValue();
-                                break;
-                            case BOOLEAN:
-                                cellValue = cell.getBooleanCellValue();
-                                break;
-                            case FORMULA:
-                                switch (cell.getCachedFormulaResultType()) {
-                                    case NUMERIC:
-                                        cellValue = cell.getNumericCellValue();
-                                        break;
-                                    case STRING:
-                                        cellValue = cell.getStringCellValue();
-                                        break;
-                                    case BOOLEAN:
-                                        cellValue = cell.getBooleanCellValue();
-                                        break;
-                                    default:
-                                        cellValue = null;
-                                        break;
-                                }
-                                break;
-                            default:
-                                cellValue = null;
-                                break;
-                        }
-                        int columnIndex = cell.getColumnIndex();
-                        if(cellValue != null) {
-                            data.get(columnIndex).add(cellValue);
-                        }
-                        else if(columnIndex == 10){
-                            return data;
-                        }
-                        else{
-                            data.get(columnIndex).add(null);
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return data;
-        }
-
-
-
-
-    public static void writeToCSV(ArrayList<Object> data, String filePath) throws IOException {
-
+    public static ArrayList<String> extractData(String filePath) {
+        ArrayList<String> data = new ArrayList<>();
         try {
-            FileWriter writer = new FileWriter(filePath);
+            FileInputStream excelFile = new FileInputStream(new File(filePath));
+            Workbook workbook = new XSSFWorkbook(excelFile);
+            Sheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = sheet.iterator();
 
-            for (Object object : data) {
-                if(object != null) {
-                    writer.append(object.toString());
-                    writer.append(", ");
-                }
-                else{
-                    writer.append("");
-                    writer.append(", ");
+            // Skip the first 2 rows
+            for (int i = 0; i < 2; i++) {
+                if (rowIterator.hasNext()) {
+                    rowIterator.next();
                 }
             }
 
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
+            while (rowIterator.hasNext()) {
+                Row currentRow = rowIterator.next();
+                Cell cell = currentRow.getCell(0);
+                if (cell == null || cell.toString().isEmpty()) {
+                    continue;
+                }
+                switch (cell.getCellType()) {
+                    case NUMERIC:
+                        data.add(Double.toString(cell.getNumericCellValue()));
+                        break;
+                    case STRING:
+                        data.add(cell.getStringCellValue());
+                        break;
+                }
+            }
+            workbook.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return data;
     }
-    }
+
+
+}
 
 
 
