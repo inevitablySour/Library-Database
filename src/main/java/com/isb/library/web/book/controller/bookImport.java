@@ -108,7 +108,7 @@ public class bookImport {
     }
 
     public static void main(String[] args) throws IOException {
-        ArrayList<String> array = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
+        ArrayList<String> array = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Genre.xlsx");
         for(String e : array){
             System.out.println(e);
         }
