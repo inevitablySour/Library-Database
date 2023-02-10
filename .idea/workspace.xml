@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Reduced the lag due to loading in 25000 books by having the table show after the values had been retrieved from the mysql database">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Updated HTML to correct for change of the Book class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Catalogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Catalogue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books1.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +198,7 @@
       <workItem from="1675822224641" duration="684000" />
       <workItem from="1675834958055" duration="1930000" />
       <workItem from="1675853470410" duration="596000" />
-      <workItem from="1675989567985" duration="9787000" />
+      <workItem from="1675989567985" duration="14477000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -221,7 +221,28 @@
       <option name="project" value="LOCAL" />
       <updated>1676007876901</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated HTML and BookController to split author into last and first name categories">
+      <created>1676010254477</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1676010254477</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated HTML to correct for change of the Book class">
+      <created>1676010379953</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676010379953</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Updated HTML to correct for change of the Book class">
+      <created>1676010393947</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1676010393947</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +304,9 @@
     <MESSAGE value="Fixed an error with misc.xml and tested the extractData method" />
     <MESSAGE value="Added a Test Data adder class that adds the list of titles from a local Microsoft Excel file onto the database&#10;&#10;Changes to the HTML files were made in an attempt to sort out the sorting error where the website would display all 25000+ books and lag out the website" />
     <MESSAGE value="Reduced the lag due to loading in 25000 books by having the table show after the values had been retrieved from the mysql database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reduced the lag due to loading in 25000 books by having the table show after the values had been retrieved from the mysql database" />
+    <MESSAGE value="Updated HTML and BookController to split author into last and first name categories" />
+    <MESSAGE value="Updated HTML to correct for change of the Book class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated HTML to correct for change of the Book class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

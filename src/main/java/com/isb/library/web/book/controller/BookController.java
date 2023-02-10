@@ -200,13 +200,19 @@ public class BookController {
 
     @GetMapping("/saveTesting")
     public String saveTesting() {
-
-        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
-        for(int i = 0; i< data.size(); i++){
+        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
+        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx");
+        ArrayList<String> firstNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\First Name.xlsx");
+        ArrayList<String> genreData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Genre.xlsx");
+        for(int i = 0; i< titleData.size(); i++){
             Book temp = new Book();
-            temp.setName(data.get(i));
+            temp.setName(titleData.get(i));
+            temp.setLastName(lastNameData.get(i));
+            temp.setGenre(genreData.get(i));
             bookRepository.save(temp);
         }
+
+
         return"redirect:/catalogue";
     }
 
