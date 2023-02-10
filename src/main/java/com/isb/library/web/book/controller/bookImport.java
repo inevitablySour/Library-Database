@@ -1,6 +1,8 @@
 package com.isb.library.web.book.controller;
 
 
+import com.isb.library.web.book.dao.BookRepository;
+import com.isb.library.web.book.entity.Book;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -22,6 +24,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 public class bookImport {
 
+    private BookRepository bookRepository;
     public static ArrayList<ArrayList<String>> bookImport(String filepath) {
         //Storage for data from excel files
         ArrayList<String> headers = new ArrayList<>();
@@ -116,6 +119,15 @@ public class bookImport {
 
 
 
+    }
+
+    public void saveData(){
+        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Title.xlsx");
+        for(int i = 0; i< data.size(); i++){
+            Book temp = new Book();
+            temp.setName(data.get(i));
+            bookRepository.save(temp);
+        }
     }
 
 

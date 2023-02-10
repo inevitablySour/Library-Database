@@ -21,6 +21,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.isb.library.web.book.controller.bookImport.extractData;
+
 @Controller
 @RequestMapping("/")
 public class BookController {
@@ -36,7 +38,7 @@ public class BookController {
 
     @GetMapping({"/list"})
     public ModelAndView getAllBooks(){
-        ModelAndView mav = new ModelAndView("list-books");
+        ModelAndView mav = new ModelAndView("list-books1");
         mav.addObject("books", bookRepository.findAll());
         return mav;
     }
@@ -187,6 +189,18 @@ public class BookController {
 
 
         return mav;
+    }
+
+    @GetMapping("/saveTesting")
+    public String saveTesting() {
+
+        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
+        for(int i = 0; i< data.size(); i++){
+            Book temp = new Book();
+            temp.setName(data.get(i));
+            bookRepository.save(temp);
+        }
+        return"redirect:/catalogue";
     }
 
     @GetMapping("/saveStudents")
