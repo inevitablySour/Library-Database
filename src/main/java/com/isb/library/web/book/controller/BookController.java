@@ -11,12 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.isb.library.web.book.entity.Book;
 import com.isb.library.web.book.dao.BookRepository;
 import com.isb.library.web.book.entity.Catalogue;
-import com.isb.library.web.book.controller.studentImport;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +36,7 @@ public class BookController {
 
     @GetMapping({"/list"})
     public ModelAndView getAllBooks(){
-        ModelAndView mav = new ModelAndView("list-books1");
+        ModelAndView mav = new ModelAndView("list-books");
         mav.addObject("books", bookRepository.findAll());
         return mav;
     }
@@ -56,9 +54,17 @@ public class BookController {
         return mav;
     }
 
+    @GetMapping({"/deleteAll"})
+    public String deleteAllBooks() throws SQLException {
+        bookRepository.deleteAll();
+        bookImport.resetIncrement();
+        return"redirect:/";
+    }
 
 
-    @PostMapping("/saveBook")
+
+
+    @PostMapping({"/saveBook"})
     public String saveBook(@ModelAttribute Book book) {
         bookRepository.save(book);
         return "redirect:/list";
@@ -102,7 +108,8 @@ public class BookController {
         if(currentNum < quantity){
             for (int i = 0; i < quantity-currentNum; i++) {
                 Book book = new Book();
-                book.setAuthor(catalogue.getAuthor());
+                book.setLastName(catalogue.getLastName());
+                book.setFirstName(catalogue.getFirstName());
                 book.setName(catalogue.getName());
                 int bookNum = finalCopyNumber+1+i;
                 book.setCopy_number(id + "-" + bookNum);
@@ -194,11 +201,11 @@ public class BookController {
     @GetMapping("/saveTesting")
     public String saveTesting() {
 
-        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Names.xlsx");
+        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
         for(int i = 0; i< data.size(); i++){
-            Catalogue temp = new Catalogue();
+            Book temp = new Book();
             temp.setName(data.get(i));
-            catalogueRepository.save(temp);
+            bookRepository.save(temp);
         }
         return"redirect:/catalogue";
     }

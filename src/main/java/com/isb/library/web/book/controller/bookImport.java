@@ -8,6 +8,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -122,7 +126,7 @@ public class bookImport {
     }
 
     public void saveData(){
-        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Title.xlsx");
+        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
         for(int i = 0; i< data.size(); i++){
             Book temp = new Book();
             temp.setName(data.get(i));
@@ -166,6 +170,17 @@ public class bookImport {
             e.printStackTrace();
         }
         return data;
+    }
+    public static void resetIncrement() throws SQLException {
+
+        String url = "jdbc:mysql://localhost:3306/javabase";
+        String user = "root";
+        String password = "Jxhb200516!";
+        Connection myConn = DriverManager.getConnection(url, user, password);
+
+        Statement myStmt = myConn.createStatement();
+        String sql = "ALTER TABLE books AUTO_INCREMENT = 1";
+        boolean rs = myStmt.execute(sql);
     }
 
 

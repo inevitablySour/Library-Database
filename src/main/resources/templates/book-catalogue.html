@@ -29,7 +29,8 @@
 					<tr>
 						<th>Name</th>
 						<th>Quantity</th>
-						<th>Author</th>
+						<th>Last Name</th>
+						<th>First Name</th>
 						<th>ISBN</th>
 						<th>Publisher</th>
 						<th>Options</th>
@@ -39,7 +40,8 @@
 					<tr th:each="catalogue: ${catalogue}">
 						<td th:text="${catalogue.name}" />
 						<td th:text="${catalogue.quantity}" />
-						<td th:text="${catalogue.author}" />
+						<td th:text="${catalogue.lastName}" />
+						<td th:text="${catalogue.firstName}" />
 						<td th:text="${catalogue.ISBN}" />
 						<td th:text="${catalogue.publisher}" />
 						<td>

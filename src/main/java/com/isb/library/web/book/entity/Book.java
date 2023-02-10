@@ -24,7 +24,9 @@ public class Book {
 
     private String name;
 
-    private String author;
+    private String lastName;
+
+    private String firstName;
 
     private String date;
 

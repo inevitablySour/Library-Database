@@ -26,7 +26,9 @@ public class Catalogue {
 
     private int quantity;
 
-    private String author;
+    private String lastName;
+
+    private String firstName;
 
     private String ISBN;
 
