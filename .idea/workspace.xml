@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Fixed an error with misc.xml and tested the extractData method">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books1.html" afterDir="false" />
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Added a Test Data adder class that adds the list of titles from a local Microsoft Excel file onto the database&#10;&#10;Changes to the HTML files were made in an attempt to sort out the sorting error where the website would display all 25000+ books and lag out the website">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books1.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +193,7 @@
       <workItem from="1675822224641" duration="684000" />
       <workItem from="1675834958055" duration="1930000" />
       <workItem from="1675853470410" duration="596000" />
-      <workItem from="1675989567985" duration="5319000" />
+      <workItem from="1675989567985" duration="8118000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -207,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675837363282</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added a Test Data adder class that adds the list of titles from a local Microsoft Excel file onto the database&#10;&#10;Changes to the HTML files were made in an attempt to sort out the sorting error where the website would display all 25000+ books and lag out the website">
+      <created>1676005042196</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676005042196</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +269,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed an error with misc.xml and tested the extractData method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an error with misc.xml and tested the extractData method" />
+    <MESSAGE value="Added a Test Data adder class that adds the list of titles from a local Microsoft Excel file onto the database&#10;&#10;Changes to the HTML files were made in an attempt to sort out the sorting error where the website would display all 25000+ books and lag out the website" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a Test Data adder class that adds the list of titles from a local Microsoft Excel file onto the database&#10;&#10;Changes to the HTML files were made in an attempt to sort out the sorting error where the website would display all 25000+ books and lag out the website" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

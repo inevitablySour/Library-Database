@@ -14,7 +14,7 @@
 
 <body>
 
-<div class="container">
+<div class="container" id="book-table-container" >
 
 	<h3>Book List</h3>
 
@@ -23,7 +23,7 @@
 	<a th:href="@{/}" class="btn btn-primary">Book Catalogue</a>
 	<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
 	<br/><br/>
-	<table class="table table-bordered table-striped" id="catalogueTable">
+	<table class="table table-bordered table-striped" id="bookTable" style="display: none">
 
 		<thead>
 		<tr>
@@ -63,12 +63,15 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$("#catalogueTable").DataTable({
-			'aoColumnDefs': [{
-				'bSortable': false
-			}]
+		$("#bookTable").show();
+		$("#bookTable").dataTable({
+			"pageLength": 50,
+			"aoColumnDefs": [{
+				"bSortable": true
+			}],
+			"order": []
 		});
-	})
+	});
 </script>
 </body>
 

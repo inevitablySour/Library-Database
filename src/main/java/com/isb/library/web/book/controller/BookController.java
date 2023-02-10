@@ -194,11 +194,11 @@ public class BookController {
     @GetMapping("/saveTesting")
     public String saveTesting() {
 
-        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
+        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Names.xlsx");
         for(int i = 0; i< data.size(); i++){
-            Book temp = new Book();
+            Catalogue temp = new Catalogue();
             temp.setName(data.get(i));
-            bookRepository.save(temp);
+            catalogueRepository.save(temp);
         }
         return"redirect:/catalogue";
     }
