@@ -4,18 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Updated HTML to correct for change of the Book class">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Functioning version of imorted data">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/security/SecurityConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/create-user-form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/dao/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/dao/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Book.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/dao/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/dao/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/entity/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +33,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -66,27 +74,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Joel/OneDrive - International School of Beijing/Documents/Development/Java/Spring Projects/library_/src/main/resources/templates",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15234375",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "spring.configuration.checksum": "d521f765a49c72507257a2620612ee96"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Joel/OneDrive - International School of Beijing/Documents/Development/Java/Spring Projects/library_/src/main/resources/templates&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15234375&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;d521f765a49c72507257a2620612ee96&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Joel\OneDrive - International School of Beijing\Documents\Development\Java\Spring Projects\library_\src\main\resources\templates" />
@@ -198,7 +206,10 @@
       <workItem from="1675822224641" duration="684000" />
       <workItem from="1675834958055" duration="1930000" />
       <workItem from="1675853470410" duration="596000" />
-      <workItem from="1675989567985" duration="14477000" />
+      <workItem from="1675989567985" duration="20954000" />
+      <workItem from="1676082878645" duration="2519000" />
+      <workItem from="1676120121634" duration="1155000" />
+      <workItem from="1676169001655" duration="3270000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -242,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676010393947</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Functioning version of imorted data">
+      <created>1676016657477</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676016657477</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,21 +324,7 @@
     <MESSAGE value="Reduced the lag due to loading in 25000 books by having the table show after the values had been retrieved from the mysql database" />
     <MESSAGE value="Updated HTML and BookController to split author into last and first name categories" />
     <MESSAGE value="Updated HTML to correct for change of the Book class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated HTML to correct for change of the Book class" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>73</line>
-          <properties class="com.isb.library.web.book.controller.BookController" method="updateCatalogue">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Functioning version of imorted data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Functioning version of imorted data" />
   </component>
 </project>

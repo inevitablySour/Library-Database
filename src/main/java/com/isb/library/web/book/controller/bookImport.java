@@ -22,11 +22,16 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 
 public class bookImport {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private BookRepository bookRepository;
     public static ArrayList<ArrayList<String>> bookImport(String filepath) {
@@ -123,7 +128,11 @@ public class bookImport {
 
 
 
+
+
     }
+
+
 
     public void saveData(){
         ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx");

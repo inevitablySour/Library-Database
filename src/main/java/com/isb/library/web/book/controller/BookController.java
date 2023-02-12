@@ -33,7 +33,6 @@ public class BookController {
     @Autowired
     private StudentRepository studentRepository;
 
-
     @GetMapping({"/list"})
     public ModelAndView getAllBooks(){
         ModelAndView mav = new ModelAndView("list-books");
