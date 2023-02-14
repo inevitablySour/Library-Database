@@ -22,13 +22,11 @@
 			
 			<hr/>
 			<a th:href="@{/addCatalogueForm}" class="btn btn-primary">Add Book to Catalogue</a>
-			<a th:href="@{/list}" class="btn btn-primary">Book List</a>
-			<div sec:authorize="hasRole('root')">
-				<a th:href="@{/user/create}" class="btn btn-primary" >New User</a>
-			</div>
-
-
+			<a th:href="@{/list}" class="btn btn-primary" sec:authorize="hasRole('root')">Book List</a>
 			<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+			<div class="float-right" sec:authorize="hasRole('root')">
+				<a th:href="@{/user/create}" class="btn btn-dark" >New User</a>
+			</div>
 			<br/><br/>
 			<table class="table table-bordered table-striped" id="catalogueTable">
 			
@@ -44,17 +42,19 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="catalogue: ${catalogue}">
-						<td th:text="${catalogue.name}" />
+					<tr th:each="catalogue: ${catalogue}" >
+						<td th:text="${catalogue.name}"/>
 						<td th:text="${catalogue.quantity}" />
 						<td th:text="${catalogue.lastName}" />
 						<td th:text="${catalogue.firstName}" />
 						<td th:text="${catalogue.ISBN}" />
 						<td th:text="${catalogue.publisher}" />
 						<td>
-							<a th:href="@{/showUpdateCatalogueForm(catalogueId=${catalogue.id})}" class="btn btn-info">Update</a>
+							<a th:href="@{/booksWithTitle(title=${catalogue.name})}" class="btn btn-info" sec:authorize="hasRole('root')">List</a>
 
-							<a th:href="@{/deleteInCatalogue(catalogueId=${catalogue.id})}" class="btn btn-danger ml-2">Delete</a>
+							<a th:href="@{/showUpdateCatalogueForm(catalogueId=${catalogue.id})}" class="btn btn-info" sec:authorize="hasRole('root')">Update</a>
+
+							<a th:href="@{/deleteInCatalogue(catalogueId=${catalogue.id})}" class="btn btn-danger ml-2" sec:authorize="hasRole('root')">Delete</a>
 						</td>
 					</tr>
 				</tbody>

@@ -124,6 +124,20 @@ public class BookController {
        return "redirect:/catalogue";
     }
 
+    @GetMapping("/booksWithTitle")
+    public ModelAndView booksWithTitle(@RequestParam String title){
+        ModelAndView mav = new ModelAndView("books-with-title");
+        List<Book> tempBooks = bookRepository.findAll();
+        ArrayList<Book> books = new ArrayList<>();
+        for (Book book : tempBooks){
+            if (book.getName().equals(title)){
+                books.add(book);
+            }
+        }
+        mav.addObject("books", books);
+        return mav;
+    }
+
     @GetMapping("/addBookForm")
     public ModelAndView addBookForm() {
         ModelAndView mav = new ModelAndView("add-book-form");
