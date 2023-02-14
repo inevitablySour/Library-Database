@@ -4,6 +4,7 @@ package com.isb.library.web.user.controller;
 import com.isb.library.web.user.dao.UserRepository;
 import com.isb.library.web.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
