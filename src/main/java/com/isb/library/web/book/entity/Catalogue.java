@@ -30,14 +30,14 @@ public class Catalogue {
 
     private String firstName;
 
-    private String ISBN;
+    private String original_language;
 
-    private String publisher;
-
-    private String language;
-
-    private String date;
+    private String century;
 
     private String genre;
+
+    private String version;
+
+    private String shelf;
 
 }

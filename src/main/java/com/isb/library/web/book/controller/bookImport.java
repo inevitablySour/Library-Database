@@ -120,7 +120,7 @@ public class bookImport {
     }
 
     public static void main(String[] args) throws IOException {
-        ArrayList<String> array = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx");
+        ArrayList<String> array = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx", false);
         for(String e : array){
             System.out.println(e);
         }
@@ -135,7 +135,7 @@ public class bookImport {
 
 
     public void saveData(){
-        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx");
+        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx", false);
         for(int i = 0; i< data.size(); i++){
             Book temp = new Book();
             temp.setName(data.get(i));
@@ -144,7 +144,7 @@ public class bookImport {
     }
 
 
-    public static ArrayList<String> extractData(String filePath) {
+    public static ArrayList<String> extractData(String filePath, boolean withSpaces) {
         ArrayList<String> data = new ArrayList<>();
         try {
             FileInputStream excelFile = new FileInputStream(new File(filePath));
@@ -152,17 +152,14 @@ public class bookImport {
             Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rowIterator = sheet.iterator();
 
-            // Skip the first 2 rows
-            for (int i = 0; i < 2; i++) {
-                if (rowIterator.hasNext()) {
-                    rowIterator.next();
-                }
-            }
 
             while (rowIterator.hasNext()) {
                 Row currentRow = rowIterator.next();
                 Cell cell = currentRow.getCell(0);
                 if (cell == null || cell.toString().isEmpty()) {
+                    if(withSpaces){
+                        data.add(" ");
+                    }
                     continue;
                 }
                 switch (cell.getCellType()) {

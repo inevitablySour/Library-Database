@@ -28,15 +28,11 @@ public class Book {
 
     private String firstName;
 
-    private String date;
-
     private int checkedOut;
 
     private String currentOwner;
 
     private String genre;
-
-    private String language;
 
     private String copy_number;
 

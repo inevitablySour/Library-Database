@@ -2,6 +2,7 @@ package com.isb.library.web.book.controller;
 import com.isb.library.web.book.dao.CatalogueRepository;
 import com.isb.library.web.book.dao.StudentRepository;
 import com.isb.library.web.book.entity.Student;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -112,9 +113,7 @@ public class BookController {
                 book.setName(catalogue.getName());
                 int bookNum = finalCopyNumber+1+i;
                 book.setCopy_number(id + "-" + bookNum);
-                book.setDate(catalogue.getDate());
                 book.setGenre(catalogue.getGenre());
-                book.setLanguage(catalogue.getLanguage());
                 book.setCatalogue_number(Integer.valueOf(id));
                 bookRepository.save(book);
             }
@@ -213,20 +212,61 @@ public class BookController {
 
     @GetMapping("/saveTesting")
     public String saveTesting() {
-        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx");
-        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx");
-        ArrayList<String> firstNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\First Name.xlsx");
-        ArrayList<String> genreData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Genre.xlsx");
+        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx", false);
+        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx", false);
+        ArrayList<String> firstNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\First Name.xlsx", false);
+        ArrayList<String> genreData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Genre.xlsx", false);
+        ArrayList<String> idData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Book ID.xlsx", false);
         for(int i = 0; i< titleData.size(); i++){
             Book temp = new Book();
             temp.setName(titleData.get(i));
             temp.setLastName(lastNameData.get(i));
+            temp.setFirstName(firstNameData.get(i));
             temp.setGenre(genreData.get(i));
+            temp.setCopy_number(idData.get(i));
             bookRepository.save(temp);
         }
 
 
         return"redirect:/catalogue";
+    }
+
+    @GetMapping("/catalogueSaveTesting")
+    public String catalogueSaveTesting(){
+        //Methods used to initially import all the titles of books into the database and update both the quantities of books as well as the catalogue number of each book
+
+//        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Titles.xlsx");
+//        for(String title: titleData){
+//            Catalogue temp = new Catalogue();
+//            temp.setName(title);
+//            catalogueRepository.save(temp);
+//        }
+//        List<Book> books = bookRepository.findAll();
+//        List<Catalogue> catalogue = catalogueRepository.findAll();
+//
+//        for(Catalogue e : catalogue){
+//            for(Book book : books){
+//                if(book.getName().equals(e.getName())){
+//                    book.setCatalogue_number(Integer.parseInt(e.getId()));
+//                    bookRepository.save(book);
+//                    int quantity = e.getQuantity();
+//                    e.setQuantity(quantity + 1);
+//                }
+//            }
+//        }
+
+        List<Catalogue> catalogue = catalogueRepository.findAll();
+
+        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Version.xlsx", true);
+
+
+        for(int i = 0; i < catalogue.size(); i++){
+            catalogue.get(i).setVersion(lastNameData.get(i));
+            catalogueRepository.save(catalogue.get(i));
+        }
+
+
+        return "redirect:/catalogue";
     }
 
     @GetMapping("/saveStudents")
@@ -273,6 +313,12 @@ public class BookController {
             studentRepository.save(tempStudent);
         }
         return "redirect:/catalogue";
+    }
+
+    @GetMapping("/findBookBy")
+    public ModelAndView findBookBy(){
+        ModelAndView mav = new ModelAndView();
+        return mav;
     }
 
 }
