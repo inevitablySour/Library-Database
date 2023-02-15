@@ -14,7 +14,9 @@
 		
 			<h3>Add New Book to Catalogue</h3>
 			<hr/>
-			<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+			<div class="float-right" >
+				<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+			</div>
 			<br/><br/>
 			<form th:action="@{/saveCatalogue}" th:object="${catalogue}" method="POST">
 				
@@ -26,11 +28,11 @@
 
 				<input type="text" th:field="*{firstName}" class="form-control col-4 mb-4" placeholder="Enter Author's First Name" />
 
-				<input type="text" th:field="*{ISBN}" class="form-control col-4 mb-4" placeholder="Enter ISBN" />
+				<input type="text" th:field="*{century}" class="form-control col-4 mb-4" placeholder="Enter Century" />
 
-				<input type="text" th:field="*{publisher}" class="form-control col-4 mb-4" placeholder="Enter Publisher" />
+				<input type="text" th:field="*{Shelf}" class="form-control col-4 mb-4" placeholder="Enter Shelf Number" />
 
-				<input type="text" th:field="*{language}" class="form-control col-4 mb-4" placeholder="Enter Language" />
+				<input type="text" th:field="*{original_language}" class="form-control col-4 mb-4" placeholder="Enter Original Language" />
 
 				<select class="custom-select" id="genreSelect" th:field="*{genre}" style="width: 370px">
 					<option value="null " selected>Choose Genre</option>

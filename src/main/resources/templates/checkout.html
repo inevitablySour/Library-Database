@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/checkout}" method="post" class="text-center">
+        <div class="form-group">
+            <label for="studentId">Select Student:</label>
+            <select class="form-control" id="studentId" name="studentId">
+                <option th:each="student : ${students}"
+                        th:value="${student.id}"
+                        th:text="${student.name}">
+                </option>
+            </select>
+        </div>
+        <a th:href="@{/catalogue}" class="btn btn-link">Back to Catalogue</a>
+
+        <button type="submit" class="btn btn-primary">Checkout</button>
+        <input type="hidden" th:field="*{student.id}" />
+    </form>
+</div>
+</body>
+</html>

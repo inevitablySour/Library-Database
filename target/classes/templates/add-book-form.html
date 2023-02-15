@@ -14,7 +14,10 @@
 		
 			<h3>Add New Book</h3>
 			<hr/>
-			<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+			<div></div>
+			<div class="float-right" >
+				<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+			</div>
 			<br/><br/>
 			<form th:action="@{/saveBook}" th:object="${book}" method="POST">
 				
@@ -23,16 +26,20 @@
 				<input type="text" th:field="*{lastName}" class="form-control col-4 mb-4" placeholder="Enter Author's Last Name" />
 
 				<input type="text" th:field="*{firstName}" class="form-control col-4 mb-4" placeholder="Enter Author's First Name" />
-				
-				<input type="text" th:field="*{date}" class="form-control col-4 mb-4" placeholder="Enter Date" />
-
-				<input type="text" th:field="*{currentOwner}" class="form-control col-4 mb-4" placeholder="Enter Current Owner" />
 
 				<input type="text" th:field="*{genre}" class="form-control col-4 mb-4" placeholder="Enter Genre" />
 
-				<input type="text" th:field="*{language}" class="form-control col-4 mb-4" placeholder="Enter Language" />
-
 				<input type="text" th:field="*{copy_number}" class="form-control col-4 mb-4" placeholder="Enter Copy Number" />
+
+				<label for="studentSelect">Select a student:</label>
+				<select class="form-control" id="currentOwner" name="currentOwner">
+					<option value="">Select Owner:</option>
+					<option th:each="student: ${students}"
+							th:value="${student.id}"
+							th:text="${student.name}"
+							th:selected="${student.id == book.currentOwner}">
+					</option>
+				</select>
 				
 				<button type="submit" class="btn btn-primary col-2">Save</button>
 				<input type="hidden" th:field="*{id}" />

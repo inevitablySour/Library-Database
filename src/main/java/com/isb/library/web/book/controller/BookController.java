@@ -2,9 +2,10 @@ package com.isb.library.web.book.controller;
 import com.isb.library.web.book.dao.CatalogueRepository;
 import com.isb.library.web.book.dao.StudentRepository;
 import com.isb.library.web.book.entity.Student;
-import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +27,7 @@ import static com.isb.library.web.book.controller.bookImport.extractData;
 @RequestMapping("/")
 public class BookController {
 
+
     @Autowired
     private BookRepository bookRepository;
     @Autowired
@@ -38,6 +40,7 @@ public class BookController {
     public ModelAndView getAllBooks(){
         ModelAndView mav = new ModelAndView("list-books");
         mav.addObject("books", bookRepository.findAll());
+        mav.addObject("student", studentRepository.findAll());
         return mav;
     }
 
@@ -65,7 +68,8 @@ public class BookController {
 
 
     @PostMapping({"/saveBook"})
-    public String saveBook(@ModelAttribute Book book) {
+    public String saveBook(@ModelAttribute Book book, Student student) {
+        book.setCurrentOwner(student.getId());
         bookRepository.save(book);
         return "redirect:/list";
     }
@@ -141,6 +145,8 @@ public class BookController {
     public ModelAndView addBookForm() {
         ModelAndView mav = new ModelAndView("add-book-form");
         Book newBook = new Book();
+        List<Student> students = studentRepository.findAll();
+        mav.addObject("students", students);
         mav.addObject("book", newBook);
         return mav;
     }
@@ -148,6 +154,11 @@ public class BookController {
     public ModelAndView showUpdateForm(@RequestParam String bookId) {
         ModelAndView mav = new ModelAndView("add-book-form");
         Book book = bookRepository.findById(bookId).get();
+        if (book.getCurrentOwner() != null){
+
+        }
+        List<Student> students = studentRepository.findAll();
+        mav.addObject("students", students);
         mav.addObject("book", book);
         return mav;
     }
@@ -212,19 +223,35 @@ public class BookController {
 
     @GetMapping("/saveTesting")
     public String saveTesting() {
-        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx", false);
-        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx", false);
-        ArrayList<String> firstNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\First Name.xlsx", false);
-        ArrayList<String> genreData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Genre.xlsx", false);
-        ArrayList<String> idData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Book ID.xlsx", false);
-        for(int i = 0; i< titleData.size(); i++){
-            Book temp = new Book();
-            temp.setName(titleData.get(i));
-            temp.setLastName(lastNameData.get(i));
-            temp.setFirstName(firstNameData.get(i));
-            temp.setGenre(genreData.get(i));
-            temp.setCopy_number(idData.get(i));
-            bookRepository.save(temp);
+//        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx", false);
+//        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx", false);
+//        ArrayList<String> firstNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\First Name.xlsx", false);
+//        ArrayList<String> genreData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Genre.xlsx", false);
+//        ArrayList<String> idData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Book ID.xlsx", false);
+        ArrayList<String> studentData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Student Names.xlsx", true);
+        List<Student> students = studentRepository.findAll();
+        List<Book> books = bookRepository.findAll();
+        ArrayList<String> names = new ArrayList<>();
+        for(Student e : students){
+            names.add(e.getName());
+        }
+        for(int i = 0; i< studentData.size(); i++){
+            Book temp;
+            int tempID;
+            if(names.contains(studentData.get(i))){
+                tempID = names.indexOf(studentData.get(i));
+                temp = books.get(i);
+                temp.setCheckedOut(1);
+                temp.setCurrentOwner(String.valueOf(tempID));
+                bookRepository.save(temp);
+            }
+
+//            temp.setName(titleData.get(i));
+//            temp.setLastName(lastNameData.get(i));
+//            temp.setFirstName(firstNameData.get(i));
+//            temp.setGenre(genreData.get(i));
+//            temp.setCopy_number(idData.get(i));
+            //bookRepository.save(temp);
         }
 
 
@@ -270,17 +297,12 @@ public class BookController {
     }
 
     @GetMapping("/saveStudents")
-    public String saveStudents(@RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes) throws SQLException, IOException {
-        if(file.isEmpty()){
-            redirectAttributes.addFlashAttribute("errorMessage", "Please select file to upload.");
-            return "redirect:/importStudentsForm";
-        }
+    public String saveStudents() throws SQLException, IOException {
 
-        Path path = Path.of(String.valueOf(file));
 
-        studentRepository.deleteAll();
+        //studentRepository.deleteAll();
 
-        ArrayList<ArrayList<String>> masterArrayList= studentImport.studentImport(String.valueOf(path));
+        ArrayList<ArrayList<String>> masterArrayList= studentImport.studentImport("C:\\Users\\Joel\\Downloads\\Book Room Inventory.xlsx");
         ArrayList<String> ninth= masterArrayList.get(0);
         ArrayList<String> tenth= masterArrayList.get(1);
         ArrayList<String> eleventh= masterArrayList.get(2);
@@ -315,10 +337,33 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
-    @GetMapping("/findBookBy")
-    public ModelAndView findBookBy(){
-        ModelAndView mav = new ModelAndView();
-        return mav;
+//    @GetMapping("/checkout")
+//    public ModelAndView checkout(@RequestParam String bookID) {
+//        ModelAndView mav = new ModelAndView("checkout");
+//        mav.addObject("book", bookRepository.findById(bookID).get());
+//        mav.addObject("students", studentRepository.findAll());
+//        return mav;
+//    }
+//
+//    @PostMapping("/checkout")
+//    public String checkout(@ModelAttribute Book book, Student student){
+//        String bookId = book.getId();
+//        Book temp = bookRepository.findById(bookId).get();
+//        temp.setCurrentOwner(student.getId());
+//
+//        temp.setCheckedOut(1);
+//        bookRepository.save(temp);
+//        return "redirect:/catalogue";
+//    }
+
+    @GetMapping("/return")
+    public String returnBook(@RequestParam String bookID){
+        Book book = bookRepository.findById(bookID).get();
+        book.setCurrentOwner(null);
+        book.setCheckedOut(0);
+        bookRepository.save(book);
+        return "redirect:/catalogue";
     }
+
 
 }

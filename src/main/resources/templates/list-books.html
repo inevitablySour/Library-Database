@@ -36,7 +36,7 @@
 			<th>Last Name</th>
 			<th>FirstName</th>
 			<th>Genre</th>
-			<th>Current Owner</th>
+			<th>Checked Out</th>
 			<th>Copy Number</th>
 			<th>Catalogue Number</th>
 			<th>Options</th>
@@ -48,15 +48,22 @@
 			<td th:text="${book.lastName}" />
 			<td th:text="${book.firstName}" />
 			<td th:text="${book.genre}" />
-			<td th:text="${book.currentOwner}" />
+			<td>
+   				<span th:text="${book.checkedOut == 0} ? 'No' : 'Yes'"
+		  			th:class="${book.checkedOut == 0} ? 'text-success' : 'text-danger'">
+    			</span>
+			</td>
+
 			<td th:text="${book.copy_number}" />
 			<td th:text="${book.catalogue_number}" />
 			<td>
+				<a th:if="${book.checkedOut == 0}" th:href="@{/checkout(bookID=${book.id})}" class="btn btn-success">Check out</a>
+				<a th:if="${book.checkedOut == 1}" th:href="@{/return(bookID${book.id})}" class="btn btn-warning">Return</a>
 				<a th:href="@{/showUpdateForm(bookId=${book.id})}" class="btn btn-info">Update</a>
-
 				<a th:href="@{/deleteBook(bookId=${book.id})}" class="btn btn-danger">Delete</a>
 			</td>
 		</tr>
+
 		</tbody>
 
 	</table>

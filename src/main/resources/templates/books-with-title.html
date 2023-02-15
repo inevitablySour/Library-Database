@@ -20,9 +20,10 @@
 	<h3>Book List</h3>
 
 	<hr/>
-	<a th:href="@{/addBookForm}" class="btn btn-primary">Add Book to List</a>
 	<a th:href="@{/}" class="btn btn-primary">Book Catalogue</a>
-	<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+	<div class="float-right" >
+		<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+	</div>
 	<br/><br/>
 	<table class="table table-bordered table-striped" id="bookTable" style="display: none">
 
@@ -31,8 +32,8 @@
 			<th>Name</th>
 			<th>Last Name</th>
 			<th>FirstName</th>
-			<th>Current Owner</th>
 			<th>Genre</th>
+			<th>Checked Out</th>
 			<th>Copy Number</th>
 			<th>Catalogue Number</th>
 			<th>Options</th>
@@ -43,14 +44,20 @@
 			<td th:text="${book.name}" />
 			<td th:text="${book.lastName}" />
 			<td th:text="${book.firstName}" />
-			<td th:text="${book.currentOwner}" />
 			<td th:text="${book.genre}" />
+			<td>
+   				<span th:text="${book.checkedOut == 0} ? 'No' : 'Yes'"
+					  th:class="${book.checkedOut == 0} ? 'text-success' : 'text-danger'">
+    			</span>
+			</td>
+
 			<td th:text="${book.copy_number}" />
 			<td th:text="${book.catalogue_number}" />
 			<td>
-				<a th:href="@{/showUpdateForm(bookId=${book.id})}" class="btn btn-info">Update</a>
-
-				<a th:href="@{/deleteBook(bookId=${book.id})}" class="btn btn-danger ml-2">Delete</a>
+				<button th:if="${book.checkedOut == 0}" class="btn btn-success">Check out</button>
+				<button th:if="${book.checkedOut == 1}" class="btn btn-warning">Return</button>
+				<a th:href="@{/showUpdateForm(bookId=${book.id})}" class="btn btn-info" sec:authorize="hasRole('root')">Update</a>
+				<a th:href="@{/deleteBook(bookId=${book.id})}" class="btn btn-danger" sec:authorize="hasRole('root')">Delete</a>
 			</td>
 		</tr>
 		</tbody>

@@ -18,6 +18,46 @@ import java.util.Iterator;
 
 public class studentImport {
 
+    @Autowired
+    StudentRepository studentRepository;
+
+    public static void main(String[] args) throws SQLException {
+
+
+//        ArrayList<ArrayList<String>> masterArrayList= studentImport("C:\\Users\\Joel\\Downloads\\Book Room Inventory.xlsx");
+//        ArrayList<String> ninth= masterArrayList.get(0);
+//        ArrayList<String> tenth= masterArrayList.get(1);
+//        ArrayList<String> eleventh= masterArrayList.get(2);
+//        ArrayList<String> twelfth= masterArrayList.get(3);
+//
+//        resetIncrement();
+//
+//        for (String student : ninth) {
+//            Student tempStudent = new Student();
+//            tempStudent.setName(student);
+//            tempStudent.setGrade(9);
+//            studentRepository.save(tempStudent);
+//        }
+//        for (String student : tenth) {
+//            Student tempStudent = new Student();
+//            tempStudent.setName(student);
+//            tempStudent.setGrade(10);
+//            studentRepository.save(tempStudent);
+//        }
+//        for (String student : eleventh) {
+//            Student tempStudent = new Student();
+//            tempStudent.setName(student);
+//            tempStudent.setGrade(11);
+//            studentRepository.save(tempStudent);
+//        }
+//        for (String student : twelfth) {
+//            Student tempStudent = new Student();
+//            tempStudent.setName(student);
+//            tempStudent.setGrade(12);
+//            studentRepository.save(tempStudent);
+//        }
+    }
+
     public static void resetIncrement() throws SQLException {
 
         String url = "jdbc:mysql://localhost:3306/javabase";

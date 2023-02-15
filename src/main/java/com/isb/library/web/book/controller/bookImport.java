@@ -160,7 +160,9 @@ public class bookImport {
                     if(withSpaces){
                         data.add(" ");
                     }
-                    continue;
+                    else {
+                        continue;
+                    }
                 }
                 switch (cell.getCellType()) {
                     case NUMERIC:
