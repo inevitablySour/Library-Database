@@ -337,24 +337,27 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
-//    @GetMapping("/checkout")
-//    public ModelAndView checkout(@RequestParam String bookID) {
-//        ModelAndView mav = new ModelAndView("checkout");
-//        mav.addObject("book", bookRepository.findById(bookID).get());
-//        mav.addObject("students", studentRepository.findAll());
-//        return mav;
-//    }
-//
-//    @PostMapping("/checkout")
-//    public String checkout(@ModelAttribute Book book, Student student){
-//        String bookId = book.getId();
-//        Book temp = bookRepository.findById(bookId).get();
-//        temp.setCurrentOwner(student.getId());
-//
-//        temp.setCheckedOut(1);
-//        bookRepository.save(temp);
-//        return "redirect:/catalogue";
-//    }
+    @GetMapping("/checkout")
+    public ModelAndView checkout(@RequestParam String bookID) {
+        ModelAndView mav = new ModelAndView("checkout");
+        Book book = bookRepository.findById(bookID).get();
+
+        List<Student> students = studentRepository.findAll();
+        mav.addObject("students", students);
+        mav.addObject("book", book);
+        return mav;
+    }
+
+    @PostMapping("/checkout")
+    public String checkout(@ModelAttribute Book book, Student student){
+        String bookId = book.getId();
+        Book temp = bookRepository.findById(bookId).get();
+        temp.setCurrentOwner(student.getId());
+
+        temp.setCheckedOut(1);
+        bookRepository.save(temp);
+        return "redirect:/catalogue";
+    }
 
     @GetMapping("/return")
     public String returnBook(@RequestParam String bookID){
