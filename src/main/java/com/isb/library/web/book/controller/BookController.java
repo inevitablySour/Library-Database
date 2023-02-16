@@ -196,7 +196,7 @@ public class BookController {
         catalogue.setQuantity(catalogue.getQuantity()-1);
 
         bookRepository.deleteById(bookId);
-        return "redirect:/list";
+        return "redirect:/catalogue";
     }
 
     @GetMapping("/deleteInCatalogue")

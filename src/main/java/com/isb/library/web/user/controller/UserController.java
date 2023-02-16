@@ -1,6 +1,8 @@
 package com.isb.library.web.user.controller;
 
 
+import com.isb.library.web.book.dao.BookRepository;
+import com.isb.library.web.book.dao.CatalogueRepository;
 import com.isb.library.web.user.dao.UserRepository;
 import com.isb.library.web.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CatalogueRepository catalogueRepository;
+
     @GetMapping("/create")
     public ModelAndView createUserForm() {
         User user = new User();
@@ -39,6 +44,7 @@ public class UserController {
         user.setPassword(encoder.encode(password));
         userRepository.save(user);
         ModelAndView mav = new ModelAndView("book-catalogue");
+        mav.addObject("catalogue", catalogueRepository.findAll());
         return mav;
     }
 
