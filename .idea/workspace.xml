@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Facade of a checkout page, will update the fact that a book is checked out but the id of the student who checked it out is incorrect.">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 1.0 &#10;&#10;Checkout isn't functioning completely but all other functions are working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create-user-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create-user-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +207,7 @@
       <workItem from="1676352666823" duration="4094000" />
       <workItem from="1676357786548" duration="4927000" />
       <workItem from="1676445498360" duration="23787000" />
-      <workItem from="1676506085892" duration="1975000" />
+      <workItem from="1676506085892" duration="2718000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -298,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676474003092</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Beta 1.0 &#10;&#10;Checkout isn't functioning completely but all other functions are working">
+      <created>1676510415805</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1676510415805</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,7 +378,8 @@
     <MESSAGE value="Finished adding in data to the mysql server and made some small adjustments to the entity classes as well as the book list and catalogue HTML pages to match those changes" />
     <MESSAGE value="Working find by name system, in the process of trying to implement a checkout page successfully. The return function is working, and the checkout and return buttons alternate based on the checkout status. Additionally, remembered to hide the list books if the quantity of books is zero." />
     <MESSAGE value="Facade of a checkout page, will update the fact that a book is checked out but the id of the student who checked it out is incorrect." />
-    <option name="LAST_COMMIT_MESSAGE" value="Facade of a checkout page, will update the fact that a book is checked out but the id of the student who checked it out is incorrect." />
+    <MESSAGE value="Beta 1.0 &#10;&#10;Checkout isn't functioning completely but all other functions are working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beta 1.0 &#10;&#10;Checkout isn't functioning completely but all other functions are working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
