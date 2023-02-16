@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:security="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Barcode Generator</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="text-center container" id="barcode-generator-container">
+    <h3>Barcode Generator</h3>
+
+    <hr/>
+
+    <div class="form-group">
+        <label for="barcodeData">Barcode Data</label>
+        <input type="text" class="form-control" id="barcodeData" oninput="showBarcode()" placeholder="Enter data for the barcode" />
+    </div>
+
+    <div id="barcodeImageContainer" style="display: none;">
+        <img alt="Barcode" id="barcodeImage" />
+        <br />
+        <a onclick="downloadBarcode()"  class="btn btn-primary" id="downloadButton" style="display: none;">Download</a>
+    </div>
+
+    <hr/>
+    <a th:href="@{/catalogue}">Back to catalogue</a>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function showBarcode() {
+        var barcodeData = $('#barcodeData').val();
+
+        if (barcodeData !== '') {
+            $('#barcodeImage').attr('src', 'https://barcode.tec-it.com/barcode.ashx?data=' + barcodeData + '&code=Code128');
+            $('#barcodeImageContainer').show();
+            $('#downloadButton').show();
+        } else {
+            $('#barcodeImageContainer').hide();
+            $('#downloadButton').hide();
+        }
+    }
+
+    function downloadBarcode(){
+        const barcodeData = document.getElementById("barcodeData").value;
+        const barcodeUrl = `https://barcode.tec-it.com/barcode.ashx?data=${barcodeData}&code=Code128&download=true`;
+        window.location.href = barcodeUrl;
+    }
+</script>
+</body>
+</html>

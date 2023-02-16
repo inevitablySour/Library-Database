@@ -26,6 +26,8 @@ public class Catalogue {
 
     private int quantity;
 
+    private int quantity_available;
+
     private String lastName;
 
     private String firstName;
@@ -37,6 +39,8 @@ public class Catalogue {
     private String genre;
 
     private String version;
+
+    private String PRL;
 
     private String shelf;
 

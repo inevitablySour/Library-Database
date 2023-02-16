@@ -1,8 +1,17 @@
 package com.isb.library.web.book.controller;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.oned.EAN13Writer;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.isb.library.web.book.dao.CatalogueRepository;
 import com.isb.library.web.book.dao.StudentRepository;
 import com.isb.library.web.book.entity.Student;
 
+
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import org.krysalis.barcode4j.impl.code39.Code39Bean;
+import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +23,22 @@ import com.isb.library.web.book.entity.Book;
 import com.isb.library.web.book.dao.BookRepository;
 import com.isb.library.web.book.entity.Catalogue;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.isb.library.web.book.controller.bookImport.extractData;
+import static org.krysalis.barcode4j.output.bitmap.BitmapBuilder.saveImage;
 
 @Controller
 @RequestMapping("/")
@@ -93,6 +110,7 @@ public class BookController {
 
 
         int quantity = catalogue.getQuantity();
+        catalogue.setQuantity_available(quantity);
 
         List<Book> bookList = bookRepository.findAll();
         int currentNum = 0;
@@ -194,7 +212,9 @@ public class BookController {
 
         Catalogue catalogue = catalogueRepository.findById(String.valueOf(book.getCatalogue_number())).get();
         catalogue.setQuantity(catalogue.getQuantity()-1);
-
+        if(book.getCheckedOut() == 0){
+            catalogue.setQuantity_available(catalogue.getQuantity_available()-1);
+        }
         bookRepository.deleteById(bookId);
         return "redirect:/catalogue";
     }
@@ -258,6 +278,7 @@ public class BookController {
         return"redirect:/catalogue";
     }
 
+
     @GetMapping("/catalogueSaveTesting")
     public String catalogueSaveTesting(){
         //Methods used to initially import all the titles of books into the database and update both the quantities of books as well as the catalogue number of each book
@@ -284,11 +305,11 @@ public class BookController {
 
         List<Catalogue> catalogue = catalogueRepository.findAll();
 
-        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Version.xlsx", true);
+        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Languages.xlsx", true);
 
 
-        for(int i = 0; i < catalogue.size(); i++){
-            catalogue.get(i).setVersion(lastNameData.get(i));
+        for(int i = 0; i < lastNameData.size(); i++){
+            catalogue.get(i).setOriginal_language(lastNameData.get(i));
             catalogueRepository.save(catalogue.get(i));
         }
 
@@ -352,6 +373,8 @@ public class BookController {
     public String checkout(@ModelAttribute Book book, Student student){
         String bookId = book.getId();
         Book temp = bookRepository.findById(bookId).get();
+        Catalogue catalogue = catalogueRepository.findById(String.valueOf(temp.getCatalogue_number())).get();
+        catalogue.setQuantity_available(catalogue.getQuantity_available()-1);
         temp.setCurrentOwner(student.getId());
 
         temp.setCheckedOut(1);
@@ -364,9 +387,57 @@ public class BookController {
         Book book = bookRepository.findById(bookID).get();
         book.setCurrentOwner(null);
         book.setCheckedOut(0);
+        Catalogue catalogue = catalogueRepository.findById(String.valueOf(book.getCatalogue_number())).get();
+        catalogue.setQuantity_available(catalogue.getQuantity_available()+1);
         bookRepository.save(book);
         return "redirect:/catalogue";
     }
+
+    @GetMapping("/barcode")
+    public ModelAndView generateBarcode(){
+        ModelAndView mav = new ModelAndView("barcode-generator");
+        return mav;
+
+    }
+
+    @GetMapping("/generateBarcode")
+    public RedirectView barcodeFor(@RequestParam String bookID) throws IOException {
+        Book book = bookRepository.findById(bookID).get();
+
+        String title = book.getName();
+        String copyNum = book.getCopy_number();
+
+        String imageUrl = "https://barcode.tec-it.com/barcode.ashx?data=" + title + " " + copyNum + "&code=Code128&translate-esc=true&download=true&redirect=" + URLEncoder.encode("/catalogue", "UTF-8");
+
+
+        return new RedirectView(imageUrl, true, false);
+    }
+
+    @GetMapping("/updateQuantities")
+    public String updateQuantities(){
+        List<Book> books = bookRepository.findAll();
+        List<Catalogue> catalogue = catalogueRepository.findAll();
+
+        for(Catalogue item : catalogue){
+            ArrayList<Book> temp = new ArrayList<>();
+            for(Book book: books){
+                if (item.getName().equals(book.getName())){
+                    temp.add(book);
+                }
+            }
+            int checked_out = 0;
+            for(Book book: temp){
+                if(book.getCheckedOut() == 1){
+                    checked_out++;
+                }
+            }
+            item.setQuantity_available(item.getQuantity() - checked_out);
+            catalogueRepository.save(item);
+        }
+        return "redirect:/catalogue";
+    }
+
+
 
 
 }
