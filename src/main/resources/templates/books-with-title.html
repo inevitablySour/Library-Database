@@ -34,6 +34,8 @@
 			<th>FirstName</th>
 			<th>Genre</th>
 			<th>Checked Out</th>
+			<th>Student</th>
+			<th>Teacher</th>
 			<th>Copy Number</th>
 			<th>Catalogue Number</th>
 			<th>Options</th>
@@ -50,13 +52,14 @@
 					  th:class="${book.checkedOut == 0} ? 'text-success' : 'text-danger'">
     			</span>
 			</td>
-
+			<td th:text="${book.getCurrentOwner()}"/>
+			<td th:text="${book.getTeacher()}"/>
 			<td th:text="${book.copy_number}" />
 			<td th:text="${book.catalogue_number}" />
 			<td>
 				<a th:if="${book.checkedOut == 0}" th:href="@{/checkout(bookID=${book.id})}" class="btn btn-success">Check out</a>
 				<a th:if="${book.checkedOut == 1}" th:href="@{/return(bookID=${book.id})}" class="btn btn-warning">Return</a>
-				<a th:href="@{/showUpdateForm(bookId=${book.id})}" class="btn btn-info" sec:authorize="hasRole('root')">Update</a>
+				<a th:href="@{/showUpdateForm(bookId=${book.id})}" class="btn btn-info">Update</a>
 				<a th:href="@{/deleteBook(bookId=${book.id})}" class="btn btn-danger"
 				   onclick="return confirm('Are you sure you want to delete this record?');"
 				   sec:authorize="hasRole('root')">Delete</a>

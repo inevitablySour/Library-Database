@@ -40,6 +40,9 @@ import java.util.List;
 import static com.isb.library.web.book.controller.bookImport.extractData;
 import static org.krysalis.barcode4j.output.bitmap.BitmapBuilder.saveImage;
 
+/**
+ * The type Book controller.
+ */
 @Controller
 @RequestMapping("/")
 public class BookController {
@@ -53,6 +56,11 @@ public class BookController {
     @Autowired
     private StudentRepository studentRepository;
 
+    /**
+     * List page for a list of all the individual books
+     *
+     * @return Returns a ModelAndView object populated with the books from 'bookRepository' and the students from 'studentRepository' and they are added to the 'list-books.html' file
+     */
     @GetMapping({"/list"})
     public ModelAndView getAllBooks(){
         ModelAndView mav = new ModelAndView("list-books");
@@ -61,12 +69,21 @@ public class BookController {
         return mav;
     }
 
-
+    /**
+     * Simple redirect to the catalogue page
+     *
+     * @return Returns a string to redirect
+     */
     @GetMapping({"/"})
     public String redirectHome(){
         return "redirect:/catalogue";
     }
 
+    /**
+     * Catalogue page
+     *
+     * @return Returns an ModelAndView object that is populated with all the items retrieved from 'catalogueRepository'
+     */
     @GetMapping({"/catalogue"})
     public ModelAndView getCatalogue(){
         ModelAndView mav = new ModelAndView("book-catalogue");
@@ -74,6 +91,12 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * Method responsible for deleting all the books in the book list and reseting the ID increment
+     *
+     * @return Redirects to the catalogue page
+     * @throws SQLException the sql exception
+     */
     @GetMapping({"/deleteAll"})
     public String deleteAllBooks() throws SQLException {
         bookRepository.deleteAll();
@@ -82,8 +105,13 @@ public class BookController {
     }
 
 
-
-
+    /**
+     * Saves either a new book or updates to a book
+     *
+     * @param book    Book to be saved
+     * @param student Student who checks out the book
+     * @return Returns a redirect to the book list page
+     */
     @PostMapping({"/saveBook"})
     public String saveBook(@ModelAttribute Book book, Student student) {
         book.setCurrentOwner(student.getId());
@@ -91,13 +119,21 @@ public class BookController {
         return "redirect:/list";
     }
 
+    /**
+     * Either adds a new catalogue object or saves updates to a catalogue item
+     *
+     * @param catalogue Catalogue object to be saved
+     * @return Returns a redirect to the catalogue page
+     */
     @PostMapping("/saveCatalogue")
     public String updateCatalogue(@ModelAttribute Catalogue catalogue){
         int id = 1;
+        //Checks to see if the catalogue is being updated or saved
         if(!catalogue.getId().equals("")) {
             id = Integer.valueOf(catalogue.getId());
-
         }
+
+        //Updates the ID number to the next number in the sequence
         else {
             List<Catalogue> catalogue1 = catalogueRepository.findAll();
             int size = catalogue1.size();
@@ -108,10 +144,12 @@ public class BookController {
         }
 
 
-
+        //Find the quantity of books in the catalogue object (By default this value is 0 so no null error checking is required)
         int quantity = catalogue.getQuantity();
         catalogue.setQuantity_available(quantity);
 
+
+        //Checks to see if there are books in the book list whos catalogue number matches the catalogue id and and adds them to a list
         List<Book> bookList = bookRepository.findAll();
         int currentNum = 0;
         int finalCopyNumber = 0;
@@ -126,7 +164,8 @@ public class BookController {
             }
         }
 
-
+        //Finds the number of books currently in the catalogue and sees if the catalogue object's quantity was updated
+        //if the quantity was updated the number of books that are in the difference are added to the book list
         if(currentNum < quantity){
             for (int i = 0; i < quantity-currentNum; i++) {
                 Book book = new Book();
@@ -141,10 +180,17 @@ public class BookController {
             }
         }
 
+        //catalogue is saved
         catalogueRepository.save(catalogue);
        return "redirect:/catalogue";
     }
 
+    /**
+     * Finds a list of books with a matching title and returns a narrowed down book list view showing only those books
+     *
+     * @param title Title of the books ot be searched by
+     * @return Returns a ModelAndView object of the html file "books-with-title" with a list of all the books
+     */
     @GetMapping("/booksWithTitle")
     public ModelAndView booksWithTitle(@RequestParam String title){
         ModelAndView mav = new ModelAndView("books-with-title");
@@ -159,6 +205,11 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * Shows a form where the user can add a new book to the books list
+     *
+     * @return Returns a ModelAndView object of the "add-book-form" html file with a list of all the students passed to it and a new book object passed to it as well
+     */
     @GetMapping("/addBookForm")
     public ModelAndView addBookForm() {
         ModelAndView mav = new ModelAndView("add-book-form");
@@ -168,6 +219,13 @@ public class BookController {
         mav.addObject("book", newBook);
         return mav;
     }
+
+    /**
+     * Similar to the Add Book form but instead of adding a new book it upadtes the same book
+     *
+     * @param bookId ID of the book to be updated
+     * @return Returns a ModelAndView object of the "add-book-form" html file with a list of all the students passed to it and a book object passed to it as well
+     */
     @GetMapping("/showUpdateForm")
     public ModelAndView showUpdateForm(@RequestParam String bookId) {
         ModelAndView mav = new ModelAndView("add-book-form");
@@ -181,6 +239,11 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * A form to add a catalogue object
+     *
+     * @return Returns a ModelAndView object of the "add-book-catalogue-form" html with a new catalogue object passed to it
+     */
     @GetMapping("/addCatalogueForm")
     public ModelAndView addCatalogueForm() {
         ModelAndView mav = new ModelAndView("add-book-catalogue-form");
@@ -189,6 +252,12 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * A form for the user to update an existing catalogue object
+     *
+     * @param catalogueId the catalogue id
+     * @return Returns a ModelAndView object of the "add-book-catalogue-form" html with an existing catalogue object passed to it
+     */
     @GetMapping("/showUpdateCatalogueForm")
     public ModelAndView addToCatalogue(@RequestParam String catalogueId){
         ModelAndView mav = new ModelAndView("add-book-catalogue-form");
@@ -198,14 +267,12 @@ public class BookController {
 
     }
 
-    @GetMapping("/openBook")
-    public String openBook(@RequestParam String bookId) {
-        Book book = bookRepository.findById(bookId).get();
-
-
-        return "hello";
-    }
-
+    /**
+     * Deletes a book from a given ID
+     *
+     * @param bookId The ID of the book to be deleted
+     * @return Returns a string to redirect the user to the catalogue page
+     */
     @GetMapping("/deleteBook")
     public String deleteBook(@RequestParam String bookId) {
         Book book = bookRepository.findById(bookId).get();
@@ -219,6 +286,12 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
+    /**
+     * Deletes a catalogue object and all books in the book list with a matching catalogue ID number
+     *
+     * @param catalogueId the catalogue id
+     * @return Returns a string that redirects the user to the catalogue page
+     */
     @GetMapping("/deleteInCatalogue")
     public String deleteBookInCatalogue(@RequestParam String catalogueId){
         catalogueRepository.deleteById(catalogueId);
@@ -231,16 +304,22 @@ public class BookController {
         return "redirect:/";
     }
 
+    /**
+     * Import students form model and view.
+     *
+     * @return the model and view
+     */
     @GetMapping("/showStudentsForm")
     public ModelAndView importStudentsForm() {
-
-
         ModelAndView mav = new ModelAndView("import-students-form");
-
-
         return mav;
     }
 
+    /**
+     * Temporary Method used to import initial data into the database
+     *
+     * @return Redirects to the catalogue page
+     */
     @GetMapping("/saveTesting")
     public String saveTesting() {
 //        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx", false);
@@ -248,30 +327,20 @@ public class BookController {
 //        ArrayList<String> firstNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\First Name.xlsx", false);
 //        ArrayList<String> genreData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Genre.xlsx", false);
 //        ArrayList<String> idData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Book ID.xlsx", false);
-        ArrayList<String> studentData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Student Names.xlsx", true);
+//        ArrayList<String> studentData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Student Names.xlsx", true);
+        ArrayList<String> teacherData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Teachers.xlsx", true);
         List<Student> students = studentRepository.findAll();
         List<Book> books = bookRepository.findAll();
-        ArrayList<String> names = new ArrayList<>();
-        for(Student e : students){
-            names.add(e.getName());
-        }
-        for(int i = 0; i< studentData.size(); i++){
-            Book temp;
-            int tempID;
-            if(names.contains(studentData.get(i))){
-                tempID = names.indexOf(studentData.get(i));
-                temp = books.get(i);
-                temp.setCheckedOut(1);
-                temp.setCurrentOwner(String.valueOf(tempID));
-                bookRepository.save(temp);
-            }
+
+        for(int i = 0; i< teacherData.size(); i++){
+            books.get(i).setTeacher(teacherData.get(i));
 
 //            temp.setName(titleData.get(i));
 //            temp.setLastName(lastNameData.get(i));
 //            temp.setFirstName(firstNameData.get(i));
 //            temp.setGenre(genreData.get(i));
 //            temp.setCopy_number(idData.get(i));
-            //bookRepository.save(temp);
+            bookRepository.save(books.get(i));
         }
 
 
@@ -279,6 +348,11 @@ public class BookController {
     }
 
 
+    /**
+     * Temporary method to import data into the datapase
+     *
+     * @return Redirects user to the catalogue page
+     */
     @GetMapping("/catalogueSaveTesting")
     public String catalogueSaveTesting(){
         //Methods used to initially import all the titles of books into the database and update both the quantities of books as well as the catalogue number of each book
@@ -317,6 +391,13 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
+    /**
+     * Method used to save students from an excel file to the database
+     *
+     * @return Redirects the user to the catalogue page
+     * @throws SQLException the sql exception
+     * @throws IOException  the io exception
+     */
     @GetMapping("/saveStudents")
     public String saveStudents() throws SQLException, IOException {
 
@@ -358,6 +439,12 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
+    /**
+     * Method to open the initial checkout page
+     *
+     * @param bookID ID of the book to be checked out
+     * @return Returns a ModelAndView object populated with the information of the book to be checked out and all of the students in 'studentRepository'
+     */
     @GetMapping("/checkout")
     public ModelAndView checkout(@RequestParam String bookID) {
         ModelAndView mav = new ModelAndView("checkout");
@@ -369,6 +456,13 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * Post method to save the information updated in the initial checkout form
+     *
+     * @param book    Book that is to be checked out
+     * @param student Student that has checked out thebook
+     * @return Returns a string to redirect the user to the catalogue page
+     */
     @PostMapping("/checkout")
     public String checkout(@ModelAttribute Book book, Student student){
         String bookId = book.getId();
@@ -382,6 +476,12 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
+    /**
+     * Method to return a book based on a given ID
+     *
+     * @param bookID ID of the book to be returned
+     * @return Redirect back to the catalogue page
+     */
     @GetMapping("/return")
     public String returnBook(@RequestParam String bookID){
         Book book = bookRepository.findById(bookID).get();
@@ -393,13 +493,24 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
+    /**
+     * Opens up a page where the user can generate and dowload a barcode with information they enter
+     *
+     * @return Returns a ModelAndView object of the barcode generator page
+     */
     @GetMapping("/barcode")
     public ModelAndView generateBarcode(){
         ModelAndView mav = new ModelAndView("barcode-generator");
         return mav;
-
     }
 
+    /**
+     * Generates a barcode for a specific book
+     *
+     * @param bookID ID of the book that the barcode is to be made for
+     * @return Returns a RedirectView object that initially downloads the image then redirects  them to the catalogue page
+     * @throws IOException the io exception
+     */
     @GetMapping("/generateBarcode")
     public RedirectView barcodeFor(@RequestParam String bookID) throws IOException {
         Book book = bookRepository.findById(bookID).get();
@@ -407,12 +518,18 @@ public class BookController {
         String title = book.getName();
         String copyNum = book.getCopy_number();
 
-        String imageUrl = "https://barcode.tec-it.com/barcode.ashx?data=" + title + " " + copyNum + "&code=Code128&translate-esc=true&download=true&redirect=" + URLEncoder.encode("/catalogue", "UTF-8");
+        String imageUrl = "https://barcode.tec-it.com/barcode.ashx?data="
+                + title + " " + copyNum + "&code=Code128&translate-esc=true&download=true&redirect="
+                + URLEncoder.encode("/catalogue", "UTF-8");
 
 
         return new RedirectView(imageUrl, true, false);
     }
 
+    /**
+     * Temporary method to update the quantities and remaining quantities of the catalogue objects
+     * @return Redirects the user to the catalogue page
+     */
     @GetMapping("/updateQuantities")
     public String updateQuantities(){
         List<Book> books = bookRepository.findAll();

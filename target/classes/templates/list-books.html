@@ -37,6 +37,8 @@
 			<th>FirstName</th>
 			<th>Genre</th>
 			<th>Checked Out</th>
+			<th>Student</th>
+			<th>Teacher</th>
 			<th>Copy Number</th>
 			<th>Catalogue Number</th>
 			<th>Options</th>
@@ -53,7 +55,8 @@
 		  			th:class="${book.checkedOut == 0} ? 'text-success' : 'text-danger'">
     			</span>
 			</td>
-
+			<td th:text="${book.getCurrentOwner()}"/>
+			<td th:text="${book.getTeacher()}"/>
 			<td th:text="${book.copy_number}" />
 			<td th:text="${book.catalogue_number}" />
 			<td>

@@ -32,6 +32,8 @@ public class Book {
 
     private String currentOwner;
 
+    private String teacher;
+
     private String genre;
 
     private String copy_number;
