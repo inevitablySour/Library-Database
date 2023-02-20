@@ -6,6 +6,7 @@ import com.google.zxing.oned.EAN13Writer;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.isb.library.web.book.dao.CatalogueRepository;
 import com.isb.library.web.book.dao.StudentRepository;
+import com.isb.library.web.book.entity.Checkout;
 import com.isb.library.web.book.entity.Student;
 
 
@@ -449,10 +450,18 @@ public class BookController {
     public ModelAndView checkout(@RequestParam String bookID) {
         ModelAndView mav = new ModelAndView("checkout");
         Book book = bookRepository.findById(bookID).get();
+        Checkout checkout = new Checkout();
 
         List<Student> students = studentRepository.findAll();
-        mav.addObject("students", students);
-        mav.addObject("book", book);
+
+        Student student = new Student();
+
+        checkout.setStudents(students);
+        checkout.setBook(book);
+        checkout.setStudent(student);
+
+
+        mav.addObject("checkout", checkout);
         return mav;
     }
 
@@ -464,7 +473,9 @@ public class BookController {
      * @return Returns a string to redirect the user to the catalogue page
      */
     @PostMapping("/checkout")
-    public String checkout(@ModelAttribute Book book, Student student){
+    public String checkout(@ModelAttribute Checkout checkout){
+        Book book = checkout.getBook();
+        Student student = studentRepository.findById(checkout.getStudent().getId()).get();
         String bookId = book.getId();
         Book temp = bookRepository.findById(bookId).get();
         Catalogue catalogue = catalogueRepository.findById(String.valueOf(temp.getCatalogue_number())).get();
