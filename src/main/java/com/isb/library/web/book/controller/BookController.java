@@ -117,10 +117,10 @@ public class BookController {
      * @return Returns a redirect to the book list page
      */
     @PostMapping({"/saveBook"})
-    public String saveBook(@ModelAttribute Book book, Student student) {
-        book.setCurrentOwner(student.getId());
+    public String saveBook(@ModelAttribute Checkout checkout) {
+        Book book = checkout.getBook();
         bookRepository.save(book);
-        return "redirect:/list";
+        return "redirect:/catalogue";
     }
 
     /**
@@ -229,8 +229,10 @@ public class BookController {
         ModelAndView mav = new ModelAndView("add-book-form");
         Book newBook = new Book();
         List<Student> students = studentRepository.findAll();
-        mav.addObject("students", students);
-        mav.addObject("book", newBook);
+        Checkout checkout = new Checkout();
+        checkout.setBook(newBook);
+        checkout.setStudents(students);
+        mav.addObject("checkout", checkout);
         return mav;
     }
 
@@ -243,13 +245,17 @@ public class BookController {
     @GetMapping("/showUpdateForm")
     public ModelAndView showUpdateForm(@RequestParam String bookId) {
         ModelAndView mav = new ModelAndView("add-book-form");
-        Book book = bookRepository.findById(bookId).get();
-        if (book.getCurrentOwner() != null){
 
+        Checkout checkout = new Checkout();
+        Book book = bookRepository.findById(bookId).get();
+        checkout.setBook(book);
+        Student student =  new Student();
+        if(book.getCurrentOwner() != null){
+            student = studentRepository.findById(book.getCurrentOwner()).get();
         }
-        List<Student> students = studentRepository.findAll();
-        mav.addObject("students", students);
-        mav.addObject("book", book);
+        checkout.setStudent(student);
+        checkout.setStudents(studentRepository.findAll());
+        mav.addObject("checkout", checkout);
         return mav;
     }
 

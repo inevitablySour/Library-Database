@@ -68,33 +68,34 @@
 			<td th:text="${book.copy_number}" />
 			<td th:text="${book.catalogue_number}" />
 			<td>
-				<a th:if="${book.checkedOut == 0 and book.discard == 0}" th:href="@{/checkout(bookID=${book.id})}" class="btn btn-success">Check out</a>
-				<a th:if="${book.checkedOut == 1 and book.discard == 0}" class="btn btn-warning" th:href="@{/return(bookID=${book.id})}">Return</a>
+				<a th:if="${book.checkedOut == 0 and book.discard == false}" th:href="@{/checkout(bookID=${book.id})}" class="btn btn-success">Check out</a>
+				<a th:if="${book.checkedOut == 1 and book.discard == false}" class="btn btn-warning" th:href="@{/return(bookID=${book.id})}">Return</a>
 
 
 
 				<a th:href="@{/showUpdateForm(bookId=${book.id})}" class="btn btn-info">Update</a>
-				<a class="btn btn-danger"
-				   data-toggle="modal"
-				   data-target="#returnModal"
-				   th:attr="data-book-id=${book.id}"
+				<a  class="btn btn-danger"
+					data-toggle="modal"
+					data-target="#returnModal"
+					th:attr="data-book-id=${book.id}"
 
-				   sec:authorize="hasRole('root')">Delete</a>
+					sec:authorize="hasRole('root')">Delete</a>
 				<!-- Modal -->
 				<div class="modal fade" id="returnModal" tabindex="-1" role="dialog" aria-labelledby="returnModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<form th:action="@{/deleteBook(bookID=${book.id})}">
 								<input type="hidden" name="bookID" th:value="${book.id}" />
-
+								<input type="hidden" name="bookDiscard" th:value="${book.discard}" />
 								<div class="modal-header">
-									<h5 class="modal-title" id="returnModalLabel">Return Book</h5>
+									<h5 class="modal-title" id="returnModalLabel">Delete Book</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body">
 									<p>Are you sure you want to delete the book?</p>
+
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

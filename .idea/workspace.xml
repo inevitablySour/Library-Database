@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 1.2&#10;&#10;Functioning checkout system.&#10;&#10;Had to make a new checkout entity that had a Student, List of students, and a book entity as a part of it so that it could be passed as one object to the form in the HTML code">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/demo-modal.html" afterDir="false" />
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Fixed an issue when saving a new book to catalogue that was caused because of how I had previously made copy numbers, instead of finding the current copy number by using the index of a string I instead split the copy number by a regex &quot;-&quot; and then used the second item in the array">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Checkout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Checkout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Book.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +229,7 @@
       <workItem from="1676898841363" duration="853000" />
       <workItem from="1676970487141" duration="2285000" />
       <workItem from="1677026253019" duration="7684000" />
-      <workItem from="1677040437414" duration="2026000" />
+      <workItem from="1677040437414" duration="7383000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -350,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676885159258</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed an issue when saving a new book to catalogue that was caused because of how I had previously made copy numbers, instead of finding the current copy number by using the index of a string I instead split the copy number by a regex &quot;-&quot; and then used the second item in the array">
+      <created>1677042580455</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1677042580455</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,15 +432,20 @@
     <MESSAGE value="Beta 1.1&#10;&#10;Added a barcode generator, both as a webpage where the user can put their own text in and download a corresponding bar code and a button under the section of each update book page where the barcode that is downloaded corresponds directly to that specific book based on the title and copy number" />
     <MESSAGE value="Added documentation and comments for all the methods in the book controller class" />
     <MESSAGE value="Beta 1.2&#10;&#10;Functioning checkout system.&#10;&#10;Had to make a new checkout entity that had a Student, List of students, and a book entity as a part of it so that it could be passed as one object to the form in the HTML code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta 1.2&#10;&#10;Functioning checkout system.&#10;&#10;Had to make a new checkout entity that had a Student, List of students, and a book entity as a part of it so that it could be passed as one object to the form in the HTML code" />
+    <MESSAGE value="Fixed an issue when saving a new book to catalogue that was caused because of how I had previously made copy numbers, instead of finding the current copy number by using the index of a string I instead split the copy number by a regex &quot;-&quot; and then used the second item in the array" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue when saving a new book to catalogue that was caused because of how I had previously made copy numbers, instead of finding the current copy number by using the index of a string I instead split the copy number by a regex &quot;-&quot; and then used the second item in the array" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>166</line>
-          <option name="timeStamp" value="1" />
+          <line>119</line>
+          <properties class="com.isb.library.web.book.controller.BookController" method="saveBook">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
