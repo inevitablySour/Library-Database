@@ -15,6 +15,16 @@ public class Checkout {
 
     private List<Student> students;
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    private List<Book> books;
+
     public List<Student> getStudents() {
         return students;
     }

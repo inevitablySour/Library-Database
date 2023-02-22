@@ -39,4 +39,6 @@ public class Book {
     private String copy_number;
 
     private int catalogue_number;
+
+    private int discard;
 }

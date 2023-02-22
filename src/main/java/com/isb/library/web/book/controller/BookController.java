@@ -65,8 +65,11 @@ public class BookController {
     @GetMapping({"/list"})
     public ModelAndView getAllBooks(){
         ModelAndView mav = new ModelAndView("list-books");
-        mav.addObject("books", bookRepository.findAll());
-        mav.addObject("student", studentRepository.findAll());
+        Checkout checkout = new Checkout();
+        checkout.setBooks(bookRepository.findAll());
+        checkout.setStudents(studentRepository.findAll());
+        mav.addObject("books",bookRepository.findAll());
+        mav.addObject("students", studentRepository.findAll());
         return mav;
     }
 
@@ -160,7 +163,8 @@ public class BookController {
                 if (book.getCatalogue_number() == id) {
                     currentNum++;
                     finalBookList.add(book);
-                    finalCopyNumber = Integer.parseInt(finalBookList.get(currentNum - 1).getCopy_number().substring(2));
+                    String[] arr = finalBookList.get(currentNum - 1).getCopy_number().split("-");
+                    finalCopyNumber = Integer.parseInt(arr[1]);
                 }
             }
         }
@@ -196,6 +200,7 @@ public class BookController {
     public ModelAndView booksWithTitle(@RequestParam String title){
         ModelAndView mav = new ModelAndView("books-with-title");
         List<Book> tempBooks = bookRepository.findAll();
+        List<Student> students = studentRepository.findAll();
         ArrayList<Book> books = new ArrayList<>();
         for (Book book : tempBooks){
             if (book.getName().equals(title)){
@@ -203,7 +208,15 @@ public class BookController {
             }
         }
         mav.addObject("books", books);
+        mav.addObject("students", students);
         return mav;
+    }
+
+    @GetMapping("/findStudent")
+    public String findStudent(@RequestParam String studentId){
+        Student student = studentRepository.findById(studentId).get();
+
+        return student.getName();
     }
 
     /**
@@ -265,7 +278,6 @@ public class BookController {
         Catalogue catalogue = catalogueRepository.findById(catalogueId).get();
         mav.addObject("catalogue", catalogue);
         return mav;
-
     }
 
     /**
@@ -563,6 +575,13 @@ public class BookController {
             catalogueRepository.save(item);
         }
         return "redirect:/catalogue";
+    }
+
+
+    @GetMapping("testModal")
+    public ModelAndView modal(){
+        ModelAndView mav = new ModelAndView("demo-modal");
+        return mav;
     }
 
 
