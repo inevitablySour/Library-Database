@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:security="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous"
+  />
+  <title>New User Creation</title>
+</head>
+<body>
+<div class="container">
+  <h2 class="text-center my-5">New User Creation</h2>
+  <form action="#" th:action="@{/user/create}" th:object="${user}" method="post">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+              type="email"
+              class="form-control"
+              id="email"
+              th:field="*{username}"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+              type="password"
+              class="form-control"
+              id="password"
+              th:field="*{password}"
+              placeholder="Password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+              type="text"
+              class="form-control"
+              id="name"
+              th:field="*{name}"
+              placeholder="Enter name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="userType">User Type</label>
+      <select class="form-control" id="userType" th:field="*{type}">
+        <option value="">Select User Type</option>
+        <option value="root">Admin</option>
+        <option value="user">User</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</body>
+</html>

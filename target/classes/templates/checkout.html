@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Book</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Checkout</h3>
+    <hr/>
+    <div></div>
+    <div class="float-right" >
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+    <br/><br/>
+    <form th:action="@{/checkout}" th:object="${checkout}" method="POST">
+
+        <input type="text" th:field="*{book.name}" class="form-control col-4 mb-4" placeholder="Enter Name" readonly/>
+
+        <input type="text" th:field="*{book.lastName}" class="form-control col-4 mb-4" placeholder="Enter Author's Last Name" readonly/>
+
+        <input type="text" th:field="*{book.firstName}" class="form-control col-4 mb-4" placeholder="Enter Author's First Name" readonly/>
+
+        <input type="text" th:field="*{book.genre}" class="form-control col-4 mb-4" placeholder="Enter Genre" readonly/>
+
+        <input type="text" th:field="*{book.copy_number}" class="form-control col-4 mb-4" placeholder="Enter Copy Number" readonly />
+
+        <label for="studentSelect">Select a student:</label>
+        <select class="form-control" id="currentOwner" name="currentOwner" th:field="*{student.id}">
+            <option value="">Select Owner:</option>
+            <option th:each="s: ${checkout.students}"
+                    th:value="${s.id}"
+                    th:text="${s.name}">
+            </option>
+        </select>
+
+        <button type="submit" class="btn btn-primary col-2">Save</button>
+        <input type="hidden" th:field="*{book.id}" />
+        <input type="hidden" th:field="*{book.catalogue_number}" />
+
+    </form>
+    <hr/>
+    <a th:href="@{/catalogue}">Back to catalogue</a>
+</div>
+
+</body>
+</html>
