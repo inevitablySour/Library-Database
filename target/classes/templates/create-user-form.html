@@ -65,7 +65,8 @@
       </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a th:href="@{/catalogue}">Back to catalogue</a>
+    <input type="hidden" th:field="*{id}" />
+    <a th:href="@{/user/list}">Back to list</a>
   </form>
 </div>
 </body>

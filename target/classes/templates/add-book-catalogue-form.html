@@ -20,7 +20,7 @@
 			<br/><br/>
 			<form th:action="@{/saveCatalogue}" th:object="${checkout}" method="POST">
 				
-				<input type="text" th:field="*{catalogue.name}" class="form-control col-4 mb-4" placeholder="Enter Name" />
+				<input type="text" th:field="*{catalogue.name}" class="form-control col-4 mb-4" placeholder="Enter Title" />
 				
 				<input type="text" th:field="*{catalogue.quantity}" class="form-control col-4 mb-4" placeholder="Enter Quantity" />
 				

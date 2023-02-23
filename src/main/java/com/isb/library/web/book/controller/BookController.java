@@ -269,7 +269,7 @@ public class BookController {
      * @return Returns a ModelAndView object of the html file "books-with-title" with a list of all the books
      */
     @GetMapping("/booksWithTitle")
-    public ModelAndView booksWithTitle(@RequestParam String title) {
+    public ModelAndView booksWithTitle(@RequestParam int catalogueNumber) {
         ModelAndView mav = new ModelAndView("books-with-title");
 
         Checkout checkout = new Checkout();
@@ -277,7 +277,7 @@ public class BookController {
         List<Student> students = studentRepository.findAll();
         ArrayList<Book> books = new ArrayList<>();
         for (Book book : tempBooks) {
-            if (book.getName().equals(title)) {
+            if (book.getCatalogue_number() == catalogueNumber) {
                 books.add(book);
             }
         }
@@ -757,4 +757,6 @@ public class BookController {
 
         return "redirect:/catalogue";
     }
+
+
 }

@@ -123,7 +123,7 @@
 						</td>
 
 						<td>
-							<a th:if="${catalogue.quantity != 0}" th:href="@{/booksWithTitle(title=${catalogue.name})}" class="btn btn-info">List</a>
+							<a th:if="${catalogue.quantity != 0}" th:href="@{/booksWithTitle(catalogueNumber=${catalogue.id})}" class="btn btn-info">List</a>
 
 							<a th:href="@{/showUpdateCatalogueForm(catalogueId=${catalogue.id})}" class="btn btn-primary" >Update</a>
 
