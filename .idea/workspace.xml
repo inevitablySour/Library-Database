@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 2&#10;&#10;All functions of the program should be working as intended">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 2.1&#10;&#10;Noticed an issue with the deletion of users, fixed by removing the Bootstrap Modal">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/delete-genre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +227,7 @@
       <workItem from="1677026253019" duration="7684000" />
       <workItem from="1677040437414" duration="12923000" />
       <workItem from="1677125631877" duration="11206000" />
-      <workItem from="1677150981137" duration="8549000" />
+      <workItem from="1677150981137" duration="9014000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -426,7 +425,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677158283158</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Beta 2.1&#10;&#10;Noticed an issue with the deletion of users, fixed by removing the Bootstrap Modal">
+      <created>1677159565883</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1677159565883</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,7 +491,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed an error with misc.xml and tested the extractData method" />
     <MESSAGE value="Added a Test Data adder class that adds the list of titles from a local Microsoft Excel file onto the database&#10;&#10;Changes to the HTML files were made in an attempt to sort out the sorting error where the website would display all 25000+ books and lag out the website" />
     <MESSAGE value="Reduced the lag due to loading in 25000 books by having the table show after the values had been retrieved from the mysql database" />
     <MESSAGE value="Updated HTML and BookController to split author into last and first name categories" />
@@ -510,7 +515,8 @@
     <MESSAGE value="Fixed the adding a deletion of single book items so that the quantities of the corresponding catalogue object were change accordingly" />
     <MESSAGE value="Fixed an issue where updating any information in the catalogue object did not update the corresponding book objects" />
     <MESSAGE value="Beta 2&#10;&#10;All functions of the program should be working as intended" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta 2&#10;&#10;All functions of the program should be working as intended" />
+    <MESSAGE value="Beta 2.1&#10;&#10;Noticed an issue with the deletion of users, fixed by removing the Bootstrap Modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beta 2.1&#10;&#10;Noticed an issue with the deletion of users, fixed by removing the Bootstrap Modal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

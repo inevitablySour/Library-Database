@@ -739,6 +739,25 @@ public class BookController {
         return mav;
     }
 
+    @GetMapping("/deleteGenre")
+    public ModelAndView deleteGenre() {
+        ModelAndView mav = new ModelAndView("delete-genre");
+        Genre genre = new Genre();
+        List<Genre> genres = genreRepository.findAll();
+        mav.addObject("genres", genres);
+        mav.addObject("genre", genre);
+        return mav;
+    }
+
+    @PostMapping("/deleteGenre")
+    public String deleteGenre(@ModelAttribute Genre genre) {
+        genreRepository.deleteById(genre.getId());
+
+        return "redirect:/options";
+    }
+
+
+
     private boolean isValidInput(String input) {
         // Check if the input is not empty and contains only letters and spaces
         return input != null && !input.isEmpty() && input.matches("^[a-zA-Z ]*$");

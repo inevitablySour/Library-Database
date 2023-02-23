@@ -17,6 +17,7 @@
       <a th:href="@{/user/list}" class="btn btn-dark" sec:authorize="hasRole('root')">User List</a>
       <a th:href="@{/upload}" class="btn btn-secondary" sec:authorize="hasRole('root')" style="margin-left: 5px;">Update Student List</a>
       <a th:href="@{/addGenre}" class="btn btn-dark" sec:authorize="hasRole('root')" style="margin-left: 5px;">Add New Genre</a>
+      <a th:href="@{/deleteGenre}" class="btn btn-secondary" sec:authorize="hasRole('root')" style="margin-left: 5px;">Delete Genre</a>
     </div>
     <div class="d-flex justify-content-center" style="margin-top: 10px;">
       <a th:href="@{/catalogue}" class="btn btn-primary">Back to Catalogue</a>

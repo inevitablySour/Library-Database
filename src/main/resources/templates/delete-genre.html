@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Genre</title>
+  <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+  <h2>Delete Genre</h2>
+  <form th:action="@{/deleteGenre}" method="post">
+    <div class="form-group">
+      <label for="genreName">Select Genre To Delete:</label>
+      <select class="form-control" id="genreName" name="currentGenre" th:field="${genre.id}" style="width: 370px">
+        <option value="">Select Genre:</option>
+        <option th:each="g: ${genres}"
+                th:value="${g.id}"
+                th:text="${g.genre}">
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Delete Genre</button>
+    <a th:href="@{/options}">Back to options</a>
+  </form>
+</div>
+</body>
+</html>
