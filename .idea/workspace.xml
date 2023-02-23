@@ -4,39 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 1.3&#10;&#10;Updated the update book form so you can no longer change the current owner of the book, instead it only shows the current owner if there is one&#10;&#10;added a toggle to the update book form that lets the user mark the book as discarded, this will highlight the row of the discarded book in red&#10;&#10;Updated the corresponding controller methods so the changes are functioning.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/FileUploadForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/options.html" afterDir="false" />
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Added an admin options page, currently populated with only the new user button. Options to add new genres and upload a new student list are coming soon.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/dao/GenreRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Genre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/add-genre.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/studentImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/studentImport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Catalogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Catalogue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Checkout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Checkout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/security/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create-user-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create-user-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/demo-modal.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/import-students-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/import-students-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/options.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Checkout.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Checkout.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/security/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/security/SecurityConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/entity/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/create-user-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/create-user-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/demo-modal.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/import-students-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/import-students-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +31,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
         <option value="HTML File" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -255,7 +240,7 @@
       <workItem from="1676970487141" duration="2285000" />
       <workItem from="1677026253019" duration="7684000" />
       <workItem from="1677040437414" duration="12923000" />
-      <workItem from="1677125631877" duration="1012000" />
+      <workItem from="1677125631877" duration="5653000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -404,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677048167961</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added an admin options page, currently populated with only the new user button. Options to add new genres and upload a new student list are coming soon.">
+      <created>1677126738580</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1677126738580</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,14 +473,15 @@
     <MESSAGE value="Beta 1.2&#10;&#10;Functioning checkout system.&#10;&#10;Had to make a new checkout entity that had a Student, List of students, and a book entity as a part of it so that it could be passed as one object to the form in the HTML code" />
     <MESSAGE value="Fixed an issue when saving a new book to catalogue that was caused because of how I had previously made copy numbers, instead of finding the current copy number by using the index of a string I instead split the copy number by a regex &quot;-&quot; and then used the second item in the array" />
     <MESSAGE value="Beta 1.3&#10;&#10;Updated the update book form so you can no longer change the current owner of the book, instead it only shows the current owner if there is one&#10;&#10;added a toggle to the update book form that lets the user mark the book as discarded, this will highlight the row of the discarded book in red&#10;&#10;Updated the corresponding controller methods so the changes are functioning." />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta 1.3&#10;&#10;Updated the update book form so you can no longer change the current owner of the book, instead it only shows the current owner if there is one&#10;&#10;added a toggle to the update book form that lets the user mark the book as discarded, this will highlight the row of the discarded book in red&#10;&#10;Updated the corresponding controller methods so the changes are functioning." />
+    <MESSAGE value="Added an admin options page, currently populated with only the new user button. Options to add new genres and upload a new student list are coming soon." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an admin options page, currently populated with only the new user button. Options to add new genres and upload a new student list are coming soon." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>120</line>
+          <line>125</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="saveBook">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

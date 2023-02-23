@@ -5,6 +5,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.oned.EAN13Writer;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.isb.library.web.book.dao.CatalogueRepository;
+import com.isb.library.web.book.dao.GenreRepository;
 import com.isb.library.web.book.dao.StudentRepository;
 import com.isb.library.web.book.entity.*;
 
@@ -36,6 +37,7 @@ import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.isb.library.web.book.controller.bookImport.extractData;
 import static org.krysalis.barcode4j.output.bitmap.BitmapBuilder.saveImage;
@@ -56,6 +58,9 @@ public class BookController {
     private CatalogueRepository catalogueRepository;
 
     @Autowired
+    private GenreRepository genreRepository;
+
+    @Autowired
     private StudentRepository studentRepository;
 
     /**
@@ -64,12 +69,12 @@ public class BookController {
      * @return Returns a ModelAndView object populated with the books from 'bookRepository' and the students from 'studentRepository' and they are added to the 'list-books.html' file
      */
     @GetMapping({"/list"})
-    public ModelAndView getAllBooks(){
+    public ModelAndView getAllBooks() {
         ModelAndView mav = new ModelAndView("list-books");
         Checkout checkout = new Checkout();
         checkout.setBooks(bookRepository.findAll());
         checkout.setStudents(studentRepository.findAll());
-        mav.addObject("books",bookRepository.findAll());
+        mav.addObject("books", bookRepository.findAll());
         mav.addObject("students", studentRepository.findAll());
         return mav;
     }
@@ -80,7 +85,7 @@ public class BookController {
      * @return Returns a string to redirect
      */
     @GetMapping({"/"})
-    public String redirectHome(){
+    public String redirectHome() {
         return "redirect:/catalogue";
     }
 
@@ -90,7 +95,7 @@ public class BookController {
      * @return Returns an ModelAndView object that is populated with all the items retrieved from 'catalogueRepository'
      */
     @GetMapping({"/catalogue"})
-    public ModelAndView getCatalogue(){
+    public ModelAndView getCatalogue() {
         ModelAndView mav = new ModelAndView("book-catalogue");
         mav.addObject("catalogue", catalogueRepository.findAll());
         return mav;
@@ -106,7 +111,7 @@ public class BookController {
     public String deleteAllBooks() throws SQLException {
         bookRepository.deleteAll();
         bookImport.resetIncrement();
-        return"redirect:/";
+        return "redirect:/";
     }
 
 
@@ -131,10 +136,12 @@ public class BookController {
      * @return Returns a redirect to the catalogue page
      */
     @PostMapping("/saveCatalogue")
-    public String updateCatalogue(@ModelAttribute Catalogue catalogue){
+    public String updateCatalogue(@ModelAttribute Checkout checkout) {
+        Catalogue catalogue = checkout.getCatalogue();
+
         int id = 1;
         //Checks to see if the catalogue is being updated or saved
-        if(!catalogue.getId().equals("")) {
+        if (!catalogue.getId().equals("")) {
             id = Integer.valueOf(catalogue.getId());
         }
 
@@ -142,7 +149,7 @@ public class BookController {
         else {
             List<Catalogue> catalogue1 = catalogueRepository.findAll();
             int size = catalogue1.size();
-            if(size != 0) {
+            if (size != 0) {
                 id = Integer.parseInt(catalogue1.get(size - 1).getId()) + 1;
             }
 
@@ -158,7 +165,7 @@ public class BookController {
         List<Book> bookList = bookRepository.findAll();
         int currentNum = 0;
         int finalCopyNumber = 0;
-        if(quantity !=0) {
+        if (quantity != 0) {
             ArrayList<Book> finalBookList = new ArrayList<>();
             for (Book book : bookList) {
                 if (book.getCatalogue_number() == id) {
@@ -172,13 +179,13 @@ public class BookController {
 
         //Finds the number of books currently in the catalogue and sees if the catalogue object's quantity was updated
         //if the quantity was updated the number of books that are in the difference are added to the book list
-        if(currentNum < quantity){
-            for (int i = 0; i < quantity-currentNum; i++) {
+        if (currentNum < quantity) {
+            for (int i = 0; i < quantity - currentNum; i++) {
                 Book book = new Book();
                 book.setLastName(catalogue.getLastName());
                 book.setFirstName(catalogue.getFirstName());
                 book.setName(catalogue.getName());
-                int bookNum = finalCopyNumber+1+i;
+                int bookNum = finalCopyNumber + 1 + i;
                 book.setCopy_number(id + "-" + bookNum);
                 book.setGenre(catalogue.getGenre());
                 book.setCatalogue_number(Integer.valueOf(id));
@@ -188,7 +195,7 @@ public class BookController {
 
         //catalogue is saved
         catalogueRepository.save(catalogue);
-       return "redirect:/catalogue";
+        return "redirect:/catalogue";
     }
 
     /**
@@ -198,13 +205,13 @@ public class BookController {
      * @return Returns a ModelAndView object of the html file "books-with-title" with a list of all the books
      */
     @GetMapping("/booksWithTitle")
-    public ModelAndView booksWithTitle(@RequestParam String title){
+    public ModelAndView booksWithTitle(@RequestParam String title) {
         ModelAndView mav = new ModelAndView("books-with-title");
         List<Book> tempBooks = bookRepository.findAll();
         List<Student> students = studentRepository.findAll();
         ArrayList<Book> books = new ArrayList<>();
-        for (Book book : tempBooks){
-            if (book.getName().equals(title)){
+        for (Book book : tempBooks) {
+            if (book.getName().equals(title)) {
                 books.add(book);
             }
         }
@@ -214,7 +221,7 @@ public class BookController {
     }
 
     @GetMapping("/findStudent")
-    public String findStudent(@RequestParam String studentId){
+    public String findStudent(@RequestParam String studentId) {
         Student student = studentRepository.findById(studentId).get();
 
         return student.getName();
@@ -250,8 +257,8 @@ public class BookController {
         Checkout checkout = new Checkout();
         Book book = bookRepository.findById(bookId).get();
         checkout.setBook(book);
-        Student student =  new Student();
-        if(book.getCurrentOwner() != null){
+        Student student = new Student();
+        if (book.getCurrentOwner() != null) {
             student = studentRepository.findById(book.getCurrentOwner()).get();
         }
         checkout.setStudent(student);
@@ -269,7 +276,10 @@ public class BookController {
     public ModelAndView addCatalogueForm() {
         ModelAndView mav = new ModelAndView("add-book-catalogue-form");
         Catalogue newCatalogue = new Catalogue();
-        mav.addObject("catalogue", newCatalogue);
+        Checkout checkout = new Checkout();
+        checkout.setCatalogue(newCatalogue);
+        checkout.setGenres(genreRepository.findAll());
+        mav.addObject("checkout", checkout);
         return mav;
     }
 
@@ -280,10 +290,13 @@ public class BookController {
      * @return Returns a ModelAndView object of the "add-book-catalogue-form" html with an existing catalogue object passed to it
      */
     @GetMapping("/showUpdateCatalogueForm")
-    public ModelAndView addToCatalogue(@RequestParam String catalogueId){
+    public ModelAndView addToCatalogue(@RequestParam String catalogueId) {
         ModelAndView mav = new ModelAndView("add-book-catalogue-form");
         Catalogue catalogue = catalogueRepository.findById(catalogueId).get();
-        mav.addObject("catalogue", catalogue);
+        Checkout checkout = new Checkout();
+        checkout.setCatalogue(catalogue);
+        checkout.setGenres(genreRepository.findAll());
+        mav.addObject("checkout", checkout);
         return mav;
     }
 
@@ -298,9 +311,9 @@ public class BookController {
         Book book = bookRepository.findById(bookId).get();
 
         Catalogue catalogue = catalogueRepository.findById(String.valueOf(book.getCatalogue_number())).get();
-        catalogue.setQuantity(catalogue.getQuantity()-1);
-        if(book.getCheckedOut() == 0){
-            catalogue.setQuantity_available(catalogue.getQuantity_available()-1);
+        catalogue.setQuantity(catalogue.getQuantity() - 1);
+        if (book.getCheckedOut() == 0) {
+            catalogue.setQuantity_available(catalogue.getQuantity_available() - 1);
         }
         bookRepository.deleteById(bookId);
         return "redirect:/catalogue";
@@ -313,11 +326,11 @@ public class BookController {
      * @return Returns a string that redirects the user to the catalogue page
      */
     @GetMapping("/deleteInCatalogue")
-    public String deleteBookInCatalogue(@RequestParam String catalogueId){
+    public String deleteBookInCatalogue(@RequestParam String catalogueId) {
         catalogueRepository.deleteById(catalogueId);
         List<Book> bookList = bookRepository.findAll();
-        for(Book book: bookList) {
-            if (book.getCatalogue_number() == Integer.valueOf(catalogueId)){
+        for (Book book : bookList) {
+            if (book.getCatalogue_number() == Integer.valueOf(catalogueId)) {
                 bookRepository.deleteById(book.getId());
             }
         }
@@ -352,7 +365,7 @@ public class BookController {
         List<Student> students = studentRepository.findAll();
         List<Book> books = bookRepository.findAll();
 
-        for(int i = 0; i< teacherData.size(); i++){
+        for (int i = 0; i < teacherData.size(); i++) {
             books.get(i).setTeacher(teacherData.get(i));
 
 //            temp.setName(titleData.get(i));
@@ -364,7 +377,7 @@ public class BookController {
         }
 
 
-        return"redirect:/catalogue";
+        return "redirect:/catalogue";
     }
 
 
@@ -374,7 +387,7 @@ public class BookController {
      * @return Redirects user to the catalogue page
      */
     @GetMapping("/catalogueSaveTesting")
-    public String catalogueSaveTesting(){
+    public String catalogueSaveTesting() {
         //Methods used to initially import all the titles of books into the database and update both the quantities of books as well as the catalogue number of each book
 
 //        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Titles.xlsx");
@@ -402,7 +415,7 @@ public class BookController {
         ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Languages.xlsx", true);
 
 
-        for(int i = 0; i < lastNameData.size(); i++){
+        for (int i = 0; i < lastNameData.size(); i++) {
             catalogue.get(i).setOriginal_language(lastNameData.get(i));
             catalogueRepository.save(catalogue.get(i));
         }
@@ -424,11 +437,11 @@ public class BookController {
         MultipartFile file = fileUploadForm.getFile();
         if (file != null) {
 
-            ArrayList<ArrayList<String>> masterArrayList= studentImport.studentImport(file);
-            ArrayList<String> ninth= masterArrayList.get(0);
-            ArrayList<String> tenth= masterArrayList.get(1);
-            ArrayList<String> eleventh= masterArrayList.get(2);
-            ArrayList<String> twelfth= masterArrayList.get(3);
+            ArrayList<ArrayList<String>> masterArrayList = studentImport.studentImport(file);
+            ArrayList<String> ninth = masterArrayList.get(0);
+            ArrayList<String> tenth = masterArrayList.get(1);
+            ArrayList<String> eleventh = masterArrayList.get(2);
+            ArrayList<String> twelfth = masterArrayList.get(3);
 
             //studentRepository.deleteAll();
             studentImport.resetIncrement();
@@ -464,9 +477,6 @@ public class BookController {
         }
 
 
-
-
-
     }
 
     /**
@@ -482,7 +492,11 @@ public class BookController {
         Checkout checkout = new Checkout();
 
         List<Student> students = studentRepository.findAll();
-        List<User> users = userRepository.findAll();
+        List<User> tempUsers = userRepository.findAll();
+        List<User> users = new ArrayList<>();
+        for(int i = 1; i < tempUsers.size(); i++) {
+            users.add(tempUsers.get(i));
+        }
         Student student = new Student();
 
         checkout.setStudents(students);
@@ -503,14 +517,16 @@ public class BookController {
      * @return Returns a string to redirect the user to the catalogue page
      */
     @PostMapping("/checkout")
-    public String checkout(@ModelAttribute Checkout checkout){
+    public String checkout(@ModelAttribute Checkout checkout) {
         Book book = checkout.getBook();
+
         Student student = studentRepository.findById(checkout.getStudent().getId()).get();
         String bookId = book.getId();
         Book temp = bookRepository.findById(bookId).get();
         Catalogue catalogue = catalogueRepository.findById(String.valueOf(temp.getCatalogue_number())).get();
-        catalogue.setQuantity_available(catalogue.getQuantity_available()-1);
+        catalogue.setQuantity_available(catalogue.getQuantity_available() - 1);
         temp.setCurrentOwner(student.getId());
+        temp.setTeacher(book.getTeacher());
 
         temp.setCheckedOut(1);
         bookRepository.save(temp);
@@ -524,12 +540,13 @@ public class BookController {
      * @return Redirect back to the catalogue page
      */
     @GetMapping("/return")
-    public String returnBook(@RequestParam String bookID){
+    public String returnBook(@RequestParam String bookID) {
         Book book = bookRepository.findById(bookID).get();
         book.setCurrentOwner(null);
         book.setCheckedOut(0);
+        book.setTeacher("");
         Catalogue catalogue = catalogueRepository.findById(String.valueOf(book.getCatalogue_number())).get();
-        catalogue.setQuantity_available(catalogue.getQuantity_available()+1);
+        catalogue.setQuantity_available(catalogue.getQuantity_available() + 1);
         bookRepository.save(book);
         return "redirect:/catalogue";
     }
@@ -540,7 +557,7 @@ public class BookController {
      * @return Returns a ModelAndView object of the barcode generator page
      */
     @GetMapping("/barcode")
-    public ModelAndView generateBarcode(){
+    public ModelAndView generateBarcode() {
         ModelAndView mav = new ModelAndView("barcode-generator");
         return mav;
     }
@@ -569,23 +586,24 @@ public class BookController {
 
     /**
      * Temporary method to update the quantities and remaining quantities of the catalogue objects
+     *
      * @return Redirects the user to the catalogue page
      */
     @GetMapping("/updateQuantities")
-    public String updateQuantities(){
+    public String updateQuantities() {
         List<Book> books = bookRepository.findAll();
         List<Catalogue> catalogue = catalogueRepository.findAll();
 
-        for(Catalogue item : catalogue){
+        for (Catalogue item : catalogue) {
             ArrayList<Book> temp = new ArrayList<>();
-            for(Book book: books){
-                if (item.getName().equals(book.getName())){
+            for (Book book : books) {
+                if (item.getName().equals(book.getName())) {
                     temp.add(book);
                 }
             }
             int checked_out = 0;
-            for(Book book: temp){
-                if(book.getCheckedOut() == 1){
+            for (Book book : temp) {
+                if (book.getCheckedOut() == 1) {
                     checked_out++;
                 }
             }
@@ -596,12 +614,48 @@ public class BookController {
     }
 
     @GetMapping("/options")
-    public ModelAndView options(){
+    public ModelAndView options() {
         ModelAndView mav = new ModelAndView("options");
         return mav;
     }
 
+    @GetMapping("/addGenre")
+    public ModelAndView addGenre() {
+        ModelAndView mav = new ModelAndView("add-genre");
+        return mav;
+    }
+
+    @PostMapping("/addGenre")
+    public ModelAndView addGenre(@RequestParam("genreName") String genreName) {
+        ModelAndView mav = new ModelAndView();
+
+        if (!isValidInput(genreName)) {
+            mav.addObject("errorMessage", "Invalid genre name");
+            mav.setViewName("add-genre");
+            return mav;
+        }
+
+        // Check if the genre already exists
+        for(Genre g : genreRepository.findAll()) {
+            if(g.getGenre().equals(genreName)) {
+                mav.addObject("errorMessage", "Genre already exists");
+                mav.setViewName("add-genre");
+                return mav;
+            }
+        }
 
 
+        // Create a new genre
+        Genre newGenre = new Genre();
+        newGenre.setGenre(genreName);
+        genreRepository.save(newGenre);
 
+        mav.setViewName("redirect:/options");
+        return mav;
+    }
+
+    private boolean isValidInput(String input) {
+        // Check if the input is not empty and contains only letters and spaces
+        return input != null && !input.isEmpty() && input.matches("^[a-zA-Z ]*$");
+    }
 }

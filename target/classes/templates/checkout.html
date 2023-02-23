@@ -42,9 +42,9 @@
 
         <label for="studentSelect">Select a teacher:</label>
         <select class="form-control" id="currentTeacher" name="currentTeacher" th:field="*{book.teacher}">
-            <option value="">Select Owner:</option>
+            <option value="">Select Teacher:</option>
             <option th:each="u: ${checkout.users}"
-                    th:value="${u.id}"
+                    th:value="${u.lastName}"
                     th:text="${u.lastName}">
             </option>
         </select>

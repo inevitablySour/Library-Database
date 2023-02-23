@@ -18,46 +18,44 @@
 				<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
 			</div>
 			<br/><br/>
-			<form th:action="@{/saveCatalogue}" th:object="${catalogue}" method="POST">
+			<form th:action="@{/saveCatalogue}" th:object="${checkout}" method="POST">
 				
-				<input type="text" th:field="*{name}" class="form-control col-4 mb-4" placeholder="Enter Name" />
+				<input type="text" th:field="*{catalogue.name}" class="form-control col-4 mb-4" placeholder="Enter Name" />
 				
-				<input type="text" th:field="*{quantity}" class="form-control col-4 mb-4" placeholder="Enter Quantity" />
+				<input type="text" th:field="*{catalogue.quantity}" class="form-control col-4 mb-4" placeholder="Enter Quantity" />
 				
-				<input type="text" th:field="*{lastName}" class="form-control col-4 mb-4" placeholder="Enter Author's Last Name" />
+				<input type="text" th:field="*{catalogue.lastName}" class="form-control col-4 mb-4" placeholder="Enter Author's Last Name" />
 
-				<input type="text" th:field="*{firstName}" class="form-control col-4 mb-4" placeholder="Enter Author's First Name" />
+				<input type="text" th:field="*{catalogue.firstName}" class="form-control col-4 mb-4" placeholder="Enter Author's First Name" />
 
-				<input type="text" th:field="*{century}" class="form-control col-4 mb-4" placeholder="Enter Century" />
+				<input type="text" th:field="*{catalogue.century}" class="form-control col-4 mb-4" placeholder="Enter Century" />
 
-				<input type="text" th:field="*{shelf}" class="form-control col-4 mb-4" placeholder="Enter Shelf Number" />
+				<input type="text" th:field="*{catalogue.shelf}" class="form-control col-4 mb-4" placeholder="Enter Shelf Number" />
 
-				<input type="text" th:field="*{version}" class="form-control col-4 mb-4" placeholder="Enter Book Version" />
+				<input type="text" th:field="*{catalogue.version}" class="form-control col-4 mb-4" placeholder="Enter Book Version" />
 
-				<input type="text" th:field="*{original_language}" class="form-control col-4 mb-4" placeholder="Enter Original Language" />
+				<input type="text" th:field="*{catalogue.original_language}" class="form-control col-4 mb-4" placeholder="Enter Original Language" />
 
-				<select class="custom-select" id="prlSelect" th:field="*{PRL}" style="width: 370px">
+				<select class="custom-select" id="prlSelect" th:field="*{catalogue.PRL}" style="width: 370px; margin-bottom: 15px;">
 					<option value="0" selected>Not on the Prescribed Reading List
 					<option value="1" selected>On the Prescribed Reading List</option>
 
 				</select>
 
-				<select class="custom-select" id="genreSelect" th:field="*{genre}" style="width: 370px">
-					<option value="null " selected>Choose Genre</option>
-					<option value="Short Stories">Short Stories</option>
-					<option value="Memoir">Memoir</option>
-					<option value="Graphic Novel">Graphic Novel</option>
-					<option value="Drama">Drama</option>
-					<option value="Novel">Novel</option>
-					<option value="Poetry">Poetry</option>
-					<option value="Non-fiction">Non-Fiction</option>
-					<option value="Anthology">Anthology</option>
-					<option value="Novella">Novella</option>
+
+				<select class="form-control" id="currentGenre" name="currentGenre" th:field="*{catalogue.genre}" style="width: 370px">
+					<option value="">Select Genre:</option>
+					<option th:each="g: ${checkout.genres}"
+							th:value="${g.genre}"
+							th:text="${g.genre}"
+							th:selected="${g.genre == checkout.catalogue.genre}">
+					</option>
 				</select>
+
 				<br/><br/>
 				
 				<button type="submit" class="btn btn-primary col-2">Save</button>
-				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:field="*{catalogue.id}" />
 				
 			</form>
 			<hr/>
