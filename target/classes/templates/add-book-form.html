@@ -20,27 +20,28 @@
 			<br/><br/>
 			<form th:action="@{/saveBook}" th:object="${checkout}" method="POST">
 				
-				<input type="text" th:field="*{book.name}" class="form-control col-4 mb-4" placeholder="Enter Name" />
+				<input type="text" th:field="*{book.name}" class="form-control col-4 mb-4" placeholder="Enter Title" />
 				
 				<input type="text" th:field="*{book.lastName}" class="form-control col-4 mb-4" placeholder="Enter Author's Last Name" />
 
 				<input type="text" th:field="*{book.firstName}" class="form-control col-4 mb-4" placeholder="Enter Author's First Name" />
 
-				<input type="text" th:field="*{book.genre}" class="form-control col-4 mb-4" placeholder="Enter Genre" />
-
 				<input type="text" th:field="*{book.copy_number}" class="form-control col-4 mb-4" placeholder="Enter Copy Number" />
 
-				<label>Current Owner: <span class="label label-default mb-4" th:text="${checkout.student != null ? checkout.student.name : 'No Current owner'}">
+				<input type="text" th:field="*{book.catalogue_number}" class="form-control col-4 mb-4" placeholder="Enter Catalogue Number" />
+
+				<label>Current Owner: <span class="label label-default mb-4" th:text="${checkout.student != null ? checkout.student.name : 'No Current owner'}" style="margin-bottom: 15px;">
 					Default Label</span> </label>
 
 				<div></div>
 
 
-				<div class="form-check form-switch" >
+				<div class="form-check form-switch" style="margin-bottom: 15px;">
 					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" th:field="${checkout.book.discard}">
 					<label class="form-check-label" for="flexSwitchCheckDefault">Discard</label>
 				</div>
-				<div></div>
+
+				
 
 
 				<button type="submit" class="btn btn-primary col-2">Save</button>

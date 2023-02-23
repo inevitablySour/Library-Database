@@ -10,13 +10,16 @@
 </head>
 <body>
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <!-- Add your content here -->
+
   <div>
     <h1>Admin Options</h1>
     <div class="d-flex aligns-items-center justify-content-center">
-      <a th:href="@{/user/create}" class="btn btn-dark" sec:authorize="hasRole('root')">New User</a>
+      <a th:href="@{/user/list}" class="btn btn-dark" sec:authorize="hasRole('root')">User List</a>
       <a th:href="@{/upload}" class="btn btn-secondary" sec:authorize="hasRole('root')" style="margin-left: 5px;">Update Student List</a>
       <a th:href="@{/addGenre}" class="btn btn-dark" sec:authorize="hasRole('root')" style="margin-left: 5px;">Add New Genre</a>
+    </div>
+    <div class="d-flex justify-content-center" style="margin-top: 10px;">
+      <a th:href="@{/catalogue}" class="btn btn-primary">Back to Catalogue</a>
     </div>
   </div>
 </div>

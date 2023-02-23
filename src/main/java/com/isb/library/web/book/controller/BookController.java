@@ -124,6 +124,8 @@ public class BookController {
     @PostMapping({"/saveBook"})
     public String saveBook(@ModelAttribute Checkout checkout) {
         Book book = checkout.getBook();
+
+
         bookRepository.save(book);
 
         Catalogue catalogue = catalogueRepository.findById(String.valueOf(book.getCatalogue_number())).get();
@@ -208,6 +210,50 @@ public class BookController {
                 book.setGenre(catalogue.getGenre());
                 book.setCatalogue_number(Integer.valueOf(id));
                 bookRepository.save(book);
+            }
+        }
+
+        List<Book> books = new ArrayList<>();
+        for(Book b : bookRepository.findAll()){
+            if(b.getCatalogue_number() == id){
+                books.add(b);
+            }
+        }
+
+        if(books.get(0).getName() != catalogue.getName()){
+            for(Book b : books){
+                b.setName(catalogue.getName());
+                bookRepository.save(b);
+            }
+        }
+        if(books.get(0).getLastName() != catalogue.getLastName()){
+            for(Book b : books){
+                b.setLastName(catalogue.getLastName());
+                bookRepository.save(b);
+            }
+        }
+        if(books.get(0).getFirstName() != catalogue.getFirstName()){
+            for(Book b : books){
+                b.setFirstName(catalogue.getFirstName());
+                bookRepository.save(b);
+            }
+        }
+        if(books.get(0).getLastName() != catalogue.getLastName()){
+            for(Book b : books){
+                b.setLastName(catalogue.getLastName());
+                bookRepository.save(b);
+            }
+        }
+        if(books.get(0).getGenre() != catalogue.getGenre()){
+            for(Book b : books){
+                b.setGenre(catalogue.getGenre());
+                bookRepository.save(b);
+            }
+        }
+        if(books.get(0).getLastName() != catalogue.getLastName()){
+            for(Book b : books){
+                b.setLastName(catalogue.getLastName());
+                bookRepository.save(b);
             }
         }
 

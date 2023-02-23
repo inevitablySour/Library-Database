@@ -1,6 +1,7 @@
 package com.isb.library.web.user.controller;
 
 
+import com.google.zxing.qrcode.decoder.Mode;
 import com.isb.library.web.book.dao.BookRepository;
 import com.isb.library.web.book.dao.CatalogueRepository;
 import com.isb.library.web.user.dao.UserRepository;
@@ -28,6 +29,22 @@ public class UserController {
     @Autowired
     private CatalogueRepository catalogueRepository;
 
+    @GetMapping("/list")
+    public ModelAndView userList(){
+        List<User> users = userRepository.findAll();
+        List<User> finalUsers = new ArrayList<>();
+        for(User u : users){
+            if(!u.getId().equals("1")){
+                finalUsers.add(u);
+            }
+        }
+        ModelAndView mav = new ModelAndView("user-list");
+
+        mav.addObject("users", finalUsers);
+
+        return mav;
+    }
+
     @GetMapping("/create")
     public ModelAndView createUserForm() {
         User user = new User();
@@ -40,11 +57,55 @@ public class UserController {
     @PostMapping("/create")
     public ModelAndView createUserSubmit(@ModelAttribute User user){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-        String password = user.getPassword();
-        user.setPassword(encoder.encode(password));
+
+        if (user.getPassword() != null) {
+            String password = user.getPassword();
+            user.setPassword(encoder.encode(password));
+        }
+
         userRepository.save(user);
-        ModelAndView mav = new ModelAndView("book-catalogue");
-        mav.addObject("catalogue", catalogueRepository.findAll());
+
+        List<User> users = userRepository.findAll();
+        List<User> finalUsers = new ArrayList<>();
+        for(User u : users){
+            if(!u.getId().equals("1")){
+                finalUsers.add(u);
+            }
+        }
+        ModelAndView mav = new ModelAndView("user-list");
+
+        mav.addObject("users", finalUsers);
+
+        return mav;
+    }
+
+    @GetMapping("/update")
+    public ModelAndView updateUserForm(@RequestParam String userId){
+
+        User user = userRepository.findById(userId).get();
+
+        ModelAndView mav = new ModelAndView("create-user-form");
+        mav.addObject("user", user);
+
+        return mav;
+    }
+
+    @GetMapping("/delete")
+    public ModelAndView deleteUser(@RequestParam String userId){
+
+        userRepository.deleteById(userId);
+
+        List<User> users = userRepository.findAll();
+        List<User> finalUsers = new ArrayList<>();
+        for(User u : users){
+            if(!u.getId().equals("1")){
+                finalUsers.add(u);
+            }
+        }
+        ModelAndView mav = new ModelAndView("user-list");
+
+        mav.addObject("users", finalUsers);
+
         return mav;
     }
 
