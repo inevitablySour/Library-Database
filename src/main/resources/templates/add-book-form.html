@@ -26,9 +26,9 @@
 
 				<input type="text" th:field="*{book.firstName}" class="form-control col-4 mb-4" placeholder="Enter Author's First Name" />
 
-				<input type="text" th:field="*{book.genre}" class="form-control col-4 mb-4" placeholder="Enter Genre" />
-
 				<input type="text" th:field="*{book.copy_number}" class="form-control col-4 mb-4" placeholder="Enter Copy Number" />
+
+				<input type="text" th:field="*{book.catalogue_number}" class="form-control col-4 mb-4" placeholder="Enter Catalogue Number" />
 
 				<label>Current Owner: <span class="label label-default mb-4" th:text="${checkout.student != null ? checkout.student.name : 'No Current owner'}">
 					Default Label</span> </label>
@@ -40,6 +40,15 @@
 					<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" th:field="${checkout.book.discard}">
 					<label class="form-check-label" for="flexSwitchCheckDefault">Discard</label>
 				</div>
+
+				<select class="form-control" id="currentGenre" name="currentGenre" th:field="*{book.genre}" style="width: 370px">
+					<option value="">Select Genre:</option>
+					<option th:each="g: ${checkout.genres}"
+							th:value="${g.genre}"
+							th:text="${g.genre}"
+							th:selected="${g.genre == checkout.book.genre}">
+					</option>
+				</select>
 				<div></div>
 
 

@@ -125,6 +125,25 @@ public class BookController {
     public String saveBook(@ModelAttribute Checkout checkout) {
         Book book = checkout.getBook();
         bookRepository.save(book);
+
+        Catalogue catalogue = catalogueRepository.findById(String.valueOf(book.getCatalogue_number())).get();
+        int tempQuantity = 0;
+        int tempQuantityAvailable = 0;
+        for(Book b : bookRepository.findAll()){
+            if (Integer.valueOf(catalogue.getId()) == b.getCatalogue_number()){
+                tempQuantity++;
+                if(b.getCheckedOut() == 0){
+                    tempQuantityAvailable++;
+                }
+            }
+        }
+
+
+
+        catalogue.setQuantity(tempQuantity);
+        catalogue.setQuantity_available(tempQuantityAvailable);
+        catalogueRepository.save(catalogue);
+
         return "redirect:/catalogue";
     }
 
@@ -241,6 +260,8 @@ public class BookController {
         Book newBook = new Book();
         List<Student> students = studentRepository.findAll();
         Checkout checkout = new Checkout();
+
+        checkout.setGenres(genreRepository.findAll());
         checkout.setBook(newBook);
         checkout.setStudents(students);
         mav.addObject("checkout", checkout);

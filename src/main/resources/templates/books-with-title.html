@@ -32,6 +32,7 @@
 
 	<hr/>
 	<a th:href="@{/}" class="btn btn-primary">Book Catalogue</a>
+	<a th:href="@{/addBookForm}" class="btn btn-primary">Add New Book</a>
 	<div class="float-right" >
 		<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
 	</div>
@@ -83,9 +84,8 @@
 				<div class="modal fade" id="returnModal" tabindex="-1" role="dialog" aria-labelledby="returnModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
-							<form th:action="@{/deleteBook(bookID=${book.id})}">
-								<input type="hidden" name="bookID" th:value="${book.id}" />
-								<input type="hidden" name="bookDiscard" th:value="${book.discard}" />
+							<form th:action="@{/deleteBook(bookId=${book.id})}">
+								<input type="hidden" name="bookId" th:value="${book.id}" />
 								<div class="modal-header">
 									<h5 class="modal-title" id="returnModalLabel">Delete Book</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">

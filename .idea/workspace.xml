@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Added a background to the heading of the catalogue page, noticed an issue where the link of the previous file hosting website wasn't;t static so that download link for the student upload template would not work after a little, so I decided to host the files on Google Drive">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Fixed displaying the names of the owners and the way that the users are saved to the database, instead of saving the student ID's they are now saved as just the names in the actual book table.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/checkout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +231,8 @@
       <workItem from="1676970487141" duration="2285000" />
       <workItem from="1677026253019" duration="7684000" />
       <workItem from="1677040437414" duration="12923000" />
-      <workItem from="1677125631877" duration="10250000" />
+      <workItem from="1677125631877" duration="11206000" />
+      <workItem from="1677150981137" duration="2501000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -404,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677134789096</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fixed displaying the names of the owners and the way that the users are saved to the database, instead of saving the student ID's they are now saved as just the names in the actual book table.">
+      <created>1677137026496</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1677137026496</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,14 +489,15 @@
     <MESSAGE value="Added an admin options page, currently populated with only the new user button. Options to add new genres and upload a new student list are coming soon." />
     <MESSAGE value="Updated the admin page so the user can now add new genres, updated the genre select option when adding a new catalogue so that the dropdown list is pulled from the mysql database" />
     <MESSAGE value="Added a background to the heading of the catalogue page, noticed an issue where the link of the previous file hosting website wasn't;t static so that download link for the student upload template would not work after a little, so I decided to host the files on Google Drive" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a background to the heading of the catalogue page, noticed an issue where the link of the previous file hosting website wasn't;t static so that download link for the student upload template would not work after a little, so I decided to host the files on Google Drive" />
+    <MESSAGE value="Fixed displaying the names of the owners and the way that the users are saved to the database, instead of saving the student ID's they are now saved as just the names in the actual book table." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed displaying the names of the owners and the way that the users are saved to the database, instead of saving the student ID's they are now saved as just the names in the actual book table." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>125</line>
+          <line>124</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="saveBook">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -500,7 +506,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>529</line>
+          <line>549</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="checkout">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
