@@ -53,7 +53,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr th:each="book: ${books}" th:class="${book.discard == true} ? 'table-danger'" >
+		<tr th:each="book: ${checkout.books}" th:class="${book.discard == true} ? 'table-danger'" >
 			<td th:text="${book.name}" />
 			<td th:text="${book.lastName}" />
 			<td th:text="${book.firstName}" />

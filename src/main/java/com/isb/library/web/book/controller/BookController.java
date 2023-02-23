@@ -74,8 +74,7 @@ public class BookController {
         Checkout checkout = new Checkout();
         checkout.setBooks(bookRepository.findAll());
         checkout.setStudents(studentRepository.findAll());
-        mav.addObject("books", bookRepository.findAll());
-        mav.addObject("students", studentRepository.findAll());
+        mav.addObject("checkout", checkout);
         return mav;
     }
 
@@ -207,6 +206,8 @@ public class BookController {
     @GetMapping("/booksWithTitle")
     public ModelAndView booksWithTitle(@RequestParam String title) {
         ModelAndView mav = new ModelAndView("books-with-title");
+
+        Checkout checkout = new Checkout();
         List<Book> tempBooks = bookRepository.findAll();
         List<Student> students = studentRepository.findAll();
         ArrayList<Book> books = new ArrayList<>();
@@ -215,8 +216,10 @@ public class BookController {
                 books.add(book);
             }
         }
-        mav.addObject("books", books);
-        mav.addObject("students", students);
+        checkout.setBooks(books);
+        checkout.setStudents(students);
+        mav.addObject("checkout", checkout);
+
         return mav;
     }
 
@@ -259,7 +262,13 @@ public class BookController {
         checkout.setBook(book);
         Student student = new Student();
         if (book.getCurrentOwner() != null) {
-            student = studentRepository.findById(book.getCurrentOwner()).get();
+            String id = "";
+            for(Student s : studentRepository.findAll()){
+                if(s.getName().equals(book.getCurrentOwner())){
+                    id = s.getId();
+                }
+            }
+            student = studentRepository.findById(id).get();
         }
         checkout.setStudent(student);
         checkout.setStudents(studentRepository.findAll());
@@ -443,7 +452,7 @@ public class BookController {
             ArrayList<String> eleventh = masterArrayList.get(2);
             ArrayList<String> twelfth = masterArrayList.get(3);
 
-            //studentRepository.deleteAll();
+            studentRepository.deleteAll();
             studentImport.resetIncrement();
 
             for (String student : ninth) {
@@ -520,12 +529,21 @@ public class BookController {
     public String checkout(@ModelAttribute Checkout checkout) {
         Book book = checkout.getBook();
 
-        Student student = studentRepository.findById(checkout.getStudent().getId()).get();
+        Student student = checkout.getStudent();
+
+            String id = "";
+            for(Student s : studentRepository.findAll()){
+                if(s.getName().equals(checkout.getStudent().getName())){
+                    id = s.getId();
+                }
+            }
+            student = studentRepository.findById(id).get();
+
         String bookId = book.getId();
         Book temp = bookRepository.findById(bookId).get();
         Catalogue catalogue = catalogueRepository.findById(String.valueOf(temp.getCatalogue_number())).get();
         catalogue.setQuantity_available(catalogue.getQuantity_available() - 1);
-        temp.setCurrentOwner(student.getId());
+        temp.setCurrentOwner(student.getName());
         temp.setTeacher(book.getTeacher());
 
         temp.setCheckedOut(1);
@@ -657,5 +675,19 @@ public class BookController {
     private boolean isValidInput(String input) {
         // Check if the input is not empty and contains only letters and spaces
         return input != null && !input.isEmpty() && input.matches("^[a-zA-Z ]*$");
+    }
+
+
+    public String updateStudents(){
+        for(Book book: bookRepository.findAll()){
+            if(book.getCurrentOwner() != null){
+                if(book.getCurrentOwner().length()<4) {
+                    book.setCurrentOwner(studentRepository.findById(book.getCurrentOwner()).get().getName());
+                    bookRepository.save(book);
+                }
+            }
+        }
+
+        return "redirect:/catalogue";
     }
 }

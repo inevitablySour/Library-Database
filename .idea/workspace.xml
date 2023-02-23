@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Updated the admin page so the user can now add new genres, updated the genre select option when adding a new catalogue so that the dropdown list is pulled from the mysql database">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Added a background to the heading of the catalogue page, noticed an issue where the link of the previous file hosting website wasn't;t static so that download link for the student upload template would not work after a little, so I decided to host the files on Google Drive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/import-students-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/import-students-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/checkout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/import-students-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/import-students-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/checkout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +234,7 @@
       <workItem from="1676970487141" duration="2285000" />
       <workItem from="1677026253019" duration="7684000" />
       <workItem from="1677040437414" duration="12923000" />
-      <workItem from="1677125631877" duration="8269000" />
+      <workItem from="1677125631877" duration="10250000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -395,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677131839654</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Added a background to the heading of the catalogue page, noticed an issue where the link of the previous file hosting website wasn't;t static so that download link for the student upload template would not work after a little, so I decided to host the files on Google Drive">
+      <created>1677134789096</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1677134789096</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +483,8 @@
     <MESSAGE value="Beta 1.3&#10;&#10;Updated the update book form so you can no longer change the current owner of the book, instead it only shows the current owner if there is one&#10;&#10;added a toggle to the update book form that lets the user mark the book as discarded, this will highlight the row of the discarded book in red&#10;&#10;Updated the corresponding controller methods so the changes are functioning." />
     <MESSAGE value="Added an admin options page, currently populated with only the new user button. Options to add new genres and upload a new student list are coming soon." />
     <MESSAGE value="Updated the admin page so the user can now add new genres, updated the genre select option when adding a new catalogue so that the dropdown list is pulled from the mysql database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the admin page so the user can now add new genres, updated the genre select option when adding a new catalogue so that the dropdown list is pulled from the mysql database" />
+    <MESSAGE value="Added a background to the heading of the catalogue page, noticed an issue where the link of the previous file hosting website wasn't;t static so that download link for the student upload template would not work after a little, so I decided to host the files on Google Drive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a background to the heading of the catalogue page, noticed an issue where the link of the previous file hosting website wasn't;t static so that download link for the student upload template would not work after a little, so I decided to host the files on Google Drive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -487,6 +497,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
+          <line>529</line>
+          <properties class="com.isb.library.web.book.controller.BookController" method="checkout">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

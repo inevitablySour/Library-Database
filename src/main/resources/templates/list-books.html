@@ -12,7 +12,6 @@
 		  integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 		  crossorigin="anonymous" />
 
-
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -54,7 +53,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr th:each="book: ${books}" th:class="${book.discard == 1} ? 'table-danger'" >
+		<tr th:each="book: ${checkout.books}" th:class="${book.discard == true} ? 'table-danger'" >
 			<td th:text="${book.name}" />
 			<td th:text="${book.lastName}" />
 			<td th:text="${book.firstName}" />
@@ -79,8 +78,7 @@
 					data-toggle="modal"
 					data-target="#returnModal"
 					th:attr="data-book-id=${book.id}"
-
-					>Delete</a>
+				>Delete</a>
 				<!-- Modal -->
 				<div class="modal fade" id="returnModal" tabindex="-1" role="dialog" aria-labelledby="returnModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">

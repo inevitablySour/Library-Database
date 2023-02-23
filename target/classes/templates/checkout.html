@@ -32,10 +32,10 @@
         <input type="text" th:field="*{book.copy_number}" class="form-control col-4 mb-4" placeholder="Enter Copy Number" readonly />
 
         <label for="studentSelect">Select a student:</label>
-        <select class="form-control" id="currentOwner" name="currentOwner" th:field="*{student.id}">
+        <select class="form-control" id="currentOwner" name="currentOwner" th:field="*{student.name}">
             <option value="">Select Owner:</option>
             <option th:each="s: ${checkout.students}"
-                    th:value="${s.id}"
+                    th:value="${s.name}"
                     th:text="${s.name}">
             </option>
         </select>
