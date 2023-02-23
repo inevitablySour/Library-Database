@@ -33,10 +33,10 @@
 			
 			<hr/>
 			<a th:href="@{/barcode}" class="btn btn-primary" >Generate Barcode</a>
-			<a th:href="@{/addCatalogueForm}" class="btn btn-primary" sec:authorize="hasRole('root')">Add Book to Catalogue</a>
-			<a th:href="@{/list}" class="btn btn-primary" sec:authorize="hasRole('root')">Book List</a>
+			<a th:href="@{/addCatalogueForm}" class="btn btn-primary" >Add Book to Catalogue</a>
+			<a th:href="@{/list}" class="btn btn-warning" sec:authorize="hasRole('root')">Book List</a>
 			<div class="float-right" >
-				<a th:href="@{/user/create}" class="btn btn-dark" sec:authorize="hasRole('root')">New User</a>
+				<a th:href="@{/options}" class="btn btn-dark" sec:authorize="hasRole('root')">Admin Options</a>
 				<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
 			</div>
 			<br/><br/>
@@ -54,6 +54,7 @@
 						<th>Shelf</th>
 						<th>Version</th>
 						<th>Original Language</th>
+						<th>PRL</th>
 						<th>Options</th>
 					</tr>
 				</thead>
@@ -70,16 +71,22 @@
 						<td th:text="${catalogue.version}" />
 						<td th:text="${catalogue.original_language}" />
 						<td>
+   						<span th:text="${catalogue.PRL == false} ? 'No' : 'Yes'"
+							  th:class="${catalogue.PRL == false} ? 'text-danger' : 'text-success'">
+    					</span>
+						</td>
+
+						<td>
 							<a th:if="${catalogue.quantity != 0}" th:href="@{/booksWithTitle(title=${catalogue.name})}" class="btn btn-info">List</a>
 
-							<a th:href="@{/showUpdateCatalogueForm(catalogueId=${catalogue.id})}" class="btn btn-primary" sec:authorize="hasRole('root')">Update</a>
+							<a th:href="@{/showUpdateCatalogueForm(catalogueId=${catalogue.id})}" class="btn btn-primary" >Update</a>
 
 							<a class="btn btn-danger"
 							   data-toggle="modal"
 							   data-target="#returnModal"
 							   th:attr="data-catalogue-id=${catalogue.id}"
 
-							   sec:authorize="hasRole('root')">Delete</a>
+							   >Delete</a>
 							<!-- Modal -->
 							<div class="modal fade" id="returnModal" tabindex="-1" role="dialog" aria-labelledby="returnModalLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">

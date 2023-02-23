@@ -40,7 +40,7 @@ public class Catalogue {
 
     private String version;
 
-    private String PRL;
+    private boolean PRL;
 
     private String shelf;
 

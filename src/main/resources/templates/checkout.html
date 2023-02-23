@@ -40,6 +40,15 @@
             </option>
         </select>
 
+        <label for="studentSelect">Select a teacher:</label>
+        <select class="form-control" id="currentTeacher" name="currentTeacher" th:field="*{book.teacher}">
+            <option value="">Select Owner:</option>
+            <option th:each="u: ${checkout.users}"
+                    th:value="${u.id}"
+                    th:text="${u.lastName}">
+            </option>
+        </select>
+
         <button type="submit" class="btn btn-primary col-2">Save</button>
         <input type="hidden" th:field="*{book.id}" />
         <input type="hidden" th:field="*{book.catalogue_number}" />

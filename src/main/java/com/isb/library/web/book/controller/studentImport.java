@@ -7,11 +7,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -71,52 +69,46 @@ public class studentImport {
     }
 
 
-    public static ArrayList<ArrayList<String>> studentImport(String filepath) {
+    public static ArrayList<ArrayList<String>> studentImport(MultipartFile file) {
 
-        //Storage for data from excel files
+        // Storage for data from excel files
         ArrayList<String> headers = new ArrayList<>();
         ArrayList<String> ninth = new ArrayList<>();
         ArrayList<String> tenth = new ArrayList<>();
         ArrayList<String> eleventh = new ArrayList<>();
         ArrayList<String> twelfth = new ArrayList<>();
 
-        File inputFile = new File(filepath);
+        try (InputStream inputStream = file.getInputStream()) {
 
-        try(FileInputStream in = new FileInputStream(inputFile)) {
-
-            XSSFWorkbook importedFile = new XSSFWorkbook(in);
-            XSSFSheet names = importedFile.getSheetAt(2);
+            XSSFWorkbook importedFile = new XSSFWorkbook(inputStream);
+            XSSFSheet names = importedFile.getSheetAt(0);
 
             Iterator<Row> rowIterator = names.iterator();
-            while (rowIterator.hasNext()){
+            while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
                 Iterator<Cell> cellIterator = row.cellIterator();
-                while(cellIterator.hasNext()) {
+                while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
-                    if (row.getRowNum() == 1) {
+                    if (row.getRowNum() == 0) {
                         headers.add(cell.getStringCellValue());
-                    }
-                    else{
+                    } else {
 
-                        if(cell.getColumnIndex()==0 && cell.getStringCellValue() != "" && cell.getRowIndex()>1){
+                        if (cell.getColumnIndex() == 0 && cell.getStringCellValue() != "" && cell.getRowIndex() > 0) {
                             ninth.add(cell.getStringCellValue());
                         }
-                        if(cell.getColumnIndex() == 1 && cell.getStringCellValue() != "" && cell.getRowIndex()>1){
+                        if (cell.getColumnIndex() == 1 && cell.getStringCellValue() != "" && cell.getRowIndex() > 0) {
                             tenth.add(cell.getStringCellValue());
                         }
-                        if(cell.getColumnIndex() == 2 && cell.getStringCellValue() != "" && cell.getRowIndex()>1){
+                        if (cell.getColumnIndex() == 2 && cell.getStringCellValue() != "" && cell.getRowIndex() > 0) {
                             eleventh.add(cell.getStringCellValue());
                         }
-                        if(cell.getColumnIndex() == 3 && cell.getStringCellValue() != "" && cell.getRowIndex()>1){
+                        if (cell.getColumnIndex() == 3 && cell.getStringCellValue() != "" && cell.getRowIndex() > 0) {
                             twelfth.add(cell.getStringCellValue());
                         }
                     }
                 }
             }
 
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -128,7 +120,7 @@ public class studentImport {
         masterArray.add(twelfth);
 
         return masterArray;
-
     }
+
 
 }

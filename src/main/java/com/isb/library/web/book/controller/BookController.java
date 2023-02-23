@@ -6,11 +6,12 @@ import com.google.zxing.oned.EAN13Writer;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.isb.library.web.book.dao.CatalogueRepository;
 import com.isb.library.web.book.dao.StudentRepository;
-import com.isb.library.web.book.entity.Checkout;
-import com.isb.library.web.book.entity.Student;
+import com.isb.library.web.book.entity.*;
 
 
 import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.isb.library.web.user.dao.UserRepository;
+import com.isb.library.web.user.entity.User;
 import org.krysalis.barcode4j.impl.code39.Code39Bean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.isb.library.web.book.entity.Book;
 import com.isb.library.web.book.dao.BookRepository;
-import com.isb.library.web.book.entity.Catalogue;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -49,6 +48,8 @@ import static org.krysalis.barcode4j.output.bitmap.BitmapBuilder.saveImage;
 public class BookController {
 
 
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private BookRepository bookRepository;
     @Autowired
@@ -328,7 +329,7 @@ public class BookController {
      *
      * @return the model and view
      */
-    @GetMapping("/showStudentsForm")
+    @GetMapping("/upload")
     public ModelAndView importStudentsForm() {
         ModelAndView mav = new ModelAndView("import-students-form");
         return mav;
@@ -417,45 +418,55 @@ public class BookController {
      * @throws SQLException the sql exception
      * @throws IOException  the io exception
      */
-    @GetMapping("/saveStudents")
-    public String saveStudents() throws SQLException, IOException {
+    @PostMapping("/upload")
+    public String saveStudents(@ModelAttribute("fileUploadForm") FileUploadForm fileUploadForm, Model model) throws SQLException, IOException {
 
+        MultipartFile file = fileUploadForm.getFile();
+        if (file != null) {
 
-        //studentRepository.deleteAll();
+            ArrayList<ArrayList<String>> masterArrayList= studentImport.studentImport(file);
+            ArrayList<String> ninth= masterArrayList.get(0);
+            ArrayList<String> tenth= masterArrayList.get(1);
+            ArrayList<String> eleventh= masterArrayList.get(2);
+            ArrayList<String> twelfth= masterArrayList.get(3);
 
-        ArrayList<ArrayList<String>> masterArrayList= studentImport.studentImport("C:\\Users\\Joel\\Downloads\\Book Room Inventory.xlsx");
-        ArrayList<String> ninth= masterArrayList.get(0);
-        ArrayList<String> tenth= masterArrayList.get(1);
-        ArrayList<String> eleventh= masterArrayList.get(2);
-        ArrayList<String> twelfth= masterArrayList.get(3);
+            //studentRepository.deleteAll();
+            studentImport.resetIncrement();
 
-        studentImport.resetIncrement();
-
-        for (String student : ninth) {
-            Student tempStudent = new Student();
-            tempStudent.setName(student);
-            tempStudent.setGrade(9);
-            studentRepository.save(tempStudent);
+            for (String student : ninth) {
+                Student tempStudent = new Student();
+                tempStudent.setName(student);
+                tempStudent.setGrade(9);
+                studentRepository.save(tempStudent);
+            }
+            for (String student : tenth) {
+                Student tempStudent = new Student();
+                tempStudent.setName(student);
+                tempStudent.setGrade(10);
+                studentRepository.save(tempStudent);
+            }
+            for (String student : eleventh) {
+                Student tempStudent = new Student();
+                tempStudent.setName(student);
+                tempStudent.setGrade(11);
+                studentRepository.save(tempStudent);
+            }
+            for (String student : twelfth) {
+                Student tempStudent = new Student();
+                tempStudent.setName(student);
+                tempStudent.setGrade(12);
+                studentRepository.save(tempStudent);
+            }
+            return "redirect:/catalogue";
+        } else {
+            model.addAttribute("error", "Please choose a file to upload");
+            return "file-upload-form";
         }
-        for (String student : tenth) {
-            Student tempStudent = new Student();
-            tempStudent.setName(student);
-            tempStudent.setGrade(10);
-            studentRepository.save(tempStudent);
-        }
-        for (String student : eleventh) {
-            Student tempStudent = new Student();
-            tempStudent.setName(student);
-            tempStudent.setGrade(11);
-            studentRepository.save(tempStudent);
-        }
-        for (String student : twelfth) {
-            Student tempStudent = new Student();
-            tempStudent.setName(student);
-            tempStudent.setGrade(12);
-            studentRepository.save(tempStudent);
-        }
-        return "redirect:/catalogue";
+
+
+
+
+
     }
 
     /**
@@ -471,12 +482,13 @@ public class BookController {
         Checkout checkout = new Checkout();
 
         List<Student> students = studentRepository.findAll();
-
+        List<User> users = userRepository.findAll();
         Student student = new Student();
 
         checkout.setStudents(students);
         checkout.setBook(book);
         checkout.setStudent(student);
+        checkout.setUsers(users);
 
 
         mav.addObject("checkout", checkout);
@@ -583,10 +595,9 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
-
-    @GetMapping("testModal")
-    public ModelAndView modal(){
-        ModelAndView mav = new ModelAndView("demo-modal");
+    @GetMapping("/options")
+    public ModelAndView options(){
+        ModelAndView mav = new ModelAndView("options");
         return mav;
     }
 

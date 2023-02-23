@@ -36,6 +36,12 @@
 
 				<input type="text" th:field="*{original_language}" class="form-control col-4 mb-4" placeholder="Enter Original Language" />
 
+				<select class="custom-select" id="prlSelect" th:field="*{PRL}" style="width: 370px">
+					<option value="0" selected>Not on the Prescribed Reading List
+					<option value="1" selected>On the Prescribed Reading List</option>
+
+				</select>
+
 				<select class="custom-select" id="genreSelect" th:field="*{genre}" style="width: 370px">
 					<option value="null " selected>Choose Genre</option>
 					<option value="Short Stories">Short Stories</option>

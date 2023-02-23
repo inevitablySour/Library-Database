@@ -1,26 +1,20 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-	<head>
-		<title>Add Student Sheet</title>
-		
-		<link rel="stylesheet" 
-			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
-			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
-			crossorigin="anonymous" />
-	</head>
-	<body>
-		
-		<div class="container">
-			<p class="text-danger" th:if="${errorMessage}" th:text="${errorMessage}"></p>
-			<p class="text-success" th:if="${successMessage}" th:text="${successMessage}"></p>
-			<form enctype="multipart/form-data" method="POST" th:href="@{/saveStudents}" >
-				<div class="form-group">
-					<label>File to upload</label>
-					<input type="file" class="form-control-file" id="file" name="file"/>
-				</div>
-				<button class="btn btn-primary" type="submit">Upload</button>
-			</form>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>File Upload Form</title>
+	<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+	<h2>Upload Excel File</h2>
+	<form th:action="@{/upload}" th:object="${fileUploadForm}" method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label for="file">Choose Excel File:</label>
+			<input type="file" class="form-control-file" id="file" name="file">
 		</div>
-		
-	</body>
+		<button type="submit" class="btn btn-primary">Upload</button>
+	</form>
+</div>
+</body>
 </html>

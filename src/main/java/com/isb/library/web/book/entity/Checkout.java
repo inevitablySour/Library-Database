@@ -1,5 +1,6 @@
 package com.isb.library.web.book.entity;
 
+import com.isb.library.web.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,15 @@ public class Checkout {
     private Book book;
     private Student student;
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    private List<User> users;
     private List<Student> students;
 
     public List<Book> getBooks() {
