@@ -4,6 +4,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.oned.EAN13Writer;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.Mode;
 import com.isb.library.web.book.dao.CatalogueRepository;
 import com.isb.library.web.book.dao.GenreRepository;
 import com.isb.library.web.book.dao.StudentRepository;
@@ -669,6 +670,13 @@ public class BookController {
         Book book = bookRepository.findById(bookID).get();
 
         String title = book.getName();
+        String[] arr = title.split(" ");
+        if(arr.length > 1){
+            title = arr[0] + " " + arr[1];
+        }
+        else{
+            title= arr[0];
+        }
         String copyNum = book.getCopy_number();
 
         String imageUrl = "https://barcode.tec-it.com/barcode.ashx?data="
@@ -785,6 +793,35 @@ public class BookController {
         }
 
         return "redirect:/catalogue";
+    }
+
+    @GetMapping("/addNewStudent")
+    public ModelAndView newStudent(){
+        ModelAndView mav = new ModelAndView("new-student");
+
+        mav.addObject("student", new Student() );
+        return mav;
+    }
+
+    @PostMapping("/addNewStudent")
+    public String newStudent(@ModelAttribute Student student){
+        studentRepository.save(student);
+        return"redirect:/options";
+    }
+
+    @GetMapping("/deleteStudent")
+    public ModelAndView deleteStudent(){
+        ModelAndView mav = new ModelAndView("delete-student");
+        mav.addObject("students", studentRepository.findAll());
+        mav.addObject("student", new Student());
+        return mav;
+    }
+
+    @PostMapping("/deleteStudent")
+    public String deleteStudent(@ModelAttribute Student student){
+        studentRepository.deleteById(student.getId());
+
+        return "redirect:/options";
     }
 
 

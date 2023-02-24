@@ -44,8 +44,6 @@ public class Catalogue {
 
     private String shelf;
 
-    private int challenged;
-
-    private String challenged_date;
+    private String notes;
 
 }

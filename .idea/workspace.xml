@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Fixed an issue with the creation of new catalogue objects to set the new ID's for the books&#10;&#10;Because the last catalogue's id will not be equal to the length of the catalogue repository length I had the catalogue be saved so that the mysql database would update the id of a new catalogue. Then retrieved the ID from the last item of the catalogue repressory which would be the newly created catalogue object">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Changed it so the generated barcode only shows the first 1/2 words of the title of the book accompanied by the id of the book">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/delete-student.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/new-student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Catalogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Catalogue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/options.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" afterDir="false" />
@@ -232,7 +238,8 @@
       <workItem from="1677040437414" duration="12923000" />
       <workItem from="1677125631877" duration="11206000" />
       <workItem from="1677150981137" duration="9817000" />
-      <workItem from="1677196944299" duration="5796000" />
+      <workItem from="1677196944299" duration="7541000" />
+      <workItem from="1677207411678" duration="315000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -451,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677204036894</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fixed an issue with the creation of new catalogue objects to set the new ID's for the books&#10;&#10;Because the last catalogue's id will not be equal to the length of the catalogue repository length I had the catalogue be saved so that the mysql database would update the id of a new catalogue. Then retrieved the ID from the last item of the catalogue repressory which would be the newly created catalogue object">
+      <created>1677204279167</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1677204279167</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated HTML and BookController to split author into last and first name categories" />
     <MESSAGE value="Updated HTML to correct for change of the Book class" />
     <MESSAGE value="Functioning version of imorted data" />
     <MESSAGE value="Working user login along with added a user creation form" />
@@ -535,14 +548,15 @@
     <MESSAGE value="Beta 2.1&#10;&#10;Noticed an issue with the deletion of users, fixed by removing the Bootstrap Modal" />
     <MESSAGE value="Beta 2.2&#10;&#10;Added a delete genre button to the admin page" />
     <MESSAGE value="Fixed an issue with the creation of new catalogue objects to set the new ID's for the books&#10;&#10;Because the last catalogue's id will not be equal to the length of the catalogue repository length I had the catalogue be saved so that the mysql database would update the id of a new catalogue. Then retrieved the ID from the last item of the catalogue repressory which would be the newly created catalogue object" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with the creation of new catalogue objects to set the new ID's for the books&#10;&#10;Because the last catalogue's id will not be equal to the length of the catalogue repository length I had the catalogue be saved so that the mysql database would update the id of a new catalogue. Then retrieved the ID from the last item of the catalogue repressory which would be the newly created catalogue object" />
+    <MESSAGE value="Changed it so the generated barcode only shows the first 1/2 words of the title of the book accompanied by the id of the book" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed it so the generated barcode only shows the first 1/2 words of the title of the book accompanied by the id of the book" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>605</line>
+          <line>606</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="checkout">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -566,15 +580,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>158</line>
-          <properties class="com.isb.library.web.book.controller.BookController" method="updateCatalogue">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

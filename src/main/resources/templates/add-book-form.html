@@ -14,10 +14,7 @@
 			<h3>Add New Book</h3>
 			<hr/>
 			<div></div>
-			<div class="float-end" >
-				<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-			</div>
-			<br/><br/>
+
 			<form th:action="@{/saveBook}" th:object="${checkout}" method="POST">
 				
 				<input type="text" th:field="*{book.name}" class="form-control col-4 mb-4" placeholder="Enter Title" />
@@ -53,7 +50,7 @@
 				
 			</form>
 			<hr/>
-			<a class="btn btn-primary float-right" th:href="@{/generateBarcode(bookID=${checkout.book.id})}"> Download Barcode</a>
+			<a class="btn btn-primary float-right" th:href="@{/generateBarcode(bookID=${checkout.book.id})}" style="margin-bottom: 15px;"> Download Barcode</a>
 			<div></div>
 			<a th:href="@{/catalogue}">Back to catalogue</a>
 		</div>

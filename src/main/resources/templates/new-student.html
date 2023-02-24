@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="english">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Student</title>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Add Genre</h2>
+    <form th:action="@{/addNewStudent}" method="post">
+        <div class="form-group">
+            <label for="studentName">Student Name (Last, Real Preferred):</label>
+            <input type="text" class="form-control" id="studentName" name="studentName" th:field="${student.name}" required>
+
+            <select class="custom-select" id="genreSelect" th:field="*{student.grade}" style="width: 370px; margin-top: 15px;" required>
+                <option value="0">Choose Grade</option>
+                <option value="9">Ninth</option>
+                <option value="10">Tenth</option>
+                <option value="11">Eleventh</option>
+                <option value="12">Twelfth</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Student</button>
+        <a th:href="@{/options}">Back to options</a>
+    </form>
+</div>
+</body>
+</html>

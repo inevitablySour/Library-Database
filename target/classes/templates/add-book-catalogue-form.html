@@ -14,10 +14,7 @@
 		
 			<h3>Add New Book to Catalogue</h3>
 			<hr/>
-			<div class="float-right" >
-				<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-			</div>
-			<br/><br/>
+
 			<form th:action="@{/saveCatalogue}" th:object="${checkout}" method="POST">
 				
 				<input type="text" th:field="*{catalogue.name}" class="form-control col-4 mb-4" placeholder="Enter Title" />
@@ -36,6 +33,8 @@
 
 				<input type="text" th:field="*{catalogue.original_language}" class="form-control col-4 mb-4" placeholder="Enter Original Language" />
 
+				<input type="text" th:field="*{catalogue.notes}" class="form-control col-4 mb-4" placeholder="Additional Notes" />
+
 				<select class="custom-select" id="prlSelect" th:field="*{catalogue.PRL}" style="width: 370px; margin-bottom: 15px;">
 					<option value="0" selected>Not on the Prescribed Reading List
 					<option value="1" selected>On the Prescribed Reading List</option>
@@ -52,14 +51,7 @@
 					</option>
 				</select>
 
-				<select class="custom-select" id="genreSelect" th:field="*{catalogue.challenged}" style="width: 370px">
-					<option value="0">Never Challenged Before</option>
-					<option value="1">Challenged and Accepted</option>
-					<option value="2">Challenged and Denied</option>
-				</select>
 
-
-				<br/><br/>
 				
 				<button type="submit" class="btn btn-primary col-2">Save</button>
 				<input type="hidden" th:field="*{catalogue.id}" />
