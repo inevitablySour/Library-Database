@@ -162,8 +162,10 @@ public class BookController {
         int id = 1;
         int quantity = catalogue.getQuantity();
         catalogue.setQuantity_available(quantity);
+
         //Checks to see if the catalogue is being updated or saved
         if (!catalogue.getId().equals("")) {
+            catalogueRepository.save(catalogue);
             id = Integer.valueOf(catalogue.getId());
 
         }
@@ -172,7 +174,7 @@ public class BookController {
             catalogueRepository.save(catalogue);
             List<Catalogue> catalogues = catalogueRepository.findAll();
             catalogue = catalogues.get(catalogues.size()-1);
-
+            id = Integer.parseInt(catalogue.getId());
         }
 
 

@@ -43,7 +43,7 @@
 				</select>
 
 
-				<select class="form-control" id="currentGenre" name="currentGenre" th:field="*{catalogue.genre}" style="width: 370px">
+				<select class="form-control" id="currentGenre" name="currentGenre" th:field="*{catalogue.genre}" style="width: 370px; margin-bottom: 15px;">
 					<option value="">Select Genre:</option>
 					<option th:each="g: ${checkout.genres}"
 							th:value="${g.genre}"
@@ -51,6 +51,13 @@
 							th:selected="${g.genre == checkout.catalogue.genre}">
 					</option>
 				</select>
+
+				<select class="custom-select" id="genreSelect" th:field="*{catalogue.challenged}" style="width: 370px">
+					<option value="0">Never Challenged Before</option>
+					<option value="1">Challenged and Accepted</option>
+					<option value="2">Challenged and Denied</option>
+				</select>
+
 
 				<br/><br/>
 				
