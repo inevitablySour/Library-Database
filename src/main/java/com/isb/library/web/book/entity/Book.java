@@ -41,4 +41,5 @@ public class Book {
     private int catalogue_number;
 
     private boolean discard;
+
 }

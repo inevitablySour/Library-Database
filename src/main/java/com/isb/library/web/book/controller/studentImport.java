@@ -68,6 +68,28 @@ public class studentImport {
         boolean rs = myStmt.execute(sql);
     }
 
+    public static int getCatalogueId() throws SQLException{
+        String URL = "jdbc:mysql://localhost:3306/javabase";
+        String USERNAME = "root";
+        String PASSWORD = "Jxhb200516!";
+        int id=0;
+        try {
+
+            Connection con=DriverManager.getConnection(URL,USERNAME,PASSWORD);
+            PreparedStatement ps=con.prepareStatement("insert into catalogue (name) values(?)",Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1,"Neeraj");
+            ps.executeUpdate();
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+                id=rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+
 
     public static ArrayList<ArrayList<String>> studentImport(MultipartFile file) {
 

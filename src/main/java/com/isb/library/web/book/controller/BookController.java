@@ -156,29 +156,31 @@ public class BookController {
      * @return Returns a redirect to the catalogue page
      */
     @PostMapping("/saveCatalogue")
-    public String updateCatalogue(@ModelAttribute Checkout checkout) {
+    public String updateCatalogue(@ModelAttribute Checkout checkout) throws SQLException {
         Catalogue catalogue = checkout.getCatalogue();
-
+        boolean newBook = true;
         int id = 1;
+        int quantity = catalogue.getQuantity();
+        catalogue.setQuantity_available(quantity);
         //Checks to see if the catalogue is being updated or saved
         if (!catalogue.getId().equals("")) {
             id = Integer.valueOf(catalogue.getId());
-        }
 
-        //Updates the ID number to the next number in the sequence
-        else {
-            List<Catalogue> catalogue1 = catalogueRepository.findAll();
-            int size = catalogue1.size();
-            if (size != 0) {
-                id = Integer.parseInt(catalogue1.get(size - 1).getId()) + 1;
-            }
+        }
+        else{
+            //catalogue is saved
+            catalogueRepository.save(catalogue);
+            List<Catalogue> catalogues = catalogueRepository.findAll();
+            catalogue = catalogues.get(catalogues.size()-1);
 
         }
 
 
         //Find the quantity of books in the catalogue object (By default this value is 0 so no null error checking is required)
-        int quantity = catalogue.getQuantity();
-        catalogue.setQuantity_available(quantity);
+
+
+
+
 
 
         //Checks to see if there are books in the book list whos catalogue number matches the catalogue id and and adds them to a list
@@ -191,8 +193,15 @@ public class BookController {
                 if (book.getCatalogue_number() == id) {
                     currentNum++;
                     finalBookList.add(book);
-                    String[] arr = finalBookList.get(currentNum - 1).getCopy_number().split("-");
-                    finalCopyNumber = Integer.parseInt(arr[1]);
+                    try{
+                        String[] arr = finalBookList.get(currentNum - 1).getCopy_number().split("-");
+                        finalCopyNumber = Integer.parseInt(arr[1]);
+                    }
+                    catch(Exception e){
+
+                    }
+
+
                 }
             }
         }
@@ -257,8 +266,7 @@ public class BookController {
             }
         }
 
-        //catalogue is saved
-        catalogueRepository.save(catalogue);
+
         return "redirect:/catalogue";
     }
 
@@ -776,6 +784,7 @@ public class BookController {
 
         return "redirect:/catalogue";
     }
+
 
 
 }
