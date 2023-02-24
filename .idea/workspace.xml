@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Changed it so the generated barcode only shows the first 1/2 words of the title of the book accompanied by the id of the book">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/delete-student.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/new-student.html" afterDir="false" />
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Added a new student and delete student options to the Admin Options page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Catalogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Catalogue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-catalogue-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/options.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +38,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/resources/templates/checkout.html" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/resources/templates/create-user-form.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/resources/templates/delete-genre.html" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/resources/templates/import-students-form.html" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/resources/templates/list-books.html" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/resources/templates/options.html" root0="SKIP_INSPECTION" />
@@ -239,7 +231,8 @@
       <workItem from="1677125631877" duration="11206000" />
       <workItem from="1677150981137" duration="9817000" />
       <workItem from="1677196944299" duration="7541000" />
-      <workItem from="1677207411678" duration="315000" />
+      <workItem from="1677207411678" duration="556000" />
+      <workItem from="1677213896893" duration="1480000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -465,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677204279167</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Added a new student and delete student options to the Admin Options page">
+      <created>1677207912584</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1677207912584</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,8 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated HTML to correct for change of the Book class" />
-    <MESSAGE value="Functioning version of imorted data" />
     <MESSAGE value="Working user login along with added a user creation form" />
     <MESSAGE value="Implemented the roles in spring security as well as successfully hid the &quot;New User&quot; Button on the catalogue page as well as restricted access to the /user page to only root users" />
     <MESSAGE value="Added a button to the catalogue page, a new corresponding method, and corresponding HTML file that finds a list of all the books based on their name" />
@@ -549,14 +547,16 @@
     <MESSAGE value="Beta 2.2&#10;&#10;Added a delete genre button to the admin page" />
     <MESSAGE value="Fixed an issue with the creation of new catalogue objects to set the new ID's for the books&#10;&#10;Because the last catalogue's id will not be equal to the length of the catalogue repository length I had the catalogue be saved so that the mysql database would update the id of a new catalogue. Then retrieved the ID from the last item of the catalogue repressory which would be the newly created catalogue object" />
     <MESSAGE value="Changed it so the generated barcode only shows the first 1/2 words of the title of the book accompanied by the id of the book" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed it so the generated barcode only shows the first 1/2 words of the title of the book accompanied by the id of the book" />
+    <MESSAGE value="Added a new student and delete student options to the Admin Optiosn page" />
+    <MESSAGE value="Added a new student and delete student options to the Admin Options page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a new student and delete student options to the Admin Options page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>606</line>
+          <line>610</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="checkout">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -580,6 +580,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
+          <line>832</line>
+          <properties class="com.isb.library.web.book.controller.BookController" method="downloadBookList">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

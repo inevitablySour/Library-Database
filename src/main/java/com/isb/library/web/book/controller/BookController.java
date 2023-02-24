@@ -14,6 +14,10 @@ import com.isb.library.web.book.entity.*;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.isb.library.web.user.dao.UserRepository;
 import com.isb.library.web.user.entity.User;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.krysalis.barcode4j.impl.code39.Code39Bean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -822,6 +826,73 @@ public class BookController {
         studentRepository.deleteById(student.getId());
 
         return "redirect:/options";
+    }
+
+    //Parallel Arrays
+    @GetMapping("/downloadBookList")
+    public String downloadBookList(){
+        List<Book> books = bookRepository.findAll();
+
+        ArrayList<String> bookNames = new ArrayList<>();
+        ArrayList<String> studentNames = new ArrayList<>();
+        ArrayList<String> teacherNames = new ArrayList<>();
+
+        for(Book b : books){
+            if(b.getCheckedOut() == 1){
+                bookNames.add(b.getName());
+                studentNames.add(b.getCurrentOwner());
+                teacherNames.add(b.getTeacher());
+            }
+        }
+        String home = System.getProperty("user.home");
+        String path = home +"\\Downloads\\" +"Checked Out Books.xlsx";
+
+        saveToExcel(bookNames, studentNames, teacherNames, path);
+        return "redirect:/catalogue";
+    }
+
+    public static void saveToExcel(List<String> bookNames, List<String> studentNames, List<String> teacherNames, String filename) {
+        // Create a new workbook object
+        XSSFWorkbook workbook = new XSSFWorkbook();
+
+        // Create a new sheet
+        Sheet sheet = workbook.createSheet("Checked Out Books");
+
+        // Create header row
+        Row headerRow = sheet.createRow(0);
+
+        // Create header cells
+        Cell headerCell1 = headerRow.createCell(0);
+        headerCell1.setCellValue("Book Names");
+
+        Cell headerCell2 = headerRow.createCell(1);
+        headerCell2.setCellValue("Student Names");
+
+        Cell headerCell3 = headerRow.createCell(2);
+        headerCell3.setCellValue("Teacher Names");
+
+        // Create data rows
+        int rowCount = 1;
+        for (int i = 0; i < bookNames.size(); i++) {
+            Row row = sheet.createRow(rowCount++);
+
+            // Create cells for list1 and list2
+            Cell cell1 = row.createCell(0);
+            cell1.setCellValue(bookNames.get(i));
+
+            Cell cell2 = row.createCell(1);
+            cell2.setCellValue(studentNames.get(i));
+
+            Cell cell3 = row.createCell(2);
+            cell3.setCellValue(teacherNames.get(i));
+        }
+
+        // Write the workbook to an Excel file
+        try (FileOutputStream outputStream = new FileOutputStream(filename)) {
+            workbook.write(outputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
