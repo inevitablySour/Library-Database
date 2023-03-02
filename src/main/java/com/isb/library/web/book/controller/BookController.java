@@ -87,6 +87,10 @@ public class BookController {
         Checkout checkout = new Checkout();
         checkout.setBooks(bookRepository.findAll());
         checkout.setStudents(studentRepository.findAll());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username);
+        mav.addObject("user", user);
         mav.addObject("checkout", checkout);
         return mav;
     }
@@ -112,8 +116,8 @@ public class BookController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user = userRepository.findByUsername(username);
-        mav.addObject("catalogue", catalogueRepository.findAll());
         mav.addObject("user", user);
+        mav.addObject("catalogue", catalogueRepository.findAll());
         return mav;
     }
 
@@ -303,6 +307,10 @@ public class BookController {
         }
         checkout.setBooks(books);
         checkout.setStudents(students);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username);
+        mav.addObject("user", user);
         mav.addObject("checkout", checkout);
 
         return mav;

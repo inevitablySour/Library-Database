@@ -135,18 +135,17 @@
 
 							<a class="btn btn-danger"
 							   data-toggle="modal"
-							   data-target="#returnModal"
-							   th:attr="data-catalogue-id=${catalogue.id}"
+							   th:data-target="'#deleteModal-' + ${catalogue.id}"
+							   th:catalogue-book-id="${catalogue.id}"
+							>Delete</a>
 
-							   >Delete</a>
-							<!-- Modal -->
-							<div class="modal fade" id="returnModal" tabindex="-1" role="dialog" aria-labelledby="returnModalLabel" aria-hidden="true">
+							<div class="modal fade" th:id="'deleteModal-' + ${catalogue.id}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
 										<form th:action="@{/deleteInCatalogue(catalogueId=${catalogue.id})}">
 											<input type="hidden" name="catalogueId" th:value="${catalogue.id}" />
 											<div class="modal-header">
-												<h5 class="modal-title" id="returnModalLabel">Delete Book in Catalogue</h5>
+												<h5 class="modal-title" id="deleteModalLabel">Delete Book in Catalogue</h5>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>

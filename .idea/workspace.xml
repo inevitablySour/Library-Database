@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Added a button to download a list of books that have been checked out">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Did some slight styling and added a &lt;p&gt; to the catalogue html file that allows the user to see who is currently logged in">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/dao/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/dao/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/list-books.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/dao/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/dao/UserRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/list-books.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +242,7 @@
       <workItem from="1677213896893" duration="4299000" />
       <workItem from="1677311065948" duration="1004000" />
       <workItem from="1677376942896" duration="101000" />
-      <workItem from="1677727761422" duration="3487000" />
+      <workItem from="1677727761422" duration="7759000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -481,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677215848783</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Did some slight styling and added a &lt;p&gt; to the catalogue html file that allows the user to see who is currently logged in">
+      <created>1677739109812</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1677739109812</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +548,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implemented the roles in spring security as well as successfully hid the &quot;New User&quot; Button on the catalogue page as well as restricted access to the /user page to only root users" />
     <MESSAGE value="Added a button to the catalogue page, a new corresponding method, and corresponding HTML file that finds a list of all the books based on their name" />
     <MESSAGE value="Finished adding in data to the mysql server and made some small adjustments to the entity classes as well as the book list and catalogue HTML pages to match those changes" />
     <MESSAGE value="Working find by name system, in the process of trying to implement a checkout page successfully. The return function is working, and the checkout and return buttons alternate based on the checkout status. Additionally, remembered to hide the list books if the quantity of books is zero." />
@@ -565,14 +572,15 @@
     <MESSAGE value="Added a new student and delete student options to the Admin Optiosn page" />
     <MESSAGE value="Added a new student and delete student options to the Admin Options page" />
     <MESSAGE value="Added a button to download a list of books that have been checked out" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a button to download a list of books that have been checked out" />
+    <MESSAGE value="Did some slight styling and added a &lt;p&gt; to the catalogue html file that allows the user to see who is currently logged in" />
+    <option name="LAST_COMMIT_MESSAGE" value="Did some slight styling and added a &lt;p&gt; to the catalogue html file that allows the user to see who is currently logged in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>627</line>
+          <line>635</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="checkout">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -599,16 +607,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>904</line>
+          <line>912</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="downloadBookList">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
+          <line>422</line>
+          <properties class="com.isb.library.web.book.controller.BookController" method="deleteBook">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>914</line>
+          <line>922</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
