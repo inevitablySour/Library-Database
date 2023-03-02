@@ -18,9 +18,15 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.http.MediaType;
 import org.krysalis.barcode4j.impl.code39.Code39Bean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +37,7 @@ import com.isb.library.web.book.dao.BookRepository;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -38,6 +45,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -101,7 +109,11 @@ public class BookController {
     @GetMapping({"/catalogue"})
     public ModelAndView getCatalogue() {
         ModelAndView mav = new ModelAndView("book-catalogue");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username);
         mav.addObject("catalogue", catalogueRepository.findAll());
+        mav.addObject("user", user);
         return mav;
     }
 
@@ -157,11 +169,11 @@ public class BookController {
     /**
      * Either adds a new catalogue object or saves updates to a catalogue item
      *
-     * @param catalogue Catalogue object to be saved
+     * @param checkout checkout object containing the catalogue object to be saved
      * @return Returns a redirect to the catalogue page
      */
     @PostMapping("/saveCatalogue")
-    public String updateCatalogue(@ModelAttribute Checkout checkout) throws SQLException {
+    public String updateCatalogue(@ModelAttribute Checkout checkout) {
         Catalogue catalogue = checkout.getCatalogue();
         boolean newBook = true;
         int id = 1;
@@ -181,13 +193,6 @@ public class BookController {
             catalogue = catalogues.get(catalogues.size()-1);
             id = Integer.parseInt(catalogue.getId());
         }
-
-
-        //Find the quantity of books in the catalogue object (By default this value is 0 so no null error checking is required)
-
-
-
-
 
 
         //Checks to see if there are books in the book list whos catalogue number matches the catalogue id and and adds them to a list
@@ -278,9 +283,9 @@ public class BookController {
     }
 
     /**
-     * Finds a list of books with a matching title and returns a narrowed down book list view showing only those books
+     * Finds a list of books with a matching catalogue ID and returns a narrowed down book list view showing only those books
      *
-     * @param title Title of the books ot be searched by
+     * @param catalogueNumber Catalogue number of the books ot be searched by
      * @return Returns a ModelAndView object of the html file "books-with-title" with a list of all the books
      */
     @GetMapping("/booksWithTitle")
@@ -303,6 +308,11 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * Finds student from a given ID
+     * @param studentId id of the student to be found
+     * @return Returns the name of the student with the matching ID
+     */
     @GetMapping("/findStudent")
     public String findStudent(@RequestParam String studentId) {
         Student student = studentRepository.findById(studentId).get();
@@ -313,7 +323,8 @@ public class BookController {
     /**
      * Shows a form where the user can add a new book to the books list
      *
-     * @return Returns a ModelAndView object of the "add-book-form" html file with a list of all the students passed to it and a new book object passed to it as well
+     * @return Returns a ModelAndView object of the "add-book-form" html file with a list of all the students passed
+     * to it and a new book object passed to it as well
      */
     @GetMapping("/addBookForm")
     public ModelAndView addBookForm() {
@@ -333,7 +344,9 @@ public class BookController {
      * Similar to the Add Book form but instead of adding a new book it upadtes the same book
      *
      * @param bookId ID of the book to be updated
-     * @return Returns a ModelAndView object of the "add-book-form" html file with a list of all the students passed to it and a book object passed to it as well
+     * @return Returns a ModelAndView object of the "add-book-form" html file with a list of all the students passed
+     * to it and a book object passed to it as well. These are passed to the ModelAndView through the checkout object
+     * which contains them
      */
     @GetMapping("/showUpdateForm")
     public ModelAndView showUpdateForm(@RequestParam String bookId) {
@@ -378,7 +391,8 @@ public class BookController {
      * A form for the user to update an existing catalogue object
      *
      * @param catalogueId the catalogue id
-     * @return Returns a ModelAndView object of the "add-book-catalogue-form" html with an existing catalogue object passed to it
+     * @return Returns a ModelAndView object of the "add-book-catalogue-form" html with an existing catalogue object
+     * passed to it the catalogue object is passed through the checkout object
      */
     @GetMapping("/showUpdateCatalogueForm")
     public ModelAndView addToCatalogue(@RequestParam String catalogueId) {
@@ -473,7 +487,7 @@ public class BookController {
 
 
     /**
-     * Temporary method to import data into the datapase
+     * Temporary method to import data into the database
      *
      * @return Redirects user to the catalogue page
      */
@@ -515,12 +529,14 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
+
     /**
-     * Method used to save students from an excel file to the database
-     *
-     * @return Redirects the user to the catalogue page
-     * @throws SQLException the sql exception
-     * @throws IOException  the io exception
+     * Method used to upload a list of students
+     * @param fileUploadForm Object containing the multipart file that the user uploads
+     * @param model Similar to the ModelAndView
+     * @return Returns a redirect to the catalouge or opens up the original html page and displays an error
+     * @throws SQLException
+     * @throws IOException
      */
     @PostMapping("/upload")
     public String saveStudents(@ModelAttribute("fileUploadForm") FileUploadForm fileUploadForm, Model model) throws SQLException, IOException {
@@ -574,7 +590,8 @@ public class BookController {
      * Method to open the initial checkout page
      *
      * @param bookID ID of the book to be checked out
-     * @return Returns a ModelAndView object populated with the information of the book to be checked out and all of the students in 'studentRepository'
+     * @return Returns a ModelAndView object populated with the information of the book to be checked out and all
+     * of the students in 'studentRepository'
      */
     @GetMapping("/checkout")
     public ModelAndView checkout(@RequestParam String bookID) {
@@ -720,18 +737,34 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
+    /**
+     * Opens the admin options HTML page
+     * @return A ModelAndView of the admin options page
+     */
+
     @GetMapping("/options")
     public ModelAndView options() {
         ModelAndView mav = new ModelAndView("options");
         return mav;
     }
 
+    /**
+     * Opens a page to add a new genre
+     * @return A ModelAndView of the add genre form
+     */
     @GetMapping("/addGenre")
     public ModelAndView addGenre() {
         ModelAndView mav = new ModelAndView("add-genre");
         return mav;
     }
 
+    /**
+     * Post of the add genre form, that is responsible for checking if the genre already exists
+     * if the genre is a new genre it will be saved to the genre table
+     * @param genreName Name of the genre to be saved
+     * @return Returns an ModelAndView of either the options page or the add-genre page depending on whether
+     * the action of saving the genre was successfull
+     */
     @PostMapping("/addGenre")
     public ModelAndView addGenre(@RequestParam("genreName") String genreName) {
         ModelAndView mav = new ModelAndView();
@@ -761,6 +794,10 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * Method for displaying the delete genre page
+     * @return Returns a ModelAndView of the delete genre form
+     */
     @GetMapping("/deleteGenre")
     public ModelAndView deleteGenre() {
         ModelAndView mav = new ModelAndView("delete-genre");
@@ -771,6 +808,11 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * Post mapping for the delete genre form that deletes the genre based on the matching genre Id
+     * @param genre Genre object to be deleted
+     * @return Redirects the user to the admin options page
+     */
     @PostMapping("/deleteGenre")
     public String deleteGenre(@ModelAttribute Genre genre) {
         genreRepository.deleteById(genre.getId());
@@ -778,14 +820,20 @@ public class BookController {
         return "redirect:/options";
     }
 
-
-
+    /**
+     * Checks to see if a given input is valid (Contains only letters and spaces)
+     * @param input String to be checked
+     * @return Boolean to see if it is a valid input or not
+     */
     private boolean isValidInput(String input) {
         // Check if the input is not empty and contains only letters and spaces
         return input != null && !input.isEmpty() && input.matches("^[a-zA-Z ]*$");
     }
 
-
+    /**
+     * Temporary method to update all the current owners in the books table
+     * @return Redirects the user to the catalogue page
+     */
     public String updateStudents(){
         for(Book book: bookRepository.findAll()){
             if(book.getCurrentOwner() != null){
@@ -799,6 +847,10 @@ public class BookController {
         return "redirect:/catalogue";
     }
 
+    /**
+     * Form to add a new student
+     * @return ModelAndView object of the new student form
+     */
     @GetMapping("/addNewStudent")
     public ModelAndView newStudent(){
         ModelAndView mav = new ModelAndView("new-student");
@@ -807,12 +859,21 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * Post mapping to save the new student
+     * @param student Student object to be added/saved
+     * @return Redirects the user to the Admin Options page
+     */
     @PostMapping("/addNewStudent")
     public String newStudent(@ModelAttribute Student student){
         studentRepository.save(student);
         return"redirect:/options";
     }
 
+    /**
+     * Shows the form to delete a student in the list
+     * @return ModelAndView object of the form
+     */
     @GetMapping("/deleteStudent")
     public ModelAndView deleteStudent(){
         ModelAndView mav = new ModelAndView("delete-student");
@@ -821,6 +882,11 @@ public class BookController {
         return mav;
     }
 
+    /**
+     * Post mapping to delete a student based on their ID
+     * @param student Student to be deleted
+     * @return Redirects the user to the Admin Options page
+     */
     @PostMapping("/deleteStudent")
     public String deleteStudent(@ModelAttribute Student student){
         studentRepository.deleteById(student.getId());
@@ -828,9 +894,15 @@ public class BookController {
         return "redirect:/options";
     }
 
+
     //Parallel Arrays
+
+    /**
+     * Saves a list of all the checked out books in the book list to the user's downloads
+     * @return
+     */
     @GetMapping("/downloadBookList")
-    public String downloadBookList(){
+    public ResponseEntity<ByteArrayResource> downloadBookList() throws IOException {
         List<Book> books = bookRepository.findAll();
 
         ArrayList<String> bookNames = new ArrayList<>();
@@ -844,11 +916,23 @@ public class BookController {
                 teacherNames.add(b.getTeacher());
             }
         }
-        String home = System.getProperty("user.home");
-        String path = home +"\\Downloads\\" +"Checked Out Books.xlsx";
+        String filename = "checked-out-books.xlsx";
+        saveToExcel(bookNames, studentNames, teacherNames, filename);
 
-        saveToExcel(bookNames, studentNames, teacherNames, path);
-        return "redirect:/catalogue";
+        // Load the file into a ByteArrayResource
+        File file = new File(filename);
+        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(file.toPath()));
+
+        // Create a ResponseEntity and set the headers for the file download
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName());
+
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(file.length())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
     }
 
     public static void saveToExcel(List<String> bookNames, List<String> studentNames, List<String> teacherNames, String filename) {
@@ -894,7 +978,6 @@ public class BookController {
             e.printStackTrace();
         }
     }
-
 
 
 }

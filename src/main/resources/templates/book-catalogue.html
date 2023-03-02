@@ -48,11 +48,14 @@
 
 		
 		<div class="container">
+			<div class="float-right" >
 
+
+			</div>
 			<hr/>
 			<a th:href="@{/barcode}" class="btn btn-info" >Generate Barcode</a>
 			<a th:href="@{/addCatalogueForm}" class="btn btn-primary" >Add Book to Catalogue</a>
-			<a th:href="@{/downloadBookList}" class="btn btn-info" >Checked out Books</a>
+			<a th:href="@{/downloadBookList}" download="checked-out-books.xlsx" class="btn btn-info" >Checked out Books</a>
 			<a  class="btn btn-warning"
 				data-toggle="modal"
 				data-target="#listModal"
@@ -85,6 +88,8 @@
 			<div class="float-right" >
 				<a th:href="@{/options}" class="btn btn-dark" sec:authorize="hasRole('root')">Admin Options</a>
 				<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+				<p class="mt-2 ml-2 d-inline-block align-middle text-info text-capitalized font-weight-normal text-truncate" style="max-width: 140px;"
+				   th:text="'Welcome: ' + ${user.username}"></p>
 			</div>
 			<br/><br/>
 			<table class="table table-bordered table-striped" id="catalogueTable">
