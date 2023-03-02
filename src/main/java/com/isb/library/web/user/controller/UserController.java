@@ -112,6 +112,39 @@ public class UserController {
         return mav;
     }
 
+    @GetMapping("/updateUserInfo")
+    public ModelAndView updateInfo(){
+        ModelAndView mav = new ModelAndView("update-user-info");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username);
+        mav.addObject("user", user);
+        return mav;
+    }
+
+    @PostMapping("/updateUserInfo")
+    public ModelAndView updateInfo(@ModelAttribute User user){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
+        if (user.getPassword() != null) {
+            String password = user.getPassword();
+            user.setPassword(encoder.encode(password));
+        }
+
+
+        userRepository.save(user);
+
+
+
+        ModelAndView mav = new ModelAndView("book-catalogue");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User mavUser = userRepository.findByUsername(username);
+        mav.addObject("user", mavUser);
+        mav.addObject("catalogue", catalogueRepository.findAll());
+        return mav;
+    }
+
 
 
 }

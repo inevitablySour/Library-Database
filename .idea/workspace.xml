@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Fixed a bug where the 'delete modal' would be created only once and the book ID it would have would be for the first instance in the table so that every modal that was opened was just the same modal so that any time that an object would be deleted it would delete the first object in the table. I didn't notice this on the catalogue page because I would be testing on a new one and when searching for that catalogue object it owuld be the only one in the table so that modal ID would match. But this became apparent when deleting individual books that had more than one book displayed in the table&#10;&#10;This issue was solved by making dynamically updating table names so that there would be a different instance of the modal with the modal id corresponding to the individual bookId/CatalogueId">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/books-with-title.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user-list.html" afterDir="false" />
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Fixed the same issue with the User List delete modal">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/security/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/update-user-info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/add-book-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/book-catalogue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/security/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/security/SecurityConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +26,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Interface" />
         <option value="HTML File" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -234,7 +243,7 @@
       <workItem from="1677213896893" duration="4299000" />
       <workItem from="1677311065948" duration="1004000" />
       <workItem from="1677376942896" duration="101000" />
-      <workItem from="1677727761422" duration="8216000" />
+      <workItem from="1677727761422" duration="12260000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -488,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677746260136</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Fixed the same issue with the User List delete modal">
+      <created>1677746644707</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1677746644707</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +563,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Finished adding in data to the mysql server and made some small adjustments to the entity classes as well as the book list and catalogue HTML pages to match those changes" />
     <MESSAGE value="Working find by name system, in the process of trying to implement a checkout page successfully. The return function is working, and the checkout and return buttons alternate based on the checkout status. Additionally, remembered to hide the list books if the quantity of books is zero." />
     <MESSAGE value="Facade of a checkout page, will update the fact that a book is checked out but the id of the student who checked it out is incorrect." />
     <MESSAGE value="Beta 1.0 &#10;&#10;Checkout isn't functioning completely but all other functions are working" />
@@ -572,7 +587,8 @@
     <MESSAGE value="Added a button to download a list of books that have been checked out" />
     <MESSAGE value="Did some slight styling and added a &lt;p&gt; to the catalogue html file that allows the user to see who is currently logged in" />
     <MESSAGE value="Fixed a bug where the 'delete modal' would be created only once and the book ID it would have would be for the first instance in the table so that every modal that was opened was just the same modal so that any time that an object would be deleted it would delete the first object in the table. I didn't notice this on the catalogue page because I would be testing on a new one and when searching for that catalogue object it owuld be the only one in the table so that modal ID would match. But this became apparent when deleting individual books that had more than one book displayed in the table&#10;&#10;This issue was solved by making dynamically updating table names so that there would be a different instance of the modal with the modal id corresponding to the individual bookId/CatalogueId" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed a bug where the 'delete modal' would be created only once and the book ID it would have would be for the first instance in the table so that every modal that was opened was just the same modal so that any time that an object would be deleted it would delete the first object in the table. I didn't notice this on the catalogue page because I would be testing on a new one and when searching for that catalogue object it owuld be the only one in the table so that modal ID would match. But this became apparent when deleting individual books that had more than one book displayed in the table&#10;&#10;This issue was solved by making dynamically updating table names so that there would be a different instance of the modal with the modal id corresponding to the individual bookId/CatalogueId" />
+    <MESSAGE value="Fixed the same issue with the User List delete modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the same issue with the User List delete modal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -585,24 +601,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java</url>
-          <line>96</line>
-          <properties class="com.isb.library.web.user.controller.UserController" method="deleteUser">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java</url>
-          <line>85</line>
-          <properties class="com.isb.library.web.user.controller.UserController" method="updateUserForm">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
@@ -622,10 +620,24 @@
           </properties>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java</url>
+          <line>60</line>
+          <properties class="com.isb.library.web.user.controller.UserController" method="createUserSubmit">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
           <line>922</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
