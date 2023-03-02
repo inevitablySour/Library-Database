@@ -26,6 +26,7 @@
               th:field="*{username}"
               aria-describedby="emailHelp"
               placeholder="Enter email"
+              required
       />
     </div>
     <div class="form-group">
@@ -36,6 +37,7 @@
               id="password"
               th:field="*{password}"
               placeholder="Password"
+
       />
     </div>
     <div class="form-group">
@@ -46,6 +48,7 @@
               id="firstName"
               th:field="*{firstName}"
               placeholder="Enter first name"
+              required
       />
       <label for="lastName">Last Name</label>
       <input
@@ -53,7 +56,8 @@
               class="form-control"
               id="lastName"
               th:field="*{lastName}"
-              placeholder="Enter first name"
+              placeholder="Enter last name"
+              required
       />
     </div>
     <div class="form-group">

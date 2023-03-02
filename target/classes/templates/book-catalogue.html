@@ -53,6 +53,7 @@
 
 			</div>
 			<hr/>
+
 			<a th:href="@{/barcode}" class="btn btn-info" >Generate Barcode</a>
 			<a th:href="@{/addCatalogueForm}" class="btn btn-primary" >Add Book to Catalogue</a>
 			<a th:href="@{/downloadBookList}" download="checked-out-books.xlsx" class="btn btn-info" >Checked out Books</a>
@@ -85,11 +86,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="float-right">
+			<div class="float-right ">
 				<a th:href="@{/options}" class="btn btn-dark" sec:authorize="hasRole('root')">Admin Options</a>
 				<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-				<p class="mt-3 ml-2 d-inline-block align-middle text-info text-capitalized font-weight-normal text-truncate" style="max-width: 140px;">Welcome: </p>
-				<a class="ml-2 d-inline-block align-middle btn-link text-capitalized font-weight-normal text-truncate" style="max-width: 140px;" th:text="${user.username}" th:href="@{/user/updateUserInfo}"></a>
+				<p class="ml-2 d-inline-block align-middle text-info text-capitalized font-weight-normal text-truncate" style="max-width: 140px;">Welcome: </p>
+				<a class="mb-3 ml-2 d-inline-block align-middle btn-link text-capitalized font-weight-normal text-truncate" style="max-width: 140px;" th:text="${user.firstName}" th:href="@{/user/updateUserInfo}"></a>
 			</div>
 
 			<br/><br/>

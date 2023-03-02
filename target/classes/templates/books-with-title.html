@@ -35,8 +35,8 @@
 	<a th:href="@{/addBookForm}" class="btn btn-primary">Add New Book</a>
 	<div class="float-right" >
 		<a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-		<p class="mt-2 ml-2 d-inline-block align-middle text-info text-capitalized font-weight-normal text-truncate" style="max-width: 140px;"
-		   th:text="'Welcome: ' + ${user.username}"></p>
+		<p class="ml-2 d-inline-block align-middle text-info text-capitalized font-weight-normal text-truncate" style="max-width: 140px;">Welcome: </p>
+		<a class="mb-3 ml-2 d-inline-block align-middle btn-link text-capitalized font-weight-normal text-truncate" style="max-width: 140px;" th:text="${user.firstName}" th:href="@{/user/updateUserInfo}"></a>
 	</div>
 	<br/><br/>
 	<table class="table table-bordered table-striped" id="bookTable" style="display: none">
