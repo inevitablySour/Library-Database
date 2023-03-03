@@ -7,6 +7,7 @@
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
 			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
 			crossorigin="anonymous" />
+		<link rel="shortcut icon" href="/favicon.ico?ver=1.0">
 	</head>
 	<body>
 
@@ -33,7 +34,7 @@
 
 				<input type="text" th:field="*{catalogue.original_language}" class="form-control col-4 mb-4" placeholder="Enter Original Language" />
 
-				<input type="text" th:field="*{catalogue.notes}" class="form-control col-4 mb-4" placeholder="Additional Notes" />
+				<textarea type="text" th:field="*{catalogue.notes}" class="form-control col-4 mb-4" placeholder="Additional Notes" />
 
 				<select class="custom-select" id="prlSelect" th:field="*{catalogue.PRL}" style="width: 370px; margin-bottom: 15px;">
 					<option value="0" selected>Not on the Prescribed Reading List
