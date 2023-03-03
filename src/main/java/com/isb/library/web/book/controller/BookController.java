@@ -462,8 +462,8 @@ public class BookController {
     }
 
     /**
+     * @deprecated
      * Temporary Method used to import initial data into the database
-     *
      * @return Redirects to the catalogue page
      */
     @GetMapping("/saveTesting")
@@ -495,8 +495,8 @@ public class BookController {
 
 
     /**
+     * @deprecated
      * Temporary method to import data into the database
-     *
      * @return Redirects user to the catalogue page
      */
     @GetMapping("/catalogueSaveTesting")
@@ -717,8 +717,8 @@ public class BookController {
     }
 
     /**
+     * @deprecated
      * Temporary method to update the quantities and remaining quantities of the catalogue objects
-     *
      * @return Redirects the user to the catalogue page
      */
     @GetMapping("/updateQuantities")
@@ -839,6 +839,7 @@ public class BookController {
     }
 
     /**
+     * @deprecated
      * Temporary method to update all the current owners in the books table
      * @return Redirects the user to the catalogue page
      */
@@ -943,6 +944,13 @@ public class BookController {
                 .body(resource);
     }
 
+    /**
+     * Method to download a list of books that are checked out
+     * @param bookNames List of the book titles that are checked out
+     * @param studentNames List of the students who checked out the corresponding books
+     * @param teacherNames List of the teachers who checked the books out to the students
+     * @param filename The name of the file
+     */
     public static void saveToExcel(List<String> bookNames, List<String> studentNames, List<String> teacherNames, String filename) {
         // Create a new workbook object
         XSSFWorkbook workbook = new XSSFWorkbook();

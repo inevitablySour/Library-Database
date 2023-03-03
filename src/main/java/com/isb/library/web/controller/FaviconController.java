@@ -11,6 +11,10 @@ import java.io.InputStream;
 @RestController
 public class FaviconController {
 
+    /**
+     * Method to retrieve the favicon of the website
+     * @param response
+     */
     @RequestMapping("favicon.ico")
     public void getFavicon(HttpServletResponse response) {
         try {

@@ -32,6 +32,10 @@ public class UserController {
     @Autowired
     private CatalogueRepository catalogueRepository;
 
+    /**
+     * A list of all the users
+     * @return Returns a ModelAndView object populated with all the users in the UserRepository
+     */
     @GetMapping("/list")
     public ModelAndView userList(){
         List<User> users = userRepository.findAll();
@@ -48,6 +52,10 @@ public class UserController {
         return mav;
     }
 
+    /**
+     * Method to open the create user form and populate it with a new user object
+     * @return
+     */
     @GetMapping("/create")
     public ModelAndView createUserForm() {
         User user = new User();
@@ -57,20 +65,29 @@ public class UserController {
         return mav;
     }
 
+    /**
+     * Post mapping for the create method that saves the user to the repository
+     * @param user The user object to be saved to the repository
+     * @return Returns a ModelAndView object of the user list
+     */
     @PostMapping("/create")
     public ModelAndView createUserSubmit(@ModelAttribute User user){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
+        //Checks if the password field was left empty
         if (!user.getPassword().equals("")) {
+            //If the password isn't empty a new password is set
             String password = user.getPassword();
             user.setPassword(encoder.encode(password));
         }
         else{
+            //If it is empty the existing password is fetched from the user repository and added to the user object
             user.setPassword(userRepository.findById(user.getId()).get().getPassword());
         }
 
         userRepository.save(user);
 
+        //Populates the user-list view with a list of all the users (Excluding the root user)
         List<User> users = userRepository.findAll();
         List<User> finalUsers = new ArrayList<>();
         for(User u : users){
@@ -85,6 +102,12 @@ public class UserController {
         return mav;
     }
 
+    /**
+     * Method to update the information of an existing user
+     * @param userId The Id of the user to be updated
+     * @return Returns a ModelAndView object of the form to update the user information that is populated
+     * with the user who's information is to be updated
+     */
     @GetMapping("/update")
     public ModelAndView updateUserForm(@RequestParam String userId){
 
@@ -96,9 +119,14 @@ public class UserController {
         return mav;
     }
 
+    /**
+     * Method to delete a user from a given ID
+     * @param userId Id of the user to be deleted
+     * @return Returns a ModelAndView object of a list of users
+     */
     @GetMapping("/delete")
     public ModelAndView deleteUser(@RequestParam String userId){
-
+        //Deletes the user from a given Id
         userRepository.deleteById(userId);
 
         List<User> users = userRepository.findAll();
@@ -115,25 +143,39 @@ public class UserController {
         return mav;
     }
 
+    /**
+     * Method for each user to be able to update their own information (Excluding user type)
+     * @return REturns a model and view object of a form where the user can update their own information
+     */
     @GetMapping("/updateUserInfo")
     public ModelAndView updateInfo(){
         ModelAndView mav = new ModelAndView("update-user-info");
+
+        //Gets the information of the current user from Springboot secufity
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
+
         User user = userRepository.findByUsername(username);
         mav.addObject("user", user);
         return mav;
     }
 
+    /**
+     * Post mapping for a method for each user to be able to update their own information (Excluding user type)
+     * @param user User object to be saved
+     * @return Returns a ModelAndView of the catalogue page
+     */
     @PostMapping("/updateUserInfo")
     public ModelAndView updateInfo(@ModelAttribute User user){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-
+        //Checks if the password field was left empty
         if (!user.getPassword().equals("")) {
+            //If it wasn't left empty the new password is set
             String password = user.getPassword();
             user.setPassword(encoder.encode(password));
         }
         else{
+            //If it is empty the existing password is fetched from the user repository and added to the user object
             user.setPassword(userRepository.findById(user.getId()).get().getPassword());
         }
 

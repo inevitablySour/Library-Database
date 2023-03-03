@@ -30,10 +30,12 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 
 public class bookImport {
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
-    private BookRepository bookRepository;
+    /**
+     * Method to retrieve book data from an excel sheet
+     * @param filepath
+     * @return Return an ArrayList of Arraylist<String> which contains book data
+     */
     public static ArrayList<ArrayList<String>> bookImport(String filepath) {
         //Storage for data from excel files
         ArrayList<String> headers = new ArrayList<>();
@@ -126,24 +128,15 @@ public class bookImport {
         }
         System.out.println(array.size());
 
-
-
-
-
     }
 
 
-
-    public void saveData(){
-        ArrayList<String> data = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx", false);
-        for(int i = 0; i< data.size(); i++){
-            Book temp = new Book();
-            temp.setName(data.get(i));
-            bookRepository.save(temp);
-        }
-    }
-
-
+    /**
+     * Method to extract the data from a Microsoft Excel Sheet
+     * @param filePath path of the file where the data is to be extracted from
+     * @param withSpaces if the cells are empty they are to be replaced with spaces so the length of the array remains the same
+     * @return Returns an ArrayList<String> containing the data from the first column of the Excel sheet.
+     */
     public static ArrayList<String> extractData(String filePath, boolean withSpaces) {
         ArrayList<String> data = new ArrayList<>();
         try {
@@ -179,6 +172,11 @@ public class bookImport {
         }
         return data;
     }
+
+    /**
+     * Resets the id increment of the books table
+     * @throws SQLException
+     */
     public static void resetIncrement() throws SQLException {
 
         String url = "jdbc:mysql://localhost:3306/javabase";

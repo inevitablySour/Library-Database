@@ -19,43 +19,10 @@ public class studentImport {
     @Autowired
     StudentRepository studentRepository;
 
-    public static void main(String[] args) throws SQLException {
-
-
-//        ArrayList<ArrayList<String>> masterArrayList= studentImport("C:\\Users\\Joel\\Downloads\\Book Room Inventory.xlsx");
-//        ArrayList<String> ninth= masterArrayList.get(0);
-//        ArrayList<String> tenth= masterArrayList.get(1);
-//        ArrayList<String> eleventh= masterArrayList.get(2);
-//        ArrayList<String> twelfth= masterArrayList.get(3);
-//
-//        resetIncrement();
-//
-//        for (String student : ninth) {
-//            Student tempStudent = new Student();
-//            tempStudent.setName(student);
-//            tempStudent.setGrade(9);
-//            studentRepository.save(tempStudent);
-//        }
-//        for (String student : tenth) {
-//            Student tempStudent = new Student();
-//            tempStudent.setName(student);
-//            tempStudent.setGrade(10);
-//            studentRepository.save(tempStudent);
-//        }
-//        for (String student : eleventh) {
-//            Student tempStudent = new Student();
-//            tempStudent.setName(student);
-//            tempStudent.setGrade(11);
-//            studentRepository.save(tempStudent);
-//        }
-//        for (String student : twelfth) {
-//            Student tempStudent = new Student();
-//            tempStudent.setName(student);
-//            tempStudent.setGrade(12);
-//            studentRepository.save(tempStudent);
-//        }
-    }
-
+    /**
+     * Resets the increment of the student list
+     * @throws SQLException
+     */
     public static void resetIncrement() throws SQLException {
 
         String url = "jdbc:mysql://localhost:3306/javabase";
@@ -68,29 +35,12 @@ public class studentImport {
         boolean rs = myStmt.execute(sql);
     }
 
-    public static int getCatalogueId() throws SQLException{
-        String URL = "jdbc:mysql://localhost:3306/javabase";
-        String USERNAME = "root";
-        String PASSWORD = "Jxhb200516!";
-        int id=0;
-        try {
-
-            Connection con=DriverManager.getConnection(URL,USERNAME,PASSWORD);
-            PreparedStatement ps=con.prepareStatement("insert into catalogue (name) values(?)",Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1,"Neeraj");
-            ps.executeUpdate();
-            ResultSet rs=ps.getGeneratedKeys();
-            if(rs.next()){
-                id=rs.getInt(1);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return id;
-    }
-
-
-
+    /**
+     * Method to import a list of students
+     * @param file file to be used
+     * @return Returns an Arraylist of one set of parallel arrays that contains the Student name and their corresponding
+     * grade
+     */
     public static ArrayList<ArrayList<String>> studentImport(MultipartFile file) {
 
         // Storage for data from excel files
