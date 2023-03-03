@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Student</title>
+  <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}">
+  <link rel="shortcut icon" href="/favicon.ico?ver=1.0">
+</head>
+<body>
+<div class="container">
+  <h2>Delete Genre</h2>
+  <form th:action="@{/deleteStudent}" method="post">
+    <div class="form-group">
+      <label for="genreName">Select Student To Delete:</label>
+      <select class="form-control" id="genreName" name="currentGenre" th:field="${student.id}" style="width: 370px">
+        <option value="">Select Genre:</option>
+        <option th:each="s: ${students}"
+                th:value="${s.id}"
+                th:text="${s.name}">
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Delete Student</button>
+    <a th:href="@{/options}">Back to options</a>
+  </form>
+</div>
+</body>
+</html>
