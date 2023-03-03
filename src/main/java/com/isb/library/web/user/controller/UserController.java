@@ -61,9 +61,12 @@ public class UserController {
     public ModelAndView createUserSubmit(@ModelAttribute User user){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-        if (user.getPassword() != null) {
+        if (!user.getPassword().equals("")) {
             String password = user.getPassword();
             user.setPassword(encoder.encode(password));
+        }
+        else{
+            user.setPassword(userRepository.findById(user.getId()).get().getPassword());
         }
 
         userRepository.save(user);
@@ -126,9 +129,12 @@ public class UserController {
     public ModelAndView updateInfo(@ModelAttribute User user){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-        if (user.getPassword() != null) {
+        if (!user.getPassword().equals("")) {
             String password = user.getPassword();
             user.setPassword(encoder.encode(password));
+        }
+        else{
+            user.setPassword(userRepository.findById(user.getId()).get().getPassword());
         }
 
 
