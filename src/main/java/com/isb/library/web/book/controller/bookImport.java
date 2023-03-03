@@ -179,9 +179,9 @@ public class bookImport {
      */
     public static void resetIncrement() throws SQLException {
 
-        String url = "jdbc:mysql://localhost:3306/javabase";
-        String user = "root";
-        String password = "Jxhb200516!";
+        String url = "jdbc:mysql://dbaas-db-2993217-do-user-13681550-0.b.db.ondigitalocean.com:25060/defaultdb";
+        String user = "doadmin";
+        String password = "mysql://dbaas-db-2993217-do-user-13681550-0.b.db.ondigitalocean.com:25060/defaultdb";
         Connection myConn = DriverManager.getConnection(url, user, password);
 
         Statement myStmt = myConn.createStatement();

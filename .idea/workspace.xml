@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 3.0&#10;&#10;Added a favicon and corresponding controller method as well as update to the LibraryApplication.java">
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 3.2&#10;&#10;Added documentation for all methods in the controller classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/studentImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/studentImport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -239,7 +247,7 @@
       <workItem from="1677376942896" duration="101000" />
       <workItem from="1677727761422" duration="13147000" />
       <workItem from="1677751520863" duration="107000" />
-      <workItem from="1677820810371" duration="4547000" />
+      <workItem from="1677820810371" duration="9595000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -521,7 +529,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677825032546</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Beta 3.1&#10;&#10;Fixed an issue where if the password was left blank when updating user info, the method would not detect the fact that it was null because it technically had a string value so, I had to use .equals(&quot;&quot;) instead to verify if the password field was left blank.">
+      <created>1677826303955</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1677826303955</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Beta 3.2&#10;&#10;Added documentation for all methods in the controller classes">
+      <created>1677828166233</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1677828166233</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -580,8 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Beta 1.1&#10;&#10;Added a barcode generator, both as a webpage where the user can put their own text in and download a corresponding bar code and a button under the section of each update book page where the barcode that is downloaded corresponds directly to that specific book based on the title and copy number" />
-    <MESSAGE value="Added documentation and comments for all the methods in the book controller class" />
     <MESSAGE value="Beta 1.2&#10;&#10;Functioning checkout system.&#10;&#10;Had to make a new checkout entity that had a Student, List of students, and a book entity as a part of it so that it could be passed as one object to the form in the HTML code" />
     <MESSAGE value="Fixed an issue when saving a new book to catalogue that was caused because of how I had previously made copy numbers, instead of finding the current copy number by using the index of a string I instead split the copy number by a regex &quot;-&quot; and then used the second item in the array" />
     <MESSAGE value="Beta 1.3&#10;&#10;Updated the update book form so you can no longer change the current owner of the book, instead it only shows the current owner if there is one&#10;&#10;added a toggle to the update book form that lets the user mark the book as discarded, this will highlight the row of the discarded book in red&#10;&#10;Updated the corresponding controller methods so the changes are functioning." />
@@ -605,7 +625,9 @@
     <MESSAGE value="Added a personal user edit link to the user welcome message and noticed an error where the website only updated the list of users once at the start of the website so that any changes made to the database were not actually updated on the website side. This meant that if a user updated their password or username, it will update on the database but if they go to log in with the new username and password it will not work.&#10;&#10;To solve this issue I added a Custom user details service class that dynamically updates the list of users that the website has based on the information in the database." />
     <MESSAGE value="Fixed an alignment issue with the user options and welcome message" />
     <MESSAGE value="Beta 3.0&#10;&#10;Added a favicon and corresponding controller method as well as update to the LibraryApplication.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta 3.0&#10;&#10;Added a favicon and corresponding controller method as well as update to the LibraryApplication.java" />
+    <MESSAGE value="Beta 3.1&#10;&#10;Fixed an issue where if the password was left blank when updating user info, the method would not detect the fact that it was null because it technically had a string value so, I had to use .equals(&quot;&quot;) instead to verify if the password field was left blank." />
+    <MESSAGE value="Beta 3.2&#10;&#10;Added documentation for all methods in the controller classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beta 3.2&#10;&#10;Added documentation for all methods in the controller classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -621,7 +643,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>912</line>
+          <line>913</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="downloadBookList">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -639,7 +661,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java</url>
-          <line>60</line>
+          <line>73</line>
           <properties class="com.isb.library.web.user.controller.UserController" method="createUserSubmit">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -648,13 +670,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>922</line>
+          <line>923</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java</url>
-          <line>127</line>
-          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
