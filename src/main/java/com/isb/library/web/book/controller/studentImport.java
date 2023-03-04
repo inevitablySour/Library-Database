@@ -25,10 +25,8 @@ public class studentImport {
      */
     public static void resetIncrement() throws SQLException {
 
-        String url = "jdbc:mysql://dbaas-db-2993217-do-user-13681550-0.b.db.ondigitalocean.com:25060/defaultdb";
-        String user = "doadmin";
-        String password = "AVNS_Nxkqn5zUkkoy3G2Sq-i";
-        Connection myConn = DriverManager.getConnection(url, user, password);
+
+        Connection myConn = DriverManager.getConnection("jdbc:mariadb://ebc.isb.cn:3306/ebcisbcn_library?user=ebcisbcn_admin&password=AgentsRowsRodeoCaking80");
 
         Statement myStmt = myConn.createStatement();
         String sql = "ALTER TABLE students AUTO_INCREMENT = 1";

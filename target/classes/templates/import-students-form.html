@@ -12,7 +12,7 @@
 		<h2 class="text-center mb-4">Upload Excel File</h2>
 		<div class="text-center">
 			<p>Click the Button to download the template (Make sure the file you upload has no numbers)</p>
-			<a href="https://drive.google.com/uc?export=download&id=10wDQ-eerP6xcQmLRDLvREKzgsYQdMYzk" download>
+			<a href="../static/Student%20Names%20Template.xlsx" download>
 				<button type="button" class="btn btn-info">Download Template</button>
 			</a>
 			<form th:action="@{/upload}" th:object="${fileUploadForm}" method="post" enctype="multipart/form-data">
