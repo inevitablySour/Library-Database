@@ -161,8 +161,6 @@ public class BookController {
             }
         }
 
-
-
         catalogue.setQuantity(tempQuantity);
         catalogue.setQuantity_available(tempQuantityAvailable);
         catalogueRepository.save(catalogue);
@@ -468,25 +466,25 @@ public class BookController {
      */
     @GetMapping("/saveTesting")
     public String saveTesting() {
-//        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Titles.xlsx", false);
-//        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx", false);
-//        ArrayList<String> firstNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\First Name.xlsx", false);
-//        ArrayList<String> genreData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Genre.xlsx", false);
-//        ArrayList<String> idData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Book ID.xlsx", false);
-//        ArrayList<String> studentData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Student Names.xlsx", true);
-        ArrayList<String> teacherData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Teachers.xlsx", true);
-        List<Student> students = studentRepository.findAll();
-        List<Book> books = bookRepository.findAll();
+        ArrayList<String> titleData = extractData("C:\\Users\\xxx\\Desktop\\Titles.xlsx", false);
+        ArrayList<String> lastNameData = extractData("C:\\Users\\xxx\\Desktop\\Last Name.xlsx", false);
+        ArrayList<String> firstNameData = extractData("C:\\Users\\xxx\\Desktop\\First Name.xlsx", false);
+        ArrayList<String> genreData = extractData("C:\\Users\\xxx\\Desktop\\Genre.xlsx", false);
+        ArrayList<String> idData = extractData("C:\\Users\\xxx\\Desktop\\Book ID.xlsx", false);
+        ArrayList<String> studentData = extractData("C:\\Users\\xxx\\Desktop\\Student Names.xlsx", true);
+        ArrayList<String> teacherData = extractData("C:\\Users\\xxx\\Desktop\\Teachers.xlsx", true);
 
-        for (int i = 0; i < teacherData.size(); i++) {
-            books.get(i).setTeacher(teacherData.get(i));
 
-//            temp.setName(titleData.get(i));
-//            temp.setLastName(lastNameData.get(i));
-//            temp.setFirstName(firstNameData.get(i));
-//            temp.setGenre(genreData.get(i));
-//            temp.setCopy_number(idData.get(i));
-            bookRepository.save(books.get(i));
+        for (int i = 0; i < titleData.size(); i++) {
+            Book temp = new Book();
+            temp.setTeacher(teacherData.get(i));
+
+            temp.setName(titleData.get(i));
+            temp.setLastName(lastNameData.get(i));
+            temp.setFirstName(firstNameData.get(i));
+            temp.setGenre(genreData.get(i));
+            temp.setCopy_number(idData.get(i));
+            bookRepository.save(temp);
         }
 
 
@@ -503,7 +501,7 @@ public class BookController {
     public String catalogueSaveTesting() {
         //Methods used to initially import all the titles of books into the database and update both the quantities of books as well as the catalogue number of each book
 
-//        ArrayList<String> titleData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Titles.xlsx");
+//        ArrayList<String> titleData = extractData("C:\\Users\\xxx\\Desktop\\Catalogue Titles.xlsx");
 //        for(String title: titleData){
 //            Catalogue temp = new Catalogue();
 //            temp.setName(title);
@@ -525,7 +523,7 @@ public class BookController {
 
         List<Catalogue> catalogue = catalogueRepository.findAll();
 
-        ArrayList<String> lastNameData = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Catalogue Languages.xlsx", true);
+        ArrayList<String> lastNameData = extractData("C:\\Users\\xxx\\Desktop\\Catalogue Languages.xlsx", true);
 
 
         for (int i = 0; i < lastNameData.size(); i++) {

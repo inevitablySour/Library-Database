@@ -4,59 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 3.4&#10;&#10;Updated the MySQL links to use the online database link and also moved resources into the static folder to load the background image for the catalogue page as well as the student template file">
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/LibraryApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/dao/BookRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/dao/CatalogueRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/dao/GenreRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/dao/StudentRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Catalogue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Checkout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/FileUploadForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Genre.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Student.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/service/FileUploadService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/controller/FaviconController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/security/CustomUserDetailsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/security/SecurityConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/dao/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/user/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/Student Names Template.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/image-1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-catalogue-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-book-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/add-genre.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/barcode-generator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/book-catalogue.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/books-with-title.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/checkout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/create-user-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/delete-genre.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/delete-student.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/import-students-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/list-books.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/new-student.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/options.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/update-user-info.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/library-0.0.1-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/library-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.isb.library.LibraryApplicationTests.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.isb.library.LibraryApplicationTests.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/isb/library/LibraryApplicationTests.class" beforeDir="false" />
+    <list default="true" id="d361c26c-26f0-4ab5-86db-11b0eebe14e7" name="Changes" comment="Beta 3.3&#10;&#10;Updated Database URLs to match digital ocean ones">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/studentImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/studentImport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Checkout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Checkout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/isb/library/web/security/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/isb/library/web/security/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/update-user-info.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/update-user-info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/bookImport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/controller/studentImport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Checkout.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/book/entity/Checkout.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/isb/library/web/security/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/isb/library/web/security/CustomUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/update-user-info.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/update-user-info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/library-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/library-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/library-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/library-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.isb.library.LibraryApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.isb.library.LibraryApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.isb.library.LibraryApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.isb.library.LibraryApplicationTests.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +49,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/isb/library/LibraryApplication.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/bookImport.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/studentImport.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/entity/Book.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/isb/library/web/user/controller/UserController.java" root0="SKIP_INSPECTION" />
@@ -125,7 +95,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Joel/OneDrive - International School of Beijing/Documents/Development/Java/Spring Projects/library_/src/main/resources/templates",
+    "last_opened_file_path": "G:/My Drive/IB/Computer Science/Forms/Product",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -182,29 +152,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="library" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
     <configuration name="LibraryApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="library_" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.isb.library.LibraryApplication" />
@@ -215,19 +162,12 @@
     <configuration name="LibraryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <module name="library" />
+      <module name="library_" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.isb.library.LibraryApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.bookImport" />
-      <item itemvalue="Application.studentImport" />
-      <item itemvalue="Maven.library" />
-      <item itemvalue="Spring Boot.LibraryApplication" />
-      <item itemvalue="Spring Boot.LibraryApplication (1)" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.studentImport" />
@@ -320,7 +260,14 @@
       <workItem from="1677727761422" duration="13147000" />
       <workItem from="1677751520863" duration="107000" />
       <workItem from="1677820810371" duration="10882000" />
-      <workItem from="1677929338606" duration="8048000" />
+      <workItem from="1677835501801" duration="1342000" />
+      <workItem from="1677930790239" duration="860000" />
+      <workItem from="1677940170094" duration="602000" />
+      <workItem from="1678277658582" duration="2748000" />
+      <workItem from="1678351613493" duration="2604000" />
+      <workItem from="1678357789759" duration="9225000" />
+      <workItem from="1678368680993" duration="1093000" />
+      <workItem from="1678377355942" duration="337000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed an error with misc.xml and tested the extractData method">
       <created>1675837363282</created>
@@ -623,21 +570,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677834100012</updated>
     </task>
-    <task id="LOCAL-00044" summary="Beta 3.4&#10;&#10;Updated the MySQL links to use the online database link and also moved resources into the static folder to load the background image for the catalogue page as well as the student template file">
-      <created>1677938310431</created>
+    <task id="LOCAL-00044" summary="Beta 3.3&#10;&#10;Updated Database URLs to match digital ocean ones">
+      <created>1677835519316</created>
       <option name="number" value="00044" />
       <option name="presentableId" value="LOCAL-00044" />
       <option name="project" value="LOCAL" />
-      <updated>1677938310431</updated>
+      <updated>1677835519316</updated>
     </task>
-    <task id="LOCAL-00045" summary="Beta 3.4&#10;&#10;Updated the MySQL links to use the online database link and also moved resources into the static folder to load the background image for the catalogue page as well as the student template file">
-      <created>1677938348704</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1677938348704</updated>
-    </task>
-    <option name="localTasksCounter" value="46" />
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -684,7 +624,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -696,6 +648,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed an issue when saving a new book to catalogue that was caused because of how I had previously made copy numbers, instead of finding the current copy number by using the index of a string I instead split the copy number by a regex &quot;-&quot; and then used the second item in the array" />
     <MESSAGE value="Beta 1.3&#10;&#10;Updated the update book form so you can no longer change the current owner of the book, instead it only shows the current owner if there is one&#10;&#10;added a toggle to the update book form that lets the user mark the book as discarded, this will highlight the row of the discarded book in red&#10;&#10;Updated the corresponding controller methods so the changes are functioning." />
     <MESSAGE value="Added an admin options page, currently populated with only the new user button. Options to add new genres and upload a new student list are coming soon." />
     <MESSAGE value="Updated the admin page so the user can now add new genres, updated the genre select option when adding a new catalogue so that the dropdown list is pulled from the mysql database" />
@@ -720,15 +673,14 @@
     <MESSAGE value="Beta 3.1&#10;&#10;Fixed an issue where if the password was left blank when updating user info, the method would not detect the fact that it was null because it technically had a string value so, I had to use .equals(&quot;&quot;) instead to verify if the password field was left blank." />
     <MESSAGE value="Beta 3.2&#10;&#10;Added documentation for all methods in the controller classes" />
     <MESSAGE value="Beta 3.3&#10;&#10;Updated Database URLs to match digital ocean ones" />
-    <MESSAGE value="Beta 3.4&#10;&#10;Updated the MySQL links to use the online database link and also moved resources into the static folder to load the background image for the catalogue page as well as the student template file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta 3.4&#10;&#10;Updated the MySQL links to use the online database link and also moved resources into the static folder to load the background image for the catalogue page as well as the student template file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beta 3.3&#10;&#10;Updated Database URLs to match digital ocean ones" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>635</line>
+          <line>633</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="checkout">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -737,7 +689,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>913</line>
+          <line>911</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="downloadBookList">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -746,7 +698,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>422</line>
+          <line>420</line>
           <properties class="com.isb.library.web.book.controller.BookController" method="deleteBook">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -764,7 +716,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/isb/library/web/book/controller/BookController.java</url>
-          <line>923</line>
+          <line>921</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>

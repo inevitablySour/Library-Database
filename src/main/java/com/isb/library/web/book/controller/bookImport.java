@@ -122,7 +122,7 @@ public class bookImport {
     }
 
     public static void main(String[] args) throws IOException {
-        ArrayList<String> array = extractData("C:\\Users\\Joel\\OneDrive - International School of Beijing\\Desktop\\Last Name.xlsx", false);
+        ArrayList<String> array = extractData("C:\\Users\\xxx\\Desktop\\Last Name.xlsx", false);
         for(String e : array){
             System.out.println(e);
         }
@@ -179,7 +179,7 @@ public class bookImport {
      */
     public static void resetIncrement() throws SQLException {
 
-        Connection myConn = DriverManager.getConnection("jdbc:mariadb://ebc.isb.cn:3306/ebcisbcn_library?user=ebcisbcn_admin&password=AgentsRowsRodeoCaking80");
+        Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javabase?user=root&password=Jxhb200516!");
 
         Statement myStmt = myConn.createStatement();
         String sql = "ALTER TABLE books AUTO_INCREMENT = 1";
