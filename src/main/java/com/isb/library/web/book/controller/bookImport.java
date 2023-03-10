@@ -179,7 +179,7 @@ public class bookImport {
      */
     public static void resetIncrement() throws SQLException {
 
-        Connection myConn = DriverManager.getConnection("jdbc:mariadb://ebc.isb.cn:3306/ebcisbcn_library?user=ebcisbcn_admin&password=AgentsRowsRodeoCaking80");
+        Connection myConn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/ebcisbcn_library?user=ebcisbcn_admin&password=AgentsRowsRodeoCaking80");
 
         Statement myStmt = myConn.createStatement();
         String sql = "ALTER TABLE books AUTO_INCREMENT = 1";
